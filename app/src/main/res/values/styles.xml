@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="standardBottomSheet" parent="Widget.Material3.BottomSheet">
+        <item name="layout_behavior">com.google.android.material.bottomsheet.BottomSheetBehavior</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.ResiCo.LargeComponent" parent="">
+        <item name="cornerSize">8dp</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+
+    <style name="ShapeAppearance.App.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">24dp</item>
+    </style>
+</resources>
