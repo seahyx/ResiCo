@@ -38,8 +38,10 @@
 
         <!-- Custom Styles -->
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearanceOverlay.ResiCo.LargeComponent</item>
+        <item name="textInputOutlinedStyle">@style/Widget.ResiCo.TextInputLayout</item>
     </style>
 
-    <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+    <style name="Widget.ResiCo.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="shapeAppearance">@style/ShapeAppearanceOverlay.ResiCo.SmallComponent</item>
     </style>
 </resources>

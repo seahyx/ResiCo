@@ -37,6 +37,7 @@
         <item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
 
         <!-- Custom Styles -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearanceOverlay.ResiCo.SmallComponent</item>
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearanceOverlay.ResiCo.LargeComponent</item>
     </style>
 </resources>
