@@ -1,8 +1,5 @@
 <resources>
     <style name="Theme.ResiCo" parent="Theme.Material3.Dark.NoActionBar">
-        <!-- Font Family -->
-        <item name="fontFamily">@font/lexend</item>
-
         <!-- M3 Theme Attributes -->
         <item name="colorPrimary">@color/md_theme_dark_primary</item>
         <item name="colorPrimaryContainer">@color/md_theme_dark_primaryContainer</item>
@@ -35,9 +32,5 @@
         <item name="colorSurfaceInverse">@color/md_theme_dark_inverseSurface</item>
         <item name="colorOnSurfaceInverse">@color/md_theme_dark_inverseOnSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
-
-        <!-- Custom Styles -->
-        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearanceOverlay.ResiCo.SmallComponent</item>
-        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearanceOverlay.ResiCo.LargeComponent</item>
     </style>
 </resources>

@@ -2,33 +2,28 @@ package com.example.resico.ui.login;
 
 import android.app.Activity;
 
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.resico.R;
-import com.example.resico.ui.login.LoginViewModel;
-import com.example.resico.ui.login.LoginViewModelFactory;
 import com.example.resico.databinding.ActivityLoginBinding;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginActivity extends AppCompatActivity {
+	private final String TAG = this.getClass().getSimpleName();
 
 	private LoginViewModel loginViewModel;
 	private ActivityLoginBinding binding;
@@ -43,8 +38,8 @@ public class LoginActivity extends AppCompatActivity {
 		loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
 				.get(LoginViewModel.class);
 
-		final EditText usernameEditText = ((TextInputLayout) binding.username).getEditText();
-		final EditText passwordEditText = ((TextInputLayout) binding.password).getEditText();
+		final TextInputLayout usernameLayout = (TextInputLayout) binding.username;
+		final TextInputLayout passwordLayout = (TextInputLayout) binding.password;
 		final Button loginButton = binding.login;
 		final ProgressBar loadingProgressBar = binding.loading;
 
@@ -54,14 +49,14 @@ public class LoginActivity extends AppCompatActivity {
 			}
 			loginButton.setEnabled(loginFormState.isDataValid());
 			if (loginFormState.getUsernameError() != null) {
-				if (usernameEditText != null) {
-					usernameEditText.setError(getString(loginFormState.getUsernameError()));
-				}
+				usernameLayout.setError(getString(loginFormState.getUsernameError()));
+			} else {
+				usernameLayout.setError(null);
 			}
 			if (loginFormState.getPasswordError() != null) {
-				if (passwordEditText != null) {
-					passwordEditText.setError(getString(loginFormState.getPasswordError()));
-				}
+				passwordLayout.setError(getString(loginFormState.getPasswordError()));
+			} else {
+				passwordLayout.setError(null);
 			}
 		});
 
@@ -95,30 +90,32 @@ public class LoginActivity extends AppCompatActivity {
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				loginViewModel.loginDataChanged(usernameEditText.getText().toString(),
-						passwordEditText.getText().toString());
+				loginViewModel.loginDataChanged(usernameLayout.getEditText().getText().toString(),
+						passwordLayout.getEditText().getText().toString());
 			}
 		};
-		usernameEditText.addTextChangedListener(afterTextChangedListener);
-		passwordEditText.addTextChangedListener(afterTextChangedListener);
-		passwordEditText.setOnEditorActionListener((v, actionId, event) -> {
+		usernameLayout.getEditText().addTextChangedListener(afterTextChangedListener);
+		passwordLayout.getEditText().addTextChangedListener(afterTextChangedListener);
+		passwordLayout.getEditText().setOnEditorActionListener((v, actionId, event) -> {
 			if (actionId == EditorInfo.IME_ACTION_DONE) {
-				loginViewModel.login(usernameEditText.getText().toString(),
-						passwordEditText.getText().toString());
+				loginViewModel.login(usernameLayout.getEditText().getText().toString(),
+						passwordLayout.getEditText().getText().toString());
 			}
 			return false;
 		});
 
 		loginButton.setOnClickListener(v -> {
 			loadingProgressBar.setVisibility(View.VISIBLE);
-			loginViewModel.login(usernameEditText.getText().toString(),
-					passwordEditText.getText().toString());
+			loginViewModel.login(usernameLayout.getEditText().getText().toString(),
+					passwordLayout.getEditText().getText().toString());
 		});
+
+
+		Log.d(TAG, "Starting this startup shit up.");
 	}
 
 	private void updateUiWithUser(LoggedInUserView model) {
 		String welcome = getString(R.string.welcome) + model.getDisplayName();
-		// TODO : initiate successful logged in experience
 		Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
 	}
 
