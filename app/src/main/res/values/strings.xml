@@ -15,6 +15,13 @@
     <string name="user_id_key">userID</string>
     <string name="user_display_name_key">user display</string>
 
+    <!-- Navigation bar actions -->
+    <string name="action_home">Home</string>
+    <string name="action_forum">Forum</string>
+    <string name="action_events">Events</string>
+    <string name="action_notice">Notice</string>
+    <string name="action_profile">Profile</string>
+
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_login">LoginActivity</string>
