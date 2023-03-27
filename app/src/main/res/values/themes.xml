@@ -6,6 +6,7 @@
         <!-- M3 Theme Attributes -->
         <item name="colorPrimary">@color/md_theme_light_primary</item>
         <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
+        <item name="colorPrimaryContainerLight">@color/md_theme_light_primaryContainerLight</item>
         <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
         <item name="colorOnPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
         <item name="colorSecondary">@color/md_theme_light_secondary</item>
