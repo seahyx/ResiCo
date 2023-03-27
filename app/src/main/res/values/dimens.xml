@@ -1,3 +1,14 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="activity_horizontal_margin">32dp</dimen>
+    <dimen name="activity_vertical_margin">32dp</dimen>
+
+    <dimen name="component_small_margin">8dp</dimen>
+    <dimen name="component_medium_margin">16dp</dimen>
+    <dimen name="component_large_margin">32dp</dimen>
+    <dimen name="component_extra_large_margin">64dp</dimen>
+
+    <!--  Font Sizes  -->
+    <dimen name="logo_size">32sp</dimen>
 </resources>

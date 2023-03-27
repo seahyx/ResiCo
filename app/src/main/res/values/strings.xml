@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">ResiCo</string>
+    <string name="app_name_1">RESI</string>
+    <string name="app_name_2">CO</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -7,6 +9,26 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+    <!-- Preference key values -->
+    <string name="main_store">com.example.resico</string>
+    <string name="last_login_key">last login</string>
+    <string name="user_id_key">userID</string>
+    <string name="user_display_name_key">user display</string>
+
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Log in</string>
+    <string name="no_account_sign_up_1">Don\'t have an account?\ </string>
+    <string name="no_account_sign_up_2">Sign up!</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid email</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="remember_login">Remember Me</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="title_activity_startup">StartupActivity</string>
 </resources>
