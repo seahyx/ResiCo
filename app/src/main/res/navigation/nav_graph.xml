@@ -3,26 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/HomeFragment">
+    app:startDestination="@id/nav_home">
 
     <fragment
-        android:id="@+id/HomeFragment"
+        android:id="@+id/nav_home"
         android:name="com.example.resico.HomeFragment"
         android:label="@string/home_fragment_label"
         tools:layout="@layout/fragment_home">
-
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/EventsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/EventsFragment"
+        android:id="@+id/nav_forums"
+        android:name="com.example.resico.ForumsFragment"
+        android:label="@string/forum_fragment_label"
+        tools:layout="@layout/fragment_forums">
+    </fragment>
+    <fragment
+        android:id="@+id/nav_events"
         android:name="com.example.resico.EventsFragment"
         android:label="@string/events_fragment_label"
         tools:layout="@layout/fragment_events">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/HomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_announcements"
+        android:name="com.example.resico.AnnouncementsFragment"
+        android:label="@string/announcements_fragment_label"
+        tools:layout="@layout/fragment_announcements">
+    </fragment>
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.resico.ProfileFragment"
+        android:label="@string/profile_fragment_label"
+        tools:layout="@layout/fragment_profile">
     </fragment>
 </navigation>
