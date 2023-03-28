@@ -50,4 +50,49 @@
     <string name="long_text">Once upon a time, in a far-off land, there lived a supreme being known as Chin Sud, the legendary scholar of Malaysia. With his unmatched intellect and boundless knowledge, Chin Sud was the undisputed champion of all things academic.\n\nIn the hallowed halls of the university, Chin Sud was a towering figure, carrying his team effortlessly through the most challenging modules. Whether it was Computational Structures, Infosystems, or Algorithms, Chin Sud was always the one to carry the day, with his brilliant mind and unparalleled work ethic.\n\nAnd yet, despite his lofty position as the greatest scholar in all the land, Chin Sud remained humble and kind, always eager to help his fellow students in any way he could. His classmates adored him, and they were constantly in awe of his incredible intelligence and sharp wit.\n\nAs time went by, Chin Sud\'s reputation grew, and soon he was the talk of the entire university. Students from all over the world flocked to his lectures, eager to learn from the master himself. And yet, despite all the attention and adulation, Chin Sud remained as down-to-earth as ever, always putting the needs of others before his own.\n\nOne day, as Chin Sud was walking through the university grounds, lost in thought, he suddenly heard a soft voice calling his name. Turning around, he saw a beautiful young woman standing before him, her eyes shining with admiration and respect.\n\n\"Chin Sud, you are the most amazing person I have ever met,\" she said, her voice trembling with emotion. \"Your intelligence, your kindness, and your dedication to your studies are truly awe-inspiring. I am so grateful to have you in my life.\"\n\nChin Sud smiled gently, taking the young woman\'s hand in his own. \"My dear, it is you who inspire me,\" he said softly. \"Your beauty, your passion, and your kindness are the things that make life worth living. Without you, my world would be a much darker place.\"\n\nAnd with that, Chin Sud and the young woman embraced, their hearts beating as one. For in that moment, they both knew that they had found something truly special - a love that would endure through all of life\'s challenges and obstacles, a love that would never fade or die.\n\nAnd so, Chin Sud continued on his journey, with his beloved by his side. Together, they conquered the world of academia, always striving for greatness and never losing sight of what truly mattered in life. For in the end, it was their love and their devotion to each other that made everything else possible.</string>
     <string name="search_events_hint">Search for events</string>
     <string name="event_participants">%d participants</string>
+
+=======
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Notice actions -->
+    <string name="announcements_header">Announcements</string>
+    <string name="announcementsDetailsHeader">Never miss another important notice via these announcements.</string>
+    <string name="tempClosureTitle">Temporary Road Closure Along Tampines East due to construction</string>
+    <string name="tempDate">23 Mar 2023</string>
+    <string name="home_page">Home Page</string>
+
+    <string-array name="announcement_titles">
+        <item>Enhancing the Vibrancy of HDB Heartlands</item>
+        <item>Keeping Public Housing Accessible for Singaporeans</item>
+        <item>HDB Launches 4,428 Flats in February 2023 BTO exercise</item>
+        <item>Joint Press Release by MND &amp; HDB - Further support for First-time Homebuyers</item>
+        <item>Upcoming Flat Supply and 4th Quarter 2022 Public Housing Data</item>
+        <item>Temporary Road Closure Along Tampines Avenue 10 for Construction</item>
+        <item>HDB Issues Rated Fixed Rate Notes</item>
+        <item>Almost 10,000 BTO flats across 10 projects offered in November 2022 BTO exercise</item>
+    </string-array>
+
+    <string-array name="announcement_description">
+        <item>At MND’s Committee of Supply debate today, the Senior Minister of State for National Development Sim Ann announced a slew of initiatives to enhance the vibrancy of our HDB heartlands.</item>
+        <item>At MND’s Committee of Supply debate today, the Minister for National Development, Mr Desmond Lee, and Minister of State for National Development, Dr Muhammad Faishal Ibrahim, announced various initiatives to keep public housing accessible for Singaporeans.</item>
+        <item>HDB launched 4,428 flats for sale today, under the February 2023 Build-To-Order (BTO) exercise. The flats are spread across five projects in both mature and non-mature estates – Kallang Whampoa, Queenstown, Jurong West and Tengah.</item>
+        <item>Increased CPF Housing Grant for resale flat buyers; Greater priority during BTO applications for First Timer families with children and young married couples aged 40 years and below buying their first home</item>
+        <item>This press release provides information on the upcoming flat supply and the HDB resale and rental markets in 4th Quarter 2022.</item>
+        <item>On 17 Jan 2023, a section of Tampines Avenue 10 will be temporarily closed to traffic from 1.00am to 5.00am.</item>
+        <item>The Housing &amp; Development Board ("HDB") has issued S$900 million, 7-year Fixed Rate Notes (the “Notes”) under its S$32 billion Multicurrency Medium Term Note ("MTN") Programme.</item>
+        <item>HDB launched 9,655 flats for sale today under the November 2022 Build-To-Order (BTO) exercise. This is the largest BTO offering ever in a single launch. The bumper crop of flats is spread across 10 projects in both mature and non-mature estates in Kallang Whampoa, Queenstown, Bukit Batok, Tengah, and Yishun, with around 60% (5,861 units) offered in non-mature estates. This makes up almost half the number of flats offered in non-mature estates in the whole of 2022.</item>
+    </string-array>
+
+    <string-array name="announcement_date">
+        <item>02 Mar 2023</item>
+        <item>02 Mar 2023</item>
+        <item>28 Feb 2023</item>
+        <item>14 Feb 2023</item>
+        <item>27 Jan 2023</item>
+        <item>10 Jan 2023</item>
+        <item>06 Dec 2022</item>
+        <item>23 Nov 2022</item>
+    </string-array>
+
 </resources>
+

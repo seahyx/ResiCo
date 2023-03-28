@@ -10,6 +10,15 @@
         android:name="com.example.resico.HomeFragment"
         android:label="@string/home_fragment_label"
         tools:layout="@layout/fragment_home">
+
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/EventsFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_noticeFragment"
+            app:destination="@id/noticeFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/nav_forums"
@@ -34,5 +43,14 @@
         android:name="com.example.resico.ProfileFragment"
         android:label="@string/profile_fragment_label"
         tools:layout="@layout/fragment_profile">
+    </fragment>
+    <fragment
+        android:id="@+id/noticeFragment"
+        android:name="com.example.resico.NoticeFragment"
+        android:label="fragment_notice"
+        tools:layout="@layout/fragment_notice" >
+        <action
+            android:id="@+id/action_noticeFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
     </fragment>
 </navigation>
