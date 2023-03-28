@@ -48,3 +48,45 @@
     <string name="search_events_hint">Search for events</string>
     <string name="event_participants">%d participants</string>
 
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Notice actions -->
+    <string name="announcements_header">Announcements</string>
+    <string name="announcementsDetailsHeader">Never miss another important notice via these announcements.</string>
+    <string name="tempClosureTitle">Temporary Road Closure Along Tampines East due to construction</string>
+    <string name="tempDate">23 Mar 2023</string>
+    <string name="home_page">Home Page</string>
+
+    <string-array name="announcement_titles">
+        <item>Enhancing the Vibrancy of HDB Heartlands</item>
+        <item>Keeping Public Housing Accessible for Singaporeans</item>
+        <item>HDB Launches 4,428 Flats in February 2023 BTO exercise</item>
+        <item>Joint Press Release by MND &amp; HDB - Further support for First-time Homebuyers</item>
+        <item>Upcoming Flat Supply and 4th Quarter 2022 Public Housing Data</item>
+        <item>Temporary Road Closure Along Tampines Avenue 10 for Construction</item>
+        <item>HDB Issues Rated Fixed Rate Notes</item>
+        <item>Almost 10,000 BTO flats across 10 projects offered in November 2022 BTO exercise</item>
+    </string-array>
+
+    <string-array name="announcement_description">
+        <item>At MND’s Committee of Supply debate today, the Senior Minister of State for National Development Sim Ann announced a slew of initiatives to enhance the vibrancy of our HDB heartlands.</item>
+        <item>At MND’s Committee of Supply debate today, the Minister for National Development, Mr Desmond Lee, and Minister of State for National Development, Dr Muhammad Faishal Ibrahim, announced various initiatives to keep public housing accessible for Singaporeans.</item>
+        <item>HDB launched 4,428 flats for sale today, under the February 2023 Build-To-Order (BTO) exercise. The flats are spread across five projects in both mature and non-mature estates – Kallang Whampoa, Queenstown, Jurong West and Tengah.</item>
+        <item>Increased CPF Housing Grant for resale flat buyers; Greater priority during BTO applications for First Timer families with children and young married couples aged 40 years and below buying their first home</item>
+        <item>This press release provides information on the upcoming flat supply and the HDB resale and rental markets in 4th Quarter 2022.</item>
+        <item>On 17 Jan 2023, a section of Tampines Avenue 10 will be temporarily closed to traffic from 1.00am to 5.00am.</item>
+        <item>The Housing &amp; Development Board ("HDB") has issued S$900 million, 7-year Fixed Rate Notes (the “Notes”) under its S$32 billion Multicurrency Medium Term Note ("MTN") Programme.</item>
+        <item>HDB launched 9,655 flats for sale today under the November 2022 Build-To-Order (BTO) exercise. This is the largest BTO offering ever in a single launch. The bumper crop of flats is spread across 10 projects in both mature and non-mature estates in Kallang Whampoa, Queenstown, Bukit Batok, Tengah, and Yishun, with around 60% (5,861 units) offered in non-mature estates. This makes up almost half the number of flats offered in non-mature estates in the whole of 2022.</item>
+    </string-array>
+
+    <string-array name="announcement_date">
+        <item>02 Mar 2023</item>
+        <item>02 Mar 2023</item>
+        <item>28 Feb 2023</item>
+        <item>14 Feb 2023</item>
+        <item>27 Jan 2023</item>
+        <item>10 Jan 2023</item>
+        <item>06 Dec 2022</item>
+        <item>23 Nov 2022</item>
+    </string-array>
+
+</resources>
