@@ -29,8 +29,8 @@ public class EventsFragment extends Fragment {
 	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-		binding.buttonSecond.setOnClickListener(view1 -> NavHostFragment.findNavController(EventsFragment.this)
-				.navigate(R.id.action_SecondFragment_to_FirstFragment));
+//		binding.buttonSecond.setOnClickListener(view1 -> NavHostFragment.findNavController(EventsFragment.this)
+//				.navigate(R.id.action_SecondFragment_to_FirstFragment));
 	}
 
 	@Override

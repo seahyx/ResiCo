@@ -6,13 +6,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/TextViewLogoFirst"
+        style="@style/FontLogo1"
         android:text="@string/app_name_1" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/TextViewLogoSecond"
+        style="@style/FontLogo2"
         android:text="@string/app_name_2" />
 
 </LinearLayout>
