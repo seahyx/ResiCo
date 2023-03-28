@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorSurface1"
     tools:context=".MainActivity">
 
     <include
@@ -18,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:background="?attr/colorPrimaryContainerLight"
         app:menu="@menu/bottom_nav_menu"
         app:labelVisibilityMode="labeled"
         app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior" />
