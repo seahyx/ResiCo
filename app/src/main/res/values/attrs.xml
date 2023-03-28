@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorPrimaryContainerLight" format="reference|color" />
+    <attr name="colorSurface1" format="reference|color" />
+    <attr name="colorSurface2" format="reference|color" />
+    <attr name="colorSurface3" format="reference|color" />
+    <attr name="colorSurface4" format="reference|color" />
+    <attr name="colorSurface5" format="reference|color" />
+</resources>
