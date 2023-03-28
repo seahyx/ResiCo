@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="?attr/materialCardViewElevatedStyle"
+    android:id="@+id/event_card"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/event_card_height"
+    app:cardBackgroundColor="?attr/colorSurface"
+    app:shapeAppearance="@style/ShapeAppearanceOverlay.ResiCo.MediumComponent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/placeholder_event"
+        android:scaleType="centerCrop" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/component_medium_margin">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?attr/materialCardViewElevatedStyle"
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.ResiCo.Full"
+            app:contentPaddingTop="@dimen/component_extra_small_margin"
+            app:contentPaddingBottom="@dimen/component_extra_small_margin"
+            app:contentPaddingLeft="@dimen/component_medium_margin"
+            app:contentPaddingRight="@dimen/component_medium_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/event_card_participants"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/event_participants"
+                android:textSize="@dimen/text_small"
+                android:textColor="?attr/colorOnBackground"/>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.ResiCo.Full"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/event_card_bookmark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/sl_bookmark"/>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?attr/materialCardViewElevatedStyle"
+            app:contentPadding="@dimen/component_medium_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/event_card_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/component_extra_small_margin"
+                    android:text="@string/placeholder_event_title"
+                    android:textSize="@dimen/text_medium"
+                    android:textColor="?attr/colorOnBackground"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+                
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/event_card_host_profile"
+                    android:layout_width="@dimen/pfp_small"
+                    android:layout_height="@dimen/pfp_small"
+                    android:layout_marginTop="@dimen/component_small_margin"
+                    android:src="@drawable/placeholder_pfp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/event_card_title"/>
+
+                <TextView
+                    android:id="@+id/event_card_host_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/component_small_margin"
+                    android:layout_marginEnd="@dimen/component_small_margin"
+                    android:text="@string/placeholder_display_name"
+                    android:textSize="@dimen/text_small"
+                    android:textColor="?attr/colorOnBackground"
+                    app:layout_constraintStart_toEndOf="@id/event_card_host_profile"
+                    app:layout_constraintTop_toTopOf="@id/event_card_host_profile"
+                    app:layout_constraintBottom_toBottomOf="@id/event_card_host_profile"
+                    app:layout_constraintEnd_toStartOf="@id/event_card_date"/>
+
+                <TextView
+                    android:id="@+id/event_card_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/placeholder_event_date"
+                    android:textSize="@dimen/text_small"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textFontWeight="300"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBaseline_toBaselineOf="@id/event_card_host_name"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
