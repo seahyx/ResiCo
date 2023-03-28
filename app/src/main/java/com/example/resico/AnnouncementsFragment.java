@@ -69,11 +69,11 @@ public class AnnouncementsFragment extends Fragment implements AnnouncementRecyc
 		//fragmentTransaction.addToBackStack(null);
 //        fragmentTransaction.commit();
 
-//		String title = announcementModels.get(position).getAnnouncementTitle();
-//		String description = announcementModels.get(position).getAnnouncementMessage();
-//		SecondFragmentDirections.ActionSecondFragmentToThirdFragment action =
-//				SecondFragmentDirections.actionSecondFragmentToThirdFragment(title, description);
-//		NavHostFragment.findNavController(SecondFragment.this).navigate(action);
+		String title = announcementModels.get(position).getAnnouncementTitle();
+		String description = announcementModels.get(position).getAnnouncementMessage();
+		AnnouncementsFragmentDirections.ActionNavAnnouncementsToAnnouncementsSpecificFragment action =
+				AnnouncementsFragmentDirections.actionNavAnnouncementsToAnnouncementsSpecificFragment(title,description);
+		NavHostFragment.findNavController(AnnouncementsFragment.this).navigate(action);
 
 
 
