@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:text="@string/greet_1"
             android:textColor="?attr/colorPrimary"
-            android:textSize="@dimen/header_1"
+            android:textSize="@dimen/text_header_1"
             android:textFontWeight="500"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/greet_2"
-            android:textSize="@dimen/header_1"
+            android:textSize="@dimen/text_header_1"
             android:textFontWeight="500"
             app:layout_constraintStart_toEndOf="@id/greet_welcome"
             app:layout_constraintTop_toTopOf="parent" />
@@ -40,14 +40,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/placeholder_display_name"
-            android:textSize="@dimen/xtra_large"
+            android:textSize="@dimen/text_xtra_large"
             android:textFontWeight="300"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/greet_welcome" />
+
         
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
             android:layout_width="@dimen/pfp_large"
             android:layout_height="@dimen/pfp_large"
+            android:src="@drawable/placeholder_pfp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
@@ -57,7 +60,7 @@
         android:id="@+id/home_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <TextView
             android:layout_width="wrap_content"
