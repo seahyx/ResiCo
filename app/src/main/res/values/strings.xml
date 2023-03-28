@@ -4,8 +4,11 @@
     <string name="app_name_2">CO</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="home_fragment_label">First Fragment</string>
-    <string name="events_fragment_label">Second Fragment</string>
+    <string name="home_fragment_label">Home Fragment</string>
+    <string name="forum_fragment_label">Forum Fragment</string>
+    <string name="events_fragment_label">Events Fragment</string>
+    <string name="announcements_fragment_label">Announcements Fragment</string>
+    <string name="profile_fragment_label">Profile Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 

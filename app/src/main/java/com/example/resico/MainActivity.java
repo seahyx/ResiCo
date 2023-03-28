@@ -27,7 +27,6 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
-	private AppBarConfiguration appBarConfiguration;
 	private ActivityMainBinding binding;
 	private BottomNavigationView bottomNavView;
 	private FragmentContainerView navHostView;
@@ -43,39 +42,11 @@ public class MainActivity extends AppCompatActivity {
 		navHostView = binding.contentMain.navHostFragmentContentMain;
 
 		NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_content_main);
-		NavController navController = navHostFragment != null ? navHostFragment.getNavController() : null;
-		if (navController != null) {
-			navController.addOnDestinationChangedListener((navController1, navDestination, bundle) -> toggleBottomNavBehavior(false));
-		}
-	}
+		assert navHostFragment != null;
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.bottom_nav_menu, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-
-		//noinspection SimplifiableIfStatement
-//		if (id == R.id.action_settings) {
-//			return true;
-//		}
-
-		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	public boolean onSupportNavigateUp() {
-		NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-		return NavigationUI.navigateUp(navController, appBarConfiguration)
-				|| super.onSupportNavigateUp();
+		NavController navController = navHostFragment.getNavController();
+		navController.addOnDestinationChangedListener((navController1, navDestination, bundle) -> toggleBottomNavBehavior(false));
+		NavigationUI.setupWithNavController(bottomNavView, navController);
 	}
 
 	private void  toggleBottomNavBehavior(boolean scrollToHide) {
@@ -84,11 +55,8 @@ public class MainActivity extends AppCompatActivity {
 		params.setBehavior(scrollToHide ? new HideBottomViewOnScrollBehavior<CoordinatorLayout>(this, null) : null);
 
 		// Add margin to Nav Host fragment if the layout behaviour is not added
-		int id = getResources().getIdentifier(
-				getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT ? "navigation_bar_height" : "navigation_bar_height_landscape",
-				"dimen", "android");
 		((ConstraintLayout.LayoutParams) navHostView.getLayoutParams()).setMargins(
-				0, 0, 0, scrollToHide ? 0 : getResources().getDimensionPixelSize(id)
+				0, 0, 0, scrollToHide ? 0 : bottomNavView.getHeight()
 		);
 	}
 }
