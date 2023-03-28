@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,10 +8,12 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:backgroundTint="?attr/colorSurface1">
 
         <com.google.android.material.search.SearchBar
             android:id="@+id/search_bar"
+            style="@style/Widget.Material3.SearchBar.Outlined"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/search_events_hint"/>
