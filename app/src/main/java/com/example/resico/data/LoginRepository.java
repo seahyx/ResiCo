@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 import com.example.resico.App;
 import com.example.resico.R;
-import com.example.resico.data.model.LoggedInUser;
+import com.example.resico.data.model.User;
 
 import java.util.Calendar;
 
@@ -28,7 +28,7 @@ public class LoginRepository {
 
 	// If user credentials will be cached in local storage, it is recommended it be encrypted
 	// @see https://developer.android.com/training/articles/keystore
-	private LoggedInUser user = null;
+	private User user = null;
 
 	// private constructor : singleton access
 	private LoginRepository(LoginDataSource dataSource) {
@@ -51,7 +51,7 @@ public class LoginRepository {
 	}
 
 	@Nullable
-	public LoggedInUser getUser() {
+	public User getUser() {
 		return user;
 	}
 
@@ -66,15 +66,15 @@ public class LoginRepository {
 		dataSource.logout();
 	}
 
-	private void setLoggedInUser(LoggedInUser user) {
+	private void setLoggedInUser(User user) {
 		this.user = user;
 
 		// Cache user data on login
 		editor.putLong(context.getString(R.string.last_login_key), Calendar.getInstance().getTimeInMillis());
 		editor.putString(context.getString(R.string.user_id_key), user.getUserId());
-		editor.putString(context.getString(R.string.user_display_name_key), user.getDisplayName());
+		editor.putString(context.getString(R.string.user_display_name_key), user.getUsername());
 		editor.apply();
-		Log.d(TAG, "User is logged in with userId: " + user.getUserId() + ", displayName: " + user.getDisplayName());
+		Log.d(TAG, "User is logged in with userId: " + user.getUserId() + ", username: " + user.getUsername());
 	}
 
 	/**
@@ -86,17 +86,17 @@ public class LoginRepository {
 		if (!userId.equals("")) {
 			String displayName = sharedPref.getString(context.getString(R.string.user_display_name_key), "NO DISPLAY NAME FOUND");
 			Log.d(TAG, "Previous login detected, updating logged in user with userId: " + userId + ", displayName: " + displayName);
-			user = new LoggedInUser(userId, displayName);
+			user = new User(userId, displayName, "", "", "", "");
 			return true;
 		}
 		return false;
 	}
 
-	public Result<LoggedInUser> login(String username, String password) {
+	public Result<User> login(String username, String password) {
 		// handle login
-		Result<LoggedInUser> result = dataSource.login(username, password);
+		Result<User> result = dataSource.login(username, password);
 		if (result instanceof Result.Success) {
-			setLoggedInUser(((Result.Success<LoggedInUser>) result).getData());
+			setLoggedInUser(((Result.Success<User>) result).getData());
 		}
 		return result;
 	}

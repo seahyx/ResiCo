@@ -14,9 +14,9 @@
 
     <!-- Preference key values -->
     <string name="main_store">com.example.resico</string>
-    <string name="last_login_key">last login</string>
-    <string name="user_id_key">userID</string>
-    <string name="user_display_name_key">user display</string>
+    <string name="last_login_key">last_login</string>
+    <string name="user_id_key">userId</string>
+    <string name="user_display_name_key">username</string>
 
     <!-- Navigation bar actions -->
     <string name="action_home">Home</string>
