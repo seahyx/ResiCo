@@ -3,7 +3,6 @@ package com.example.resico;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.PersistableBundle;
 import android.util.Log;
 
 import androidx.activity.result.ActivityResult;
@@ -12,7 +11,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.resico.data.LoginDataSource;
 import com.example.resico.data.LoginRepository;
 import com.example.resico.databinding.ActivityStartupBinding;
 import com.example.resico.ui.login.LoginActivity;
@@ -32,7 +30,7 @@ public class StartupActivity extends AppCompatActivity {
 				Log.d(TAG, "Returned from login page, checking if user is logged in...");
 				handleStartupCheck();
 			});
-	private final LoginRepository loginRepository = LoginRepository.getInstance(new LoginDataSource());
+	private final LoginRepository loginRepository = LoginRepository.getInstance();
 
 
 	@Override
@@ -48,19 +46,18 @@ public class StartupActivity extends AppCompatActivity {
 	}
 
 	private void handleStartupCheck() {
-		if (isLoggedIn()) {
-			Log.d(TAG, "User is logged in, redirecting to MainActivity...");
-			Intent startupIntent = new Intent(this, MainActivity.class);
-			startupIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			startActivity(startupIntent);
-			finish();
-		} else {
+		// Check if user is logged in
+		loginRepository.isLoggedIn(isLoggedIn -> {
+			if (isLoggedIn != null && isLoggedIn) {
+				Log.d(TAG, "User is logged in, redirecting to MainActivity...");
+				Intent startupIntent = new Intent(this, MainActivity.class);
+				startupIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(startupIntent);
+				finish();
+				return;
+			}
 			Log.d(TAG, "User is not logged in, redirecting to LoginActivity...");
 			loginLauncher.launch(new Intent(this, LoginActivity.class));
-		}
-	}
-
-	private boolean isLoggedIn() {
-		return loginRepository.isLoggedIn();
+		});
 	}
 }

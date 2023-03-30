@@ -109,13 +109,10 @@ public class LoginActivity extends AppCompatActivity {
 			loginViewModel.login(usernameLayout.getEditText().getText().toString(),
 					passwordLayout.getEditText().getText().toString());
 		});
-
-
-		Log.d(TAG, "Starting this startup shit up.");
 	}
 
 	private void updateUiWithUser(LoggedInUserView model) {
-		String welcome = getString(R.string.welcome) + model.getDisplayName();
+		String welcome = getString(R.string.welcome, model.getDisplayName());
 		Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
 	}
 
