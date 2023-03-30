@@ -53,4 +53,10 @@
     <string name="profile_name">Seah Ying Xiang</string>
     <string name="my_profile_toolbar">My Profile</string>
     <string name="Username_TextView">Username</string>
+    <string name="seahyx">seahyx</string>
+    <string name="Email_ID_TextView">seahyx@gmail.com</string>
+    <string name="Email_TextView">Email</string>
+    <string name="Phone_TextView">Phone</string>
+    <string name="PhoneNo_TextView">89287066</string>
+    <string name="Logout_TextView">Log Out</string>
 </resources>
