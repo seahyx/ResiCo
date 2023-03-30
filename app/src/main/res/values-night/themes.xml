@@ -1,5 +1,9 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.ResiCo" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Font Family -->
+        <item name="fontFamily">@font/lexend</item>
+        <item name="android:fontFamily">@font/lexend</item>
+
         <!-- M3 Theme Attributes -->
         <item name="colorPrimary">@color/md_theme_dark_primary</item>
         <item name="colorPrimaryContainer">@color/md_theme_dark_primaryContainer</item>
@@ -33,5 +37,14 @@
         <item name="colorSurfaceInverse">@color/md_theme_dark_inverseSurface</item>
         <item name="colorOnSurfaceInverse">@color/md_theme_dark_inverseOnSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
+
+        <!-- Custom Styles -->
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearanceOverlay.ResiCo.LargeComponent</item>
+        <item name="textInputOutlinedStyle">@style/Widget.ResiCo.TextInputLayout</item>
+    </style>
+
+    <style name="Widget.ResiCo.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="shapeAppearance">@style/ShapeAppearanceOverlay.ResiCo.SmallComponent</item>
     </style>
 </resources>

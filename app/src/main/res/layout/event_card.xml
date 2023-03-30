@@ -9,8 +9,9 @@
     app:shapeAppearance="@style/ShapeAppearanceOverlay.ResiCo.MediumComponent">
 
     <ImageView
+        android:id="@+id/event_card_background"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/event_card_height"
         android:src="@drawable/placeholder_event"
         android:scaleType="centerCrop" />
 
@@ -78,7 +79,7 @@
                     android:textColor="?attr/colorOnBackground"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
-                
+
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/event_card_host_profile"
                     android:layout_width="@dimen/pfp_small"
