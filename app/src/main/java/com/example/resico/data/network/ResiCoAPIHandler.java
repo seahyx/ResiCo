@@ -322,7 +322,7 @@ public class ResiCoAPIHandler {
 	}
 
 	public void getAppliedBookmarkedEvents(String userId, OnFinishRequest<AppliedBookmarkedEvents> onFinishRequest) {
-		UrlRequestCallback callbackAppliedEvents = new UrlRequestCallback(result -> {
+		UrlRequestCallback callback = new UrlRequestCallback(result -> {
 			// Verify data
 			JSONObject data = getResponseBodyJSONObject(result);
 			if (!checkRequestSuccess(result) || data == null) {
@@ -332,7 +332,7 @@ public class ResiCoAPIHandler {
 			// Build list of event ids that the user has applied/bookmarked to
 			onFinishRequest.onFinishRequest(AppliedBookmarkedEvents.buildFromJSONObject(data));
 		});
-		NetworkRequest.get(NetworkRequest.addQueryParameter(BASE_URL + String.format(APPLIED_BOOKMARKED_EVENTS_ENDPOINT, userId), AUTH_QUERY, AUTH_TOKEN), callbackAppliedEvents);
+		NetworkRequest.get(NetworkRequest.addQueryParameter(BASE_URL + String.format(APPLIED_BOOKMARKED_EVENTS_ENDPOINT, userId), AUTH_QUERY, AUTH_TOKEN), callback);
 	}
 
 	/**
@@ -380,6 +380,7 @@ public class ResiCoAPIHandler {
 	@Nullable
 	private JSONObject getResponseBodyJSONObject(JSONObject result) {
 		try {
+			Log.d(TAG, result.getString(requestBody));
 			return new JSONObject(result.getString(requestBody));
 		} catch (JSONException e) {
 			e.printStackTrace();

@@ -12,7 +12,7 @@
         android:id="@+id/event_card_background"
         android:layout_width="match_parent"
         android:layout_height="@dimen/event_card_height"
-        android:src="@drawable/placeholder_event"
+        android:src="@drawable/placeholder_image"
         android:scaleType="centerCrop" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
