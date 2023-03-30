@@ -35,15 +35,6 @@ public class AnnouncementsSpecificFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        Bundle bundle=getArguments();
-//        String title = bundle.getString("TITLE");
-//        String description = bundle.getString("DESCRIPTION");
-
-//        binding.ThirdDescriptionView.setText(description);
-//        binding.ThirdTitleView.setText(title);
-
-        ;
-
         String title = AnnouncementsSpecificFragmentArgs.fromBundle(getArguments()).getAnnouncementTitle();
         String description = AnnouncementsSpecificFragmentArgs.fromBundle(getArguments()).getAnnouncementDescription();
         binding.AnnouncementSpecificTitleView.setText(title);
@@ -52,8 +43,7 @@ public class AnnouncementsSpecificFragment extends Fragment {
         binding.topAppBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().onBackPressed();
-                //NavHostFragment.findNavController(AnnouncementsSpecificFragment.this).navigate(R.id.action_announcementsSpecificFragment_to_nav_announcements);
+                NavHostFragment.findNavController(AnnouncementsSpecificFragment.this).navigate(R.id.action_announcementsSpecificFragment_to_nav_announcements);
             }
         });
 

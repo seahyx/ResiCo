@@ -10,6 +10,7 @@
         android:name="com.example.resico.HomeFragment"
         android:label="@string/home_fragment_label"
         tools:layout="@layout/fragment_home"/>
+
     <fragment
         android:id="@+id/nav_forums"
         android:name="com.example.resico.ForumsFragment"
@@ -29,7 +30,10 @@
         tools:layout="@layout/fragment_announcements">
         <action
             android:id="@+id/action_nav_announcements_to_announcementsSpecificFragment"
-            app:destination="@id/announcementsSpecificFragment" />
+            app:destination="@id/announcementsSpecificFragment"
+            app:popUpTo="@id/nav_home"
+            app:popUpToSaveState="true"
+            />
     </fragment>
     <fragment
         android:id="@+id/nav_profile"

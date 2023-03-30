@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.resico.databinding.FragmentAnnouncementsBinding;
@@ -50,6 +50,7 @@ public class AnnouncementsFragment extends Fragment implements AnnouncementRecyc
 		String[] announcementTitles = getResources().getStringArray(R.array.announcement_titles);
 		String[] announcementDates = getResources().getStringArray(R.array.announcement_date);
 		String[] announcementMessages = getResources().getStringArray(R.array.announcement_description);
+		announcementModels.clear();
 
 		for (int i =0; i< announcementTitles.length; i++){
 			announcementModels.add(new AnnouncementModel(announcementTitles[i],
@@ -59,21 +60,14 @@ public class AnnouncementsFragment extends Fragment implements AnnouncementRecyc
 
 	@Override
 	public void onItemClick(int position) {
-//        Fragment fragment = new ThirdFragment();
-//        Bundle bundle = new Bundle();
-//        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-//        bundle.putString("TITLE",announcementModels.get(position).getAnnouncementTitle());
-//        bundle.putString("DESCRIPTION",announcementModels.get(position).getAnnouncementMessage());
-//        fragment.setArguments(bundle);
-//        fragmentTransaction.replace(R.id.fragment_container_view, fragment, null);
-		//fragmentTransaction.addToBackStack(null);
-//        fragmentTransaction.commit();
 
 		String title = announcementModels.get(position).getAnnouncementTitle();
 		String description = announcementModels.get(position).getAnnouncementMessage();
 		AnnouncementsFragmentDirections.ActionNavAnnouncementsToAnnouncementsSpecificFragment action =
 				AnnouncementsFragmentDirections.actionNavAnnouncementsToAnnouncementsSpecificFragment(title,description);
-		NavHostFragment.findNavController(AnnouncementsFragment.this).navigate(action);
+		Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_main).navigate(action);
+		//NavHostFragment.findNavController(AnnouncementsFragment.this).navigate(action);
+
 
 
 
