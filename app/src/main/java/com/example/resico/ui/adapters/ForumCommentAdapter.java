@@ -75,7 +75,7 @@ public class ForumCommentAdapter extends RecyclerView.Adapter<ForumCommentAdapte
         // Bind the data to the element in the specified position
         ForumComment comment = forumComments.get(position);
         holder.getCommentView().setText(comment.getComment());
-        holder.getPostDateTimeView().setText(comment.getPostDateTime().toString());
+        holder.getPostDateTimeView().setText(" ∙ "+comment.getPostDateTime().toString() + " ago");
 
 
         // Get host user information

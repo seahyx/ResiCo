@@ -67,10 +67,11 @@ public class ForumDetailFragment extends Fragment {
         // LinearLayoutManager by default has vertical orientation
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        // Add spacing between cards
+        // Add spacing between component in recycle view
         SpacesItemDecoration itemDecoration = new SpacesItemDecoration(
-                (int) getResources().getDimension(R.dimen.component_medium_margin),
+                (int) getResources().getDimension(R.dimen.component_small_margin),
                 linearLayoutManager.getOrientation());
+
         recyclerView.addItemDecoration(itemDecoration);
 
 
