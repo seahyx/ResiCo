@@ -108,6 +108,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 		holder.getCardDateView().setText(event.getStartDateFormatted());
 		Picasso.get().load(event.getImageUrl()).fit().centerCrop().into(holder.getBackgroundImageView());
 
+		
 		// Get host user information
 		ResiCoAPIHandler apiHandler = ResiCoAPIHandler.getInstance();
 		apiHandler.getUser(event.getHostId(), user -> {
