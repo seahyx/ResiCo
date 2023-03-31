@@ -19,73 +19,78 @@
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="@string/my_profile_toolbar"
             app:navigationIcon="@drawable/ic_vector_asset_toolbar"
-            app:titleCentered="true"/>
-
-        <!-- TODO: Make the Navigation Icon on the right side -->
+            app:title="@string/my_profile_toolbar"
+            app:titleCentered="true"
+            app:logoScaleType="fitEnd"/>
+            <!-- TODO: Make the Navigation Icon on the right side -->
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!-- TODO: Follow YX's paddings and dimensions -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/component_large_margin"
+        android:paddingTop="@dimen/component_large_margin"
+        android:paddingRight="@dimen/component_large_margin"
+        android:paddingBottom="@dimen/component_large_margin">
+
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
             android:layout_width="@dimen/pfp_large"
             android:layout_height="@dimen/pfp_large"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="94dp"
-            android:layout_marginEnd="296dp"
             android:src="@drawable/placeholder_pfp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/usernameView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
+            <!-- TODO: Position the Profile Image to the left -->
+            <!-- TODO: Change the Profile Pic to Mr AI Seah Ying Xiang -->
 
         <TextView
             android:id="@+id/SeahYingXiangView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="224dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="160dp"
+            android:layout_marginTop="@dimen/component_extra_large_margin"
+            android:layout_marginBottom="@dimen/component_extra_large_margin"
             android:text="@string/profile_name"
+            android:textAlignment="viewStart"
             android:textSize="@dimen/text_header_3"
             app:layout_constraintBottom_toTopOf="@+id/usernameView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/profile_image"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="@dimen/component_small_margin"/>
 
         <TextView
             android:id="@+id/usernameView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="128dp"
-            android:layout_marginBottom="380dp"
+            android:layout_marginTop="@dimen/component_extra_large_margin"
+            android:layout_marginBottom="@dimen/component_small_margin"
             android:text="@string/Username_TextView"
             android:textColor="@color/md_theme_light_onSurfaceVariant"
             android:textSize="@dimen/text_med_small"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/seahyx_View"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="parent" />
 
         <TextView
             android:id="@+id/seahyx_View"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="128dp"
-            android:layout_marginBottom="312dp"
+            android:layout_marginTop="@dimen/component_small_margin"
+            android:layout_marginBottom="@dimen/component_medium_margin"
             android:text="@string/seahyx"
             android:textSize="@dimen/text_med_small"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/emailView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/usernameView" />
 
         <!-- TODO: Add a divider_1 -->
 
@@ -93,30 +98,28 @@
             android:id="@+id/emailView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="128dp"
-            android:layout_marginBottom="176dp"
+            android:layout_marginTop="@dimen/component_medium_margin"
+            android:layout_marginBottom="@dimen/component_small_margin"
             android:text="@string/Email_TextView"
             android:textColor="@color/md_theme_light_onSurfaceVariant"
             android:textSize="@dimen/text_med_small"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/emailIDView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/seahyx_View" />
 
         <TextView
             android:id="@+id/emailIDView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="128dp"
-            android:layout_marginBottom="108dp"
+            android:layout_marginTop="@dimen/component_small_margin"
+            android:layout_marginBottom="@dimen/component_medium_margin"
             android:text="@string/Email_ID_TextView"
             android:textSize="@dimen/text_med_small"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/PhoneView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/emailView" />
 
         <!-- TODO: Add a divider_2 -->
 
@@ -124,30 +127,28 @@
             android:id="@+id/PhoneView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="128dp"
-            android:layout_marginBottom="-28dp"
+            android:layout_marginTop="@dimen/component_medium_margin"
+            android:layout_marginBottom="@dimen/component_small_margin"
             android:text="@string/Phone_TextView"
             android:textColor="@color/md_theme_light_onSurfaceVariant"
             android:textSize="@dimen/text_med_small"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/PhoneNoView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/emailIDView" />
 
         <TextView
             android:id="@+id/PhoneNoView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="128dp"
-            android:layout_marginBottom="-96dp"
+            android:layout_marginTop="@dimen/component_small_margin"
+            android:layout_marginBottom="@dimen/component_extra_large_margin"
             android:text="@string/PhoneNo_TextView"
             android:textSize="@dimen/text_med_small"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/logout_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/PhoneView" />
 
         <!-- TODO: Add a divider_3 -->
 
@@ -155,16 +156,14 @@
             android:id="@+id/logout_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginEnd="64dp"
-            android:layout_marginTop="572dp"
-            android:layout_marginBottom="0dp"
+            android:layout_marginTop="@dimen/component_extra_large_margin"
+            android:layout_marginBottom="@dimen/component_large_margin"
             android:text="@string/Logout_TextView"
             android:textSize="@dimen/text_med_small"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/PhoneNoView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
