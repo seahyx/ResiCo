@@ -28,7 +28,7 @@ public class Event {
 		String HAS_BOOKMARKED = "isBookmarked";
 	}
 
-	private static final String DATE_FORMAT = "dd MM yyyy";
+	private static final String DATE_FORMAT = "dd MMM yyyy";
 	private static final String TIME_FORMAT = "h:mm a";
 	private final String eventId;
 	private LocalDateTime startDateTime;

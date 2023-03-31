@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".EventDetailActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:liftOnScroll="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@string/title_activity_event_detail"
+            app:titleCentered="true"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:layout_scrollEffect="compress"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/activity_horizontal_margin"
+            android:paddingVertical="@dimen/activity_vertical_margin">
+
+            <com.google.android.material.card.MaterialCardView
+                style="?attr/materialCardViewElevatedStyle"
+                android:id="@+id/event_detail_card"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/event_card_height"
+                app:shapeAppearance="@style/ShapeAppearanceOverlay.ResiCo.MediumComponent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/event_detail_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/placeholder_image" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/component_medium_margin">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="?attr/materialCardViewElevatedStyle"
+                        app:shapeAppearance="@style/ShapeAppearanceOverlay.ResiCo.Full"
+                        app:contentPaddingTop="@dimen/component_extra_small_margin"
+                        app:contentPaddingBottom="@dimen/component_extra_small_margin"
+                        app:contentPaddingLeft="@dimen/component_medium_margin"
+                        app:contentPaddingRight="@dimen/component_medium_margin"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/event_detail_participants"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/event_participants"
+                            android:textSize="@dimen/text_small"
+                            android:textColor="?attr/colorOnBackground"/>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/event_detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/component_large_margin"
+                android:text="@string/placeholder_event_title"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="@dimen/text_header_1"
+                android:textFontWeight="600"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/event_detail_card"/>
+
+            <TextView
+                android:id="@+id/event_detail_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ResiCo.TextAppearance.EventDetailBody"
+                android:text="@string/placeholder_event_date"
+                android:textFontWeight="300"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/event_detail_title"/>
+
+            <TextView
+                android:id="@+id/event_detail_about_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ResiCo.TextAppearance.EventDetailHeader"
+                android:text="@string/event_about"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/event_detail_date" />
+
+            <TextView
+                android:id="@+id/event_detail_about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ResiCo.TextAppearance.EventDetailBody"
+                android:text="@string/long_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/event_detail_about_header" />
+
+            <TextView
+                android:id="@+id/event_detail_venue_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ResiCo.TextAppearance.EventDetailHeader"
+                android:text="@string/event_venue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/event_detail_about" />
+
+            <TextView
+                android:id="@+id/event_detail_venue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ResiCo.TextAppearance.EventDetailBody"
+                android:text="@string/events_fragment_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/event_detail_venue_header" />
+
+            <TextView
+                android:id="@+id/event_detail_contact_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ResiCo.TextAppearance.EventDetailHeader"
+                android:text="@string/event_host"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/event_detail_venue" />
+
+            <TextView
+                android:id="@+id/event_detail_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ResiCo.TextAppearance.EventDetailBody"
+                android:text="@string/placeholder_display_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/event_detail_contact_header" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

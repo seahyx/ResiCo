@@ -10,9 +10,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.resico.data.model.ForumComment;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.CommentBinding;
+import com.example.resico.utils.DateTimeCalc;
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -26,8 +32,6 @@ public class ForumCommentAdapter extends RecyclerView.Adapter<ForumCommentAdapte
         private final TextView userNameView;
         private final TextView postDateTimeView;
         private final TextView commentView;
-
-
 
         public ForumDetailHolder(CommentBinding binding) {
             super(binding.getRoot());
@@ -75,7 +79,7 @@ public class ForumCommentAdapter extends RecyclerView.Adapter<ForumCommentAdapte
         // Bind the data to the element in the specified position
         ForumComment comment = forumComments.get(position);
         holder.getCommentView().setText(comment.getComment());
-        holder.getPostDateTimeView().setText(comment.getPostDateTime().toString());
+        holder.getPostDateTimeView().setText(" ∙ " + DateTimeCalc.getDurationToNow(comment.getPostDateTime()) + " ago");
 
 
         // Get host user information
@@ -89,6 +93,7 @@ public class ForumCommentAdapter extends RecyclerView.Adapter<ForumCommentAdapte
             });
         });
     }
+
 
     @Override
     public int getItemCount() {
