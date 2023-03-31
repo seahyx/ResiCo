@@ -59,7 +59,7 @@ public class EventsFragment extends Fragment {
 				if (events == null) return;
 				this.events.clear();
 				this.events.addAll(events.values());
-				binding.getRoot().post(() -> adapter.notifyDataSetChanged());
+				adapter.notifyDataSetChanged();
 			});
 		}
 
