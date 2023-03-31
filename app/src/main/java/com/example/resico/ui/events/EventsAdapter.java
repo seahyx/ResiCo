@@ -11,15 +11,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.resico.App;
 import com.example.resico.R;
 import com.example.resico.data.model.Event;
+import com.example.resico.data.model.User;
+import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.EventCardBinding;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.checkbox.MaterialCheckBox;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder> {
 
-	private Event[] events;
+	private ArrayList<Event> events;
 
 	public static class ViewHolder extends RecyclerView.ViewHolder {
 		private final EventCardBinding binding;
@@ -84,27 +89,40 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 	 * Initialize dataset of the Adapter.
 	 *
 	 * */
-	public EventsAdapter(Event[] events) {
+	public EventsAdapter(ArrayList<Event> events) {
 		this.events = events;
 	}
 
 	@NonNull
 	@Override
 	public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		return new ViewHolder(EventCardBinding.inflate(LayoutInflater.from(parent.getContext())));
+		return new ViewHolder(EventCardBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
 	}
 
 	@Override
 	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 		// Bind the data to the element in the specified position
-		Event event = events[position];
+		Event event = events.get(position);
 		holder.getEventTitleView().setText(event.getTitle());
 		holder.getParticipantsView().setText(App.getContext().getString(R.string.event_participants, event.getParticipantCount()));
-		holder.getEventTitleView().setText(event.getTitle());
+		holder.getBookmarkView().setChecked(event.getHasBookmarked());
+		holder.getCardDateView().setText(event.getStartDateFormatted());
+		Picasso.get().load(event.getImageUrl()).fit().centerCrop().into(holder.getBackgroundImageView());
+
+		// Get host user information
+		ResiCoAPIHandler apiHandler = ResiCoAPIHandler.getInstance();
+		apiHandler.getUser(event.getHostId(), user -> {
+			if (user == null) return;
+			// Run UI updates on the UI thread
+			holder.binding.getRoot().post(() -> {
+				holder.getHostNameView().setText(user.getUsername());
+				Picasso.get().load(user.getImageUrl()).fit().centerCrop().into(holder.hostProfileView);
+			});
+		});
 	}
 
 	@Override
 	public int getItemCount() {
-		return events.length;
+		return events.size();
 	}
 }

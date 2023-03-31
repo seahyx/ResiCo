@@ -27,6 +27,9 @@ public class Event {
 		String HAS_APPLIED = "isApplied";
 		String HAS_BOOKMARKED = "isBookmarked";
 	}
+
+	private static final String DATE_FORMAT = "dd MM yyyy";
+	private static final String TIME_FORMAT = "h:mm a";
 	private final String eventId;
 	private LocalDateTime startDateTime;
 	private LocalDateTime endDateTime;
@@ -132,6 +135,14 @@ public class Event {
 		startDateTime = convertDateTimeIntToDate(date, time);
 	}
 
+	public String getStartDateFormatted() {
+		return startDateTime.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
+	}
+
+	public String getStartTimeFormatted() {
+		return startDateTime.format(DateTimeFormatter.ofPattern(TIME_FORMAT));
+	}
+
 	public LocalDateTime getEndDateTime() {
 		return endDateTime;
 	}
@@ -142,6 +153,23 @@ public class Event {
 
 	public void setEndDateTime(String date, String time) {
 		endDateTime = convertDateTimeIntToDate(date, time);
+	}
+
+	public String getEndDateFormatted() {
+		return endDateTime.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
+	}
+
+	public String getEndTimeFormatted() {
+		return endDateTime.format(DateTimeFormatter.ofPattern(TIME_FORMAT));
+	}
+
+	public String getDateTimeRangeFormatted() {
+		if (getStartDateFormatted().equals(getEndDateFormatted())) {
+			// Same day, show event time range
+			return String.format("%s %s - %s", getStartDateFormatted(), getStartTimeFormatted(), getEndTimeFormatted());
+		}
+		// Across multiple days
+		return String.format("%s %s - %s %s", getStartDateFormatted(), getStartTimeFormatted(), getEndDateFormatted(), getEndTimeFormatted());
 	}
 
 	public String getTitle() {

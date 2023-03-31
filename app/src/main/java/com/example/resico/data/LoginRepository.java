@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.resico.App;
@@ -50,7 +51,25 @@ public class LoginRepository {
 
 	@Nullable
 	public static User getUser() {
+		// This function should not be run when the user is not logged in, aka user = null.
+		// However, it is possible to get into this state where the user is null but this function
+		// is called, most likely attempting to access the user's getter methods within.
+		// We catch our own exception so we know when illegal state happens, if it happens.
+		try {
+			if (user == null) { throw new NullPointerException("user field is null! getUser() is called while the user is logged out, which is illegal."); }
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
 		return user;
+	}
+
+	public static String getUserId() {
+		try {
+			return getUser().getUserId();
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public void logout() {
