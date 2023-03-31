@@ -33,7 +33,7 @@
         tools:layout="@layout/fragment_announcements">
         <action
             android:id="@+id/action_nav_announcements_to_announcementsSpecificFragment"
-            app:destination="@id/announcementsSpecificFragment"
+            app:destination="@id/announcementsDetailFragment"
             app:popUpTo="@id/nav_home"
             app:popUpToSaveState="true"
             />
@@ -45,11 +45,11 @@
         tools:layout="@layout/fragment_profile">
     </fragment>
     <fragment
-        android:id="@+id/announcementsSpecificFragment"
-        android:name="com.example.resico.AnnouncementsSpecificFragment"
-        android:label="AnnouncementsSpecificFragment" >
+        android:id="@+id/announcementsDetailFragment"
+        android:name="com.example.resico.AnnouncementsDetailFragment"
+        android:label="AnnouncementsDetailFragment">
         <action
-            android:id="@+id/action_announcementsSpecificFragment_to_nav_announcements"
+            android:id="@+id/action_announcementsDetailFragment_to_nav_announcements"
             app:destination="@id/nav_announcements" />
         <argument
             android:name="id"

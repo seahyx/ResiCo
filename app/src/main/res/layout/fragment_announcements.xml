@@ -8,37 +8,30 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:background="?attr/colorSurface1"
+        android:background="?attr/colorSurface2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/announcementHeaderView"
+            android:id="@+id/announcement_header_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="156dp"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/announcements_header"
             android:textFontWeight="500"
             android:textSize="@dimen/text_header_2"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/announcementRecyclerView"
-            android:layout_width="0dp"
+            android:id="@+id/announcements_recyclerview"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/component_medium_margin"
             android:clipToPadding="false"
             android:paddingBottom="62dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/announcementHeaderView"
-            app:layout_constraintVertical_bias="0.090" />
+            app:layout_constraintTop_toBottomOf="@+id/announcement_header_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

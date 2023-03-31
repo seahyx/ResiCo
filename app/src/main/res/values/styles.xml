@@ -20,7 +20,8 @@
     
     <style name="AnnouncementCard" parent="Widget.Material3.CardView.Filled">
         <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.None</item>
-        <item name="backgroundColor">?attr/colorSurface2</item>
+        <item name="cardBackgroundColor">?attr/colorSurface2</item>
+
     </style>
 
     <style name="ShapeAppearanceOverlay.ResiCo.SmallComponent" parent="">

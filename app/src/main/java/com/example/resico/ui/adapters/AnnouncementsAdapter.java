@@ -1,4 +1,4 @@
-package com.example.resico;
+package com.example.resico.ui.adapters;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -7,6 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.resico.ui.ListOnClickInterface;
 import com.example.resico.data.model.Announcement;
 import com.example.resico.databinding.AnnouncementListItemBinding;
 import com.google.android.material.card.MaterialCardView;

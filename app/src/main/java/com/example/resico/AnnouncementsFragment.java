@@ -15,6 +15,7 @@ import com.example.resico.data.model.Announcement;
 import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.FragmentAnnouncementsBinding;
+import com.example.resico.ui.adapters.AnnouncementsAdapter;
 import com.google.android.material.divider.MaterialDividerItemDecoration;
 
 
@@ -36,7 +37,7 @@ public class AnnouncementsFragment extends Fragment {
 
 	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		RecyclerView recyclerView = view.findViewById(R.id.announcementRecyclerView);
+		RecyclerView recyclerView = view.findViewById(R.id.announcements_recyclerview);
 
 		// instantiate adapter only after we have set up the models
 		AnnouncementsAdapter adapter = new AnnouncementsAdapter(announcements, this::onItemClick);
@@ -72,3 +73,9 @@ public class AnnouncementsFragment extends Fragment {
 		NavHostFragment.findNavController(this).navigate(action);
 	}
 }
+
+//TODO
+//1. Change AnnouncementSpecific fragment
+//2. Edit XML names to follow convention
+//3. Edit XML padding and spacing
+//4. Implement Collapsing toolbar and scroll view, add date.
