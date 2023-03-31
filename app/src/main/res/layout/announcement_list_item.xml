@@ -36,7 +36,8 @@
             android:textSize="@dimen/text_small"
             android:textColor="?attr/colorOnSurfaceVariant"
             android:layout_marginTop="@dimen/component_extra_small_margin"
-            app:layout_constraintTop_toBottomOf="@id/announcement_title"/>
+            app:layout_constraintTop_toBottomOf="@id/announcement_title"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/announcement_preview"

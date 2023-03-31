@@ -24,6 +24,12 @@
 
     </style>
 
+    <style name="AnnouncementTitleStyle" parent="@android:style/TextAppearance">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:singleLine">false</item>
+    </style>
+
     <style name="ShapeAppearanceOverlay.ResiCo.SmallComponent" parent="">
         <item name="cornerSize">16dp</item>
         <item name="cornerFamily">rounded</item>
