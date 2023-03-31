@@ -12,16 +12,17 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/forum_fragment_label" />
+        android:text="@string/action_forum"
+        android:textSize="@dimen/text_header_2"
+        android:layout_marginLeft="@dimen/pfp_small"
+        android:layout_marginBottom="@dimen/component_medium_margin" />
 
-    <Button
-        android:id="@+id/button_to_forum"
-        android:layout_width="118dp"
-        android:layout_height="61dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/forum_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/component_medium_margin"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
