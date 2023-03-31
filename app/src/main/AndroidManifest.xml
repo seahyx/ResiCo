@@ -40,6 +40,11 @@
             android:exported="false"
             android:label="@string/title_activity_event_detail"
             android:theme="@style/Theme.ResiCo.NoActionBar" />
+        <activity
+            android:name=".ForumDetailActivity"
+            android:exported="false"
+            android:label="@string/title_activity_forum_detail"
+            android:theme="@style/Theme.ResiCo.NoActionBar" />
     </application>
 
 </manifest>

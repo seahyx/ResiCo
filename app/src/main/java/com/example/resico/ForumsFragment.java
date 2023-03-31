@@ -1,11 +1,15 @@
 package com.example.resico;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,22 +19,14 @@ import android.view.ViewGroup;
 import com.example.resico.databinding.FragmentEventsBinding;
 import com.example.resico.databinding.FragmentForumsBinding;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ForumsFragment newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ForumsFragment extends Fragment {
 
-	// TODO: Rename parameter arguments, choose names that match
-	// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-	private static final String ARG_PARAM1 = "param1";
-	private static final String ARG_PARAM2 = "param2";
-
-	// TODO: Rename and change types of parameters
-	private String mParam1;
-	private String mParam2;
+	private final String TAG = this.getClass().getSimpleName();
 	private FragmentForumsBinding binding;
+
+	private final ActivityResultLauncher<Intent> detailLauncher = registerForActivityResult(
+			new ActivityResultContracts.StartActivityForResult(),
+			result -> Log.d(TAG, "Returned from details page."));
 
 	public ForumsFragment() {
 		// Required empty public constructor
@@ -48,13 +44,20 @@ public class ForumsFragment extends Fragment {
 
 	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		binding.buttonToForum.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				com.example.resico.ForumsFragmentDirections.ActionNavForumsToNavForumsDetail action = ForumsFragmentDirections.actionNavForumsToNavForumsDetail("0");
-				NavHostFragment.findNavController(ForumsFragment.this).navigate(action);
-			}
+		binding.buttonToForum.setOnClickListener(v -> {
+			onEventClick("0");
 		});
+	}
+
+	/**
+	 * OnClick function for {@link RecyclerView} event cards.
+	 * @param postId String ID of the event clicked.
+	 */
+	private void onEventClick(String postId) {
+		// Navigate to the specific event page
+		Intent detailIntent = new Intent(getActivity(), ForumDetailActivity.class);
+		detailIntent.putExtra(getString(R.string.post_id_key), postId);
+		detailLauncher.launch(detailIntent);
 	}
 
 }
