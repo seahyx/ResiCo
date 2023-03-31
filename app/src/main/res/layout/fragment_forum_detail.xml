@@ -11,22 +11,25 @@
         android:layout_height="match_parent"
         >
 
-    <ImageView
-        android:id="@+id/post_user_image"
-        android:layout_width="@dimen/pfp_small"
-        android:layout_height="@dimen/pfp_small"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/placeholder_pfp" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/post_user_image"
+            android:layout_width="@dimen/pfp_small"
+            android:layout_height="@dimen/pfp_small"
+            android:layout_marginStart="@dimen/component_medium_margin"
+            android:layout_marginTop="@dimen/component_medium_margin"
+            android:src="@drawable/placeholder_pfp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/post_user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/post_user_image"
-        app:layout_constraintStart_toEndOf="@+id/post_user_image"
-        app:layout_constraintTop_toTopOf="@+id/post_user_image" />
+        <TextView
+            android:id="@+id/post_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/component_small_margin"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/post_user_image"
+            app:layout_constraintStart_toEndOf="@+id/post_user_image"
+            app:layout_constraintTop_toTopOf="@+id/post_user_image" />
 
     <TextView
         android:id="@+id/post_posting_time"
@@ -37,74 +40,87 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/post_user_name"
         app:layout_constraintStart_toEndOf="@+id/post_user_name" />
 
-    <TextView
-        android:id="@+id/forum_title"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="Title"
-        android:textSize="@dimen/text_header_2"
-        app:layout_constraintTop_toBottomOf="@+id/post_user_image" />
+        <TextView
+            android:id="@+id/forum_title"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/component_medium_margin"
+            android:layout_marginTop="@dimen/component_small_margin"
+            android:layout_weight="1"
+            android:text="Title"
+            android:textSize="@dimen/text_header_2"
+            app:layout_constraintTop_toBottomOf="@+id/post_user_image"
+            tools:layout_editor_absoluteX="16dp" />
 
-    <TextView
-        android:id="@+id/forum_detail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbarAlwaysDrawHorizontalTrack="false"
-        android:text="@string/long_text"
-        app:layout_constraintTop_toBottomOf="@+id/forum_title" />
+        <TextView
+            android:id="@+id/forum_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/component_medium_margin"
+            android:layout_marginTop="@dimen/component_small_margin"
+            android:scrollbarAlwaysDrawHorizontalTrack="false"
+            android:text="@string/greet_1"
+            app:layout_constraintTop_toBottomOf="@+id/forum_title"
+            tools:layout_editor_absoluteX="16dp" />
 
-    <ImageView
-        android:id="@+id/forum_image"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forum_detail"
-        tools:srcCompat="@tools:sample/avatars" />
+        <ImageView
+            android:id="@+id/forum_image"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/event_card_height"
+            android:layout_marginHorizontal="@dimen/component_medium_margin"
+            android:layout_marginTop="@dimen/component_small_margin"
+            android:src="@drawable/placeholder_event"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/forum_detail" />
 
-    <ImageView
-        android:id="@+id/like"
-        android:layout_width="@dimen/component_medium_margin"
-        android:layout_height="@dimen/component_medium_margin"
-        android:layout_weight="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forum_image"
-        tools:srcCompat="@drawable/like_button" />
+        <ImageView
+            android:id="@+id/like"
+            android:layout_width="@dimen/component_medium_margin"
+            android:layout_height="@dimen/component_medium_margin"
+            android:layout_marginStart="@dimen/component_medium_margin"
+            android:layout_marginTop="@dimen/component_small_margin"
+            android:layout_weight="1"
+            android:src="@drawable/like_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/forum_image" />
 
-    <TextView
-        android:id="@+id/like_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView"
-        android:textSize="@dimen/text_small"
-        app:layout_constraintBottom_toBottomOf="@+id/like"
-        app:layout_constraintStart_toEndOf="@+id/like"
-        app:layout_constraintTop_toTopOf="@+id/like" />
+        <TextView
+            android:id="@+id/like_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/component_small_margin"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textSize="@dimen/text_small"
+            app:layout_constraintBottom_toBottomOf="@+id/like"
+            app:layout_constraintStart_toEndOf="@+id/like"
+            app:layout_constraintTop_toTopOf="@+id/like" />
 
-    <ImageView
-        android:id="@+id/comment"
-        android:layout_width="@dimen/component_medium_margin"
-        android:layout_height="@dimen/component_medium_margin"
-        android:layout_weight="1"
-        app:layout_constraintBottom_toBottomOf="@+id/like"
-        app:layout_constraintStart_toEndOf="@+id/like_amount"
-        app:layout_constraintTop_toTopOf="@+id/like"
-        tools:srcCompat="@drawable/outline_comment_24" />
+        <ImageView
+            android:id="@+id/comment"
+            android:layout_width="@dimen/component_medium_margin"
+            android:layout_height="@dimen/component_medium_margin"
+            android:layout_marginStart="@dimen/component_large_margin"
+            android:src="@drawable/outline_comment_24"
+            app:layout_constraintBottom_toBottomOf="@+id/like"
+            app:layout_constraintStart_toEndOf="@+id/like_amount"
+            app:layout_constraintTop_toTopOf="@+id/like" />
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintTop_toBottomOf="@+id/like_amount" />
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/component_medium_margin"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@+id/like_amount" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/comment_recycle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/comment_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/component_medium_margin"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
