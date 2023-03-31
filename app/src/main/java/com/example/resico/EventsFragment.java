@@ -20,7 +20,7 @@ import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.FragmentEventsBinding;
 import com.example.resico.ui.SpacesItemDecoration;
-import com.example.resico.ui.events.EventsAdapter;
+import com.example.resico.ui.adapters.EventsAdapter;
 
 import java.util.ArrayList;
 

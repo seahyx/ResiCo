@@ -52,11 +52,9 @@
     <string name="search_events_hint">Search for events</string>
 
     <!-- Strings for Announcements-->
-    <string name="announcement_header">Announcements</string>
     <string name="announcements_header">Announcements</string>
-    <string name="announcementsDetailsHeader">Never miss another important notice via these announcements.</string>
-    <string name="tempClosureTitle">Temporary Road Closure Along Tampines East due to construction</string>
-    <string name="tempDate">23 Mar 2023</string>
+    <string name="placeholder_announcement_title">Temporary Road Closure Along Tampines East due to construction</string>
+    <string name="placeholder_announcement_date">23 Mar 2023</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

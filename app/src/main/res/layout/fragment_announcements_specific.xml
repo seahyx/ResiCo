@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="?attr/colorSurface1"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".AnnouncementsFragment">
+    tools:context=".AnnouncementFragment">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:background="?attr/colorSurface1"
@@ -30,7 +30,7 @@
         android:maxLines="3"
         android:textSize="24sp"
         android:textFontWeight="600"
-        android:text="@string/tempClosureTitle"
+        android:text="@string/placeholder_announcement_title"
         android:layout_marginTop="90dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"

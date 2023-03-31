@@ -15,7 +15,7 @@ import com.example.resico.data.model.ForumComment;
 import com.example.resico.databinding.FragmentForumDetailBinding;
 import com.example.resico.databinding.FragmentHomeBinding;
 import com.example.resico.ui.SpacesItemDecoration;
-import com.example.resico.ui.forums.ForumDetailAdapter;
+import com.example.resico.ui.adapters.ForumDetailAdapter;
 
 public class ForumDetailFragment extends Fragment {
 
