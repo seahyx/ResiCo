@@ -42,16 +42,16 @@ public class ForumsFragment extends Fragment {
 	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		binding = FragmentForumsBinding.inflate(inflater,container,false);
+
 		return binding.getRoot();
 	}
 
 	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-
 		binding.buttonToForum.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				@NonNull NavDirections action = ForumsFragmentDirections.actionNavForumsToNavForumsDetail();
+				com.example.resico.ForumsFragmentDirections.ActionNavForumsToNavForumsDetail action = ForumsFragmentDirections.actionNavForumsToNavForumsDetail("0");
 				NavHostFragment.findNavController(ForumsFragment.this).navigate(action);
 			}
 		});

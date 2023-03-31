@@ -44,5 +44,8 @@
         android:name="com.example.resico.ForumDetailFragment"
         android:label="@string/forum_detail_label"
         tools:layout="@layout/fragment_forum_detail">
+        <argument
+            android:name="forum_id"
+            app:argType="string" />
     </fragment>
 </navigation>

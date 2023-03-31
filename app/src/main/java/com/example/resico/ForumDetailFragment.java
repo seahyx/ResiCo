@@ -1,6 +1,7 @@
 package com.example.resico;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,8 +46,7 @@ public class ForumDetailFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         ResiCoAPIHandler apiHandler = ResiCoAPIHandler.getInstance();
-
-
+        String userId = ForumDetailFragmentArgs.fromBundle(getArguments()).getForumId();
         // set adapter to recycle view
         recyclerView = binding.commentRecycle;
         ForumCommentAdapter adapter = new ForumCommentAdapter(forumComments);
@@ -56,7 +56,7 @@ public class ForumDetailFragment extends Fragment {
         // Retrieve event data from API
         User user =  LoginRepository.getUser();
         if (user != null) {
-            apiHandler.getForumComments("0", forumComments -> {
+            apiHandler.getForumComments(userId, forumComments -> {
                 if (forumComments == null) return;
                 this.forumComments.clear();
                 this.forumComments.addAll(Arrays.asList(forumComments));
@@ -69,7 +69,7 @@ public class ForumDetailFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         // Add spacing between component in recycle view
         SpacesItemDecoration itemDecoration = new SpacesItemDecoration(
-                (int) getResources().getDimension(R.dimen.component_small_margin),
+                (int) getResources().getDimension(R.dimen.component_medium_margin),
                 linearLayoutManager.getOrientation());
 
         recyclerView.addItemDecoration(itemDecoration);

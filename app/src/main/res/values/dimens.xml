@@ -6,6 +6,7 @@
 
     <dimen name="component_extra_small_margin">4dp</dimen>
     <dimen name="component_small_margin">8dp</dimen>
+    <dimen name="component_small_medium_margin">12dp</dimen>
     <dimen name="component_medium_margin">16dp</dimen>
     <dimen name="component_large_margin">32dp</dimen>
     <dimen name="component_extra_large_margin">64dp</dimen>

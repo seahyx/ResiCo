@@ -12,7 +12,12 @@ import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.CommentBinding;
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -26,8 +31,6 @@ public class ForumCommentAdapter extends RecyclerView.Adapter<ForumCommentAdapte
         private final TextView userNameView;
         private final TextView postDateTimeView;
         private final TextView commentView;
-
-
 
         public ForumDetailHolder(CommentBinding binding) {
             super(binding.getRoot());
@@ -75,7 +78,7 @@ public class ForumCommentAdapter extends RecyclerView.Adapter<ForumCommentAdapte
         // Bind the data to the element in the specified position
         ForumComment comment = forumComments.get(position);
         holder.getCommentView().setText(comment.getComment());
-        holder.getPostDateTimeView().setText(" ∙ "+comment.getPostDateTime().toString() + " ago");
+        holder.getPostDateTimeView().setText(" ∙ " + getDurationToNow(comment.getPostDateTime()) + " ago");
 
 
         // Get host user information
@@ -90,6 +93,38 @@ public class ForumCommentAdapter extends RecyclerView.Adapter<ForumCommentAdapte
         });
     }
 
+    /**
+     * Calculate duration of a date until now.
+     * @param fromDateTime A time in the past!
+     * @return most significant duration from input dateTime to now.
+     */
+    private String getDurationToNow(LocalDateTime fromDateTime) {
+        LocalDateTime toDateTime = LocalDateTime.now();
+        LocalDateTime tempDateTime = LocalDateTime.from(fromDateTime);
+
+        long years = tempDateTime.until(toDateTime, ChronoUnit.YEARS);
+        tempDateTime = tempDateTime.plusYears(years);
+        if (years != 0) return years + "y";
+
+        long months = tempDateTime.until(toDateTime, ChronoUnit.MONTHS);
+        tempDateTime = tempDateTime.plusMonths(months);
+        if (months != 0) return months + "mo";
+
+        long days = tempDateTime.until(toDateTime, ChronoUnit.DAYS);
+        tempDateTime = tempDateTime.plusDays(days);
+        if (days != 0) return days + "d";
+
+        long hours = tempDateTime.until(toDateTime, ChronoUnit.HOURS);
+        tempDateTime = tempDateTime.plusHours(hours);
+        if (hours != 0) return hours + "h";
+
+        long minutes = tempDateTime.until(toDateTime, ChronoUnit.MINUTES);
+        tempDateTime = tempDateTime.plusMinutes(minutes);
+        if (minutes != 0) return minutes + "m";
+
+        long seconds = tempDateTime.until(toDateTime, ChronoUnit.SECONDS);
+        return seconds + "s";
+    }
     @Override
     public int getItemCount() {
         return forumComments.size();
