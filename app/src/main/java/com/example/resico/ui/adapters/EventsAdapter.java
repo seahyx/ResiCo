@@ -115,7 +115,6 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 		holder.cardView.setOnClickListener(view -> delegate.onItemClick(event.getEventId()));
 
 
-
 		// Get host user information
 		ResiCoAPIHandler apiHandler = ResiCoAPIHandler.getInstance();
 		apiHandler.getUser(event.getHostId(), user -> {
