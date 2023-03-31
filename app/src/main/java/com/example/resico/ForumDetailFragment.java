@@ -1,7 +1,6 @@
 package com.example.resico;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,7 @@ import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.FragmentForumDetailBinding;
 import com.example.resico.ui.SpacesItemDecoration;
-import com.example.resico.ui.adapters.ForumDetailAdapter;
+import com.example.resico.ui.adapters.ForumCommentAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,7 +49,7 @@ public class ForumDetailFragment extends Fragment {
 
         // set adapter to recycle view
         recyclerView = binding.commentRecycle;
-        ForumDetailAdapter adapter = new ForumDetailAdapter(forumComments);
+        ForumCommentAdapter adapter = new ForumCommentAdapter(forumComments);
         recyclerView.setAdapter(adapter);
 
 
