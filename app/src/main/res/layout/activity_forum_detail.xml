@@ -137,8 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
-                android:paddingVertical="@dimen/component_small_margin"
-                android:nestedScrollingEnabled="false"/>
+                android:paddingVertical="@dimen/component_small_margin"                android:nestedScrollingEnabled="false"/>
 
         </LinearLayout>
 
