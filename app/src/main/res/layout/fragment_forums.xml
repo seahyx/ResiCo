@@ -14,15 +14,49 @@
         android:layout_height="match_parent"
         android:text="@string/action_forum"
         android:textSize="@dimen/text_header_2"
-        android:layout_marginLeft="@dimen/pfp_small"
-        android:layout_marginBottom="@dimen/component_medium_margin" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/forum_title"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="@dimen/component_medium_margin"
-        />
+        android:layout_height="match_parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/pfp_small"
+            android:layout_marginEnd="@dimen/pfp_small"
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:paddingBottom="@dimen/component_medium_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/placeholder_pfp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_medium"
+                android:text="Hello" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_med_small"
+                android:text="Nice to meet you all! Very happy!"/>
+
+
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
