@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,10 +15,11 @@ import com.example.resico.data.model.Announcement;
 import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.FragmentAnnouncementsBinding;
+import com.google.android.material.divider.MaterialDividerItemDecoration;
 
 
 import java.util.ArrayList;
-public class AnnouncementFragment extends Fragment {
+public class AnnouncementsFragment extends Fragment {
 	private FragmentAnnouncementsBinding binding;
 	ArrayList<Announcement> announcements = new ArrayList<>();
 
@@ -41,7 +41,12 @@ public class AnnouncementFragment extends Fragment {
 		// instantiate adapter only after we have set up the models
 		AnnouncementsAdapter adapter = new AnnouncementsAdapter(announcements, this::onItemClick);
 		recyclerView.setAdapter(adapter);
-		recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
+		recyclerView.setLayoutManager(linearLayoutManager);
+
+		// Divider for recyclerView
+		MaterialDividerItemDecoration dividerItemDecoration = new MaterialDividerItemDecoration(recyclerView.getContext(), linearLayoutManager.getOrientation());
+		recyclerView.addItemDecoration(dividerItemDecoration);
 
 		ResiCoAPIHandler apiHandler = ResiCoAPIHandler.getInstance();
 		User user =  LoginRepository.getUser();

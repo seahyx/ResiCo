@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="?attr/colorSurface1"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".AnnouncementFragment">
+    tools:context=".AnnouncementsFragment">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:background="?attr/colorSurface1"
@@ -16,7 +16,7 @@
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="@string/announcement_header"
+            app:title="@string/announcements_header"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:titleCentered="true"/>
 
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/AnnouncementSpecificDescriptionView"
-        android:text="@string/announcementsDetailsHeader"
+        android:text="@string/long_text"
         android:layout_marginTop="200dp"
         android:maxEms="20"
         android:textSize="20sp"

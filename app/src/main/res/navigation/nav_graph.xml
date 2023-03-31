@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_announcements"
-        android:name="com.example.resico.AnnouncementFragment"
+        android:name="com.example.resico.AnnouncementsFragment"
         android:label="@string/announcements_fragment_label"
         tools:layout="@layout/fragment_announcements">
         <action

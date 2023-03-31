@@ -17,6 +17,11 @@
         <item name="layout_behavior">@string/bottom_sheet_behavior</item>
         <item name="shapeAppearance">@style/ShapeAppearanceOverlay.ResiCo.LargeComponent</item>
     </style>
+    
+    <style name="AnnouncementCard" parent="Widget.Material3.CardView.Filled">
+        <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.None</item>
+        <item name="backgroundColor">?attr/colorSurface2</item>
+    </style>
 
     <style name="ShapeAppearanceOverlay.ResiCo.SmallComponent" parent="">
         <item name="cornerSize">16dp</item>
