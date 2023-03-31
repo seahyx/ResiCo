@@ -1,7 +1,6 @@
 package com.example.resico;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.resico.data.LoginRepository;
-import com.example.resico.data.model.Announcement;
 import com.example.resico.data.model.Event;
-import com.example.resico.data.model.ForumComment;
-import com.example.resico.data.model.ForumPost;
 import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.FragmentEventsBinding;
@@ -43,12 +39,10 @@ public class EventsFragment extends Fragment {
 
 	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-
 		ResiCoAPIHandler apiHandler = ResiCoAPIHandler.getInstance();
 
-		recyclerView = binding.eventsList;
-
 		// Attach event adapter to RecyclerView
+		recyclerView = binding.eventsList;
 		EventsAdapter adapter = new EventsAdapter(this.events);
 		recyclerView.setAdapter(adapter);
 
