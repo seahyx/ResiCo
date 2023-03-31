@@ -1,4 +1,4 @@
-package com.example.resico.ui.events;
+package com.example.resico.ui.adapters;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.resico.App;
 import com.example.resico.R;
 import com.example.resico.data.model.Event;
-import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.EventCardBinding;
 import com.google.android.material.card.MaterialCardView;
