@@ -16,6 +16,9 @@
         android:name="com.example.resico.ForumsFragment"
         android:label="@string/forum_fragment_label"
         tools:layout="@layout/fragment_forums">
+        <action
+            android:id="@+id/action_nav_forums_to_nav_forums_detail"
+            app:destination="@id/nav_forums_detail" />
     </fragment>
     <fragment
         android:id="@+id/nav_events"
@@ -34,5 +37,12 @@
         android:name="com.example.resico.ProfileFragment"
         android:label="@string/profile_fragment_label"
         tools:layout="@layout/fragment_profile">
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_forums_detail"
+        android:name="com.example.resico.ForumDetailFragment"
+        android:label="@string/forum_detail_label"
+        tools:layout="@layout/fragment_forum_detail">
     </fragment>
 </navigation>

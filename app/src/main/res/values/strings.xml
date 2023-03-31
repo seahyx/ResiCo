@@ -11,6 +11,7 @@
     <string name="profile_fragment_label">Profile Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="forum_detail_label">Forum Detail</string>
 
     <!-- Preference key values -->
     <string name="main_store">com.example.resico</string>
