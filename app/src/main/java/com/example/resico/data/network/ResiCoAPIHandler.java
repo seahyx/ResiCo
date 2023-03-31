@@ -250,8 +250,8 @@ public class ResiCoAPIHandler {
 					e.printStackTrace();
 				}
 			}
-			onFinishRequest.onFinishRequest(announcements);
 			announcementTable = announcements;
+			onFinishRequest.onFinishRequest(announcements);
 		});
 		NetworkRequest.get(NetworkRequest.addQueryParameter(BASE_URL + ANNOUNCEMENT_LIST_ENDPOINT, AUTH_QUERY, AUTH_TOKEN), callback);
 	}
