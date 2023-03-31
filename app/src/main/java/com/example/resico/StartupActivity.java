@@ -26,7 +26,7 @@ public class StartupActivity extends AppCompatActivity {
 
 	private final ActivityResultLauncher<Intent> loginLauncher = registerForActivityResult(
 			new ActivityResultContracts.StartActivityForResult(),
-			(ActivityResultCallback<ActivityResult>) result -> {
+			result -> {
 				Log.d(TAG, "Returned from login page, checking if user is logged in...");
 				handleStartupCheck();
 			});

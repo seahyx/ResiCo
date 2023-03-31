@@ -9,8 +9,8 @@
         android:id="@+id/nav_home"
         android:name="com.example.resico.HomeFragment"
         android:label="@string/home_fragment_label"
-        tools:layout="@layout/fragment_home">
-    </fragment>
+        tools:layout="@layout/fragment_home"/>
+
     <fragment
         android:id="@+id/nav_forums"
         android:name="com.example.resico.ForumsFragment"
@@ -31,12 +31,29 @@
         android:name="com.example.resico.AnnouncementsFragment"
         android:label="@string/announcements_fragment_label"
         tools:layout="@layout/fragment_announcements">
+        <action
+            android:id="@+id/action_nav_announcements_to_announcementsSpecificFragment"
+            app:destination="@id/announcementsSpecificFragment"
+            app:popUpTo="@id/nav_home"
+            app:popUpToSaveState="true"
+            />
     </fragment>
     <fragment
         android:id="@+id/nav_profile"
         android:name="com.example.resico.ProfileFragment"
         android:label="@string/profile_fragment_label"
         tools:layout="@layout/fragment_profile">
+    </fragment>
+    <fragment
+        android:id="@+id/announcementsSpecificFragment"
+        android:name="com.example.resico.AnnouncementsSpecificFragment"
+        android:label="AnnouncementsSpecificFragment" >
+        <action
+            android:id="@+id/action_announcementsSpecificFragment_to_nav_announcements"
+            app:destination="@id/nav_announcements" />
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
 
     <fragment
