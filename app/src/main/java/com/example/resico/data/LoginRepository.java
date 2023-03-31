@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.resico.App;
 import com.example.resico.R;
 import com.example.resico.data.model.User;
+import com.example.resico.data.network.ResiCoAPIHandler;
 
 import java.util.Calendar;
 
@@ -21,83 +23,118 @@ public class LoginRepository {
 
 	private static volatile LoginRepository instance;
 
-	private LoginDataSource dataSource;
-	private final Context context;
+	private final ResiCoAPIHandler apiHandler;
 	private final SharedPreferences sharedPref;
 	private final SharedPreferences.Editor editor;
 
 	// If user credentials will be cached in local storage, it is recommended it be encrypted
 	// @see https://developer.android.com/training/articles/keystore
-	private User user = null;
+	private static User user = null;
 
 	// private constructor : singleton access
-	private LoginRepository(LoginDataSource dataSource) {
-		this.dataSource = dataSource;
-		this.context = App.getContext();
-		this.sharedPref = context.getSharedPreferences(context.getString(R.string.main_store), Context.MODE_PRIVATE);
+	private LoginRepository() {
+		this.apiHandler = ResiCoAPIHandler.getInstance();
+		this.sharedPref = App.getContext().getSharedPreferences(App.getContext().getString(R.string.main_store), Context.MODE_PRIVATE);
 		this.editor = sharedPref.edit();
-		getLastLogin();
 	}
 
-	public static LoginRepository getInstance(LoginDataSource dataSource) {
+	public static LoginRepository getInstance() {
 		if (instance == null) {
-			instance = new LoginRepository(dataSource);
+			instance = new LoginRepository();
 		}
 		return instance;
 	}
 
-	public boolean isLoggedIn() {
-		return user != null;
+	public void isLoggedIn(OnLoginReceived<Boolean> onLoginReceived) {
+		getLastLogin(data -> onLoginReceived.onLoginReceived(user != null));
 	}
 
 	@Nullable
-	public User getUser() {
+	public static User getUser() {
+		// This function should not be run when the user is not logged in, aka user = null.
+		// However, it is possible to get into this state where the user is null but this function
+		// is called, most likely attempting to access the user's getter methods within.
+		// We catch our own exception so we know when illegal state happens, if it happens.
+		try {
+			if (user == null) { throw new NullPointerException("user field is null! getUser() is called while the user is logged out, which is illegal."); }
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
 		return user;
+	}
+
+	public static String getUserId() {
+		try {
+			return getUser().getUserId();
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public void logout() {
 		user = null;
 
 		// Clear cache
-		editor.putString(context.getString(R.string.user_id_key), null);
-		editor.putString(context.getString(R.string.user_display_name_key), null);
+		editor.putString(App.getContext().getString(R.string.user_id_key), null);
+		editor.putString(App.getContext().getString(R.string.user_display_name_key), null);
 		editor.apply();
-
-		dataSource.logout();
 	}
 
 	private void setLoggedInUser(User user) {
 		this.user = user;
 
 		// Cache user data on login
-		editor.putLong(context.getString(R.string.last_login_key), Calendar.getInstance().getTimeInMillis());
-		editor.putString(context.getString(R.string.user_id_key), user.getUserId());
-		editor.putString(context.getString(R.string.user_display_name_key), user.getUsername());
+		editor.putLong(App.getContext().getString(R.string.last_login_key), Calendar.getInstance().getTimeInMillis());
+		editor.putString(App.getContext().getString(R.string.user_id_key), user.getUserId());
 		editor.apply();
-		Log.d(TAG, "User is logged in with userId: " + user.getUserId() + ", username: " + user.getUsername());
+		Log.d(TAG, "User is logged in with userId: " + user.getUserId());
 	}
 
 	/**
 	* Get the last cached login details from SharedPreferences.
 	 * @return True if a previous login exists, false if otherwise.
 	* */
-	private boolean getLastLogin() {
-		String userId = sharedPref.getString(context.getString(R.string.user_id_key), "");
+	public void getLastLogin(OnLoginReceived<Boolean> onLoginReceived) {
+		String userId = sharedPref.getString(App.getContext().getString(R.string.user_id_key), "");
 		if (!userId.equals("")) {
-			String displayName = sharedPref.getString(context.getString(R.string.user_display_name_key), "NO DISPLAY NAME FOUND");
-			Log.d(TAG, "Previous login detected, updating logged in user with userId: " + userId + ", displayName: " + displayName);
-			user = new User(userId, displayName, "", "", "", "");
-			return true;
+			Log.d(TAG, "Previous login detected, updating logged in user with userId: " + userId);
+			apiHandler.getUser(userId, user -> {
+				if (user != null) {
+					setLoggedInUser(user);
+					onLoginReceived.onLoginReceived(true);
+					return;
+				}
+				onLoginReceived.onLoginReceived(false);
+			});
+			return;
 		}
-		return false;
+		onLoginReceived.onLoginReceived(false);
 	}
 
-	public Result<User> login(String username, String password) {
+	public void login(String username, String password, OnLoginReceived<User> onLoginReceived) {
 		// handle login
-		Result<User> result = dataSource.login(username, password);
-		if (result instanceof Result.Success) {
-			setLoggedInUser(((Result.Success<User>) result).getData());
-		}
-		return result;
+		apiHandler.getLogin(username, password, result -> {
+			if (result instanceof Result.Success) {
+				User user = ((Result.Success<User>) result).getData();
+				setLoggedInUser(user);
+				onLoginReceived.onLoginReceived(user);
+				return;
+			}
+			onLoginReceived.onLoginReceived(null);
+		});
+	}
+
+	/**
+	 * Delegate to be executed when a login is completed.
+	 * @param <T> Processed object to return.
+	 */
+	public interface OnLoginReceived<T> {
+		/**
+		 * Method invoked when network request is completed. If network request is unsuccessful,
+		 * null is returned.
+		 * @param data Converted object data from the network request. Null if request is unsuccessful or empty.
+		 */
+		void onLoginReceived(@Nullable T data);
 	}
 }

@@ -1,27 +1,35 @@
 package com.example.resico;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.resico.data.LoginRepository;
+import com.example.resico.data.model.Announcement;
 import com.example.resico.data.model.Event;
+import com.example.resico.data.model.ForumComment;
+import com.example.resico.data.model.ForumPost;
+import com.example.resico.data.model.User;
+import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.FragmentEventsBinding;
 import com.example.resico.ui.SpacesItemDecoration;
 import com.example.resico.ui.events.EventsAdapter;
 
+import java.util.ArrayList;
+
 public class EventsFragment extends Fragment {
+	private final String TAG = this.getClass().getSimpleName();
 
 	private FragmentEventsBinding binding;
 	private RecyclerView recyclerView;
-	private Event[] events;
+	private ArrayList<Event> events = new ArrayList<>();
 
 	@Override
 	public View onCreateView(
@@ -36,32 +44,25 @@ public class EventsFragment extends Fragment {
 	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-//		binding.buttonSecond.setOnClickListener(view1 -> NavHostFragment.findNavController(EventsFragment.this)
-//				.navigate(R.id.action_SecondFragment_to_FirstFragment));
+		ResiCoAPIHandler apiHandler = ResiCoAPIHandler.getInstance();
 
 		recyclerView = binding.eventsList;
 
-		// Generate dummy events for testing
-		events = new Event[5];
-		for (int i = 0; i < events.length; i++) {
-			events[i] = new Event(
-					i,
-					Event.convertDateTimeIntToDate("10052023", "1200"),
-					Event.convertDateTimeIntToDate("10052023",  "1400"),
-					"Salad Making Workshop " + i,
-					"Balsa",
-					"Home",
-					"",
-					i,
-					i,
-					false,
-					false
-			);
+		// Attach event adapter to RecyclerView
+		EventsAdapter adapter = new EventsAdapter(this.events);
+		recyclerView.setAdapter(adapter);
+
+		// Retrieve event data from API
+		User user =  LoginRepository.getUser();
+		if (user != null) {
+			apiHandler.getEventList(user.getUserId(), events -> {
+				if (events == null) return;
+				this.events.clear();
+				this.events.addAll(events.values());
+				adapter.notifyDataSetChanged();
+			});
 		}
 
-		// Attach event adapter to RecyclerView
-		EventsAdapter adapter = new EventsAdapter(events);
-		recyclerView.setAdapter(adapter);
 		// LinearLayoutManager by default has vertical orientation
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
 		recyclerView.setLayoutManager(linearLayoutManager);
