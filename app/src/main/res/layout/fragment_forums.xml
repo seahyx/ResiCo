@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ForumsFragment">
+    tools:context=".ForumsFragment"
+    android:background="?attr/colorSurface2">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -14,18 +16,21 @@
         android:layout_height="match_parent"
         android:text="@string/action_forum"
         android:textSize="@dimen/text_header_2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout" />
+        android:layout_marginStart="@dimen/pfp_small"
+        android:layout_marginTop="@dimen/fab_margin" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_item"
+            android:id="@+id/forum_list_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingEnd="62dp"
             android:layout_marginStart="@dimen/pfp_small"
             android:layout_marginEnd="@dimen/pfp_small"
             android:layout_marginBottom="@dimen/fab_margin"
@@ -34,26 +39,26 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imageView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/placeholder_pfp" />
+                android:src="@drawable/placeholder_profile"
+                app:civ_border_width="fab_margin" />
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_medium"
-                android:text="Hello" />
+                android:text="Hello"
+                android:textSize="@dimen/text_medium" />
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_med_small"
-                android:text="Nice to meet you all! Very happy!"/>
-
+                android:text="Nice to meet you all! Very happy!"
+                android:textSize="@dimen/text_med_small" />
 
 
         </androidx.recyclerview.widget.RecyclerView>
