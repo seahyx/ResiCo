@@ -1,10 +1,14 @@
 package com.example.resico;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,6 +31,10 @@ public class EventsFragment extends Fragment {
 	private RecyclerView recyclerView;
 	private ArrayList<Event> events = new ArrayList<>();
 
+	private final ActivityResultLauncher<Intent> detailLauncher = registerForActivityResult(
+			new ActivityResultContracts.StartActivityForResult(),
+			result -> Log.d(TAG, "Returned from details page."));
+
 	@Override
 	public View onCreateView(
 			LayoutInflater inflater, ViewGroup container,
@@ -43,7 +51,7 @@ public class EventsFragment extends Fragment {
 
 		// Attach event adapter to RecyclerView
 		recyclerView = binding.eventsList;
-		EventsAdapter adapter = new EventsAdapter(this.events);
+		EventsAdapter adapter = new EventsAdapter(this.events, this::onEventClick);
 		recyclerView.setAdapter(adapter);
 
 		// Retrieve event data from API
@@ -53,7 +61,7 @@ public class EventsFragment extends Fragment {
 				if (events == null) return;
 				this.events.clear();
 				this.events.addAll(events.values());
-				binding.getRoot().post(() -> adapter.notifyDataSetChanged());
+				binding.getRoot().post(adapter::notifyDataSetChanged);
 			});
 		}
 
@@ -71,6 +79,17 @@ public class EventsFragment extends Fragment {
 	public void onDestroyView() {
 		super.onDestroyView();
 		binding = null;
+	}
+
+	/**
+	 * OnClick function for {@link RecyclerView} event cards.
+	 * @param eventId String ID of the event clicked.
+	 */
+	private void onEventClick(String eventId) {
+		// Navigate to the specific event page
+		Intent detailIntent = new Intent(getActivity(), EventDetailActivity.class);
+		detailIntent.putExtra(getString(R.string.event_id_key), eventId);
+		detailLauncher.launch(detailIntent);
 	}
 
 }

@@ -6,6 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Data class that holds per-announcement data.
@@ -18,8 +19,9 @@ public class Announcement {
 		String DETAIL = "detail";
 		String TITLE = "title";
 	}
+	private static final String DATE_FORMAT = "dd MMM yyyy";
+	private static final String TIME_FORMAT = "h:mm a";
 	private final String announcementId;
-
 	private LocalDateTime postDateTime;
 	private final String title;
 	private String detail;
@@ -59,6 +61,14 @@ public class Announcement {
 
 	public LocalDateTime getPostDateTime() {
 		return postDateTime;
+	}
+
+	public String getPostDateFormatted() {
+		return postDateTime.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
+	}
+
+	public String getPostTimeFormatted() {
+		return postDateTime.format(DateTimeFormatter.ofPattern(TIME_FORMAT));
 	}
 
 	public String getTitle() {
