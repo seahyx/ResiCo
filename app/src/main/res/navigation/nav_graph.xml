@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/nav_forums"
         android:name="com.example.resico.ForumsFragment"
-        android:label="@string/forum_fragment_label"
+        android:label="@string/title_activity_forum"
         tools:layout="@layout/fragment_forums" />
 
     <fragment

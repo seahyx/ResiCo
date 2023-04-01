@@ -20,6 +20,8 @@
 
     <dimen name="event_card_height">240dp</dimen>
 
+    <dimen name="forum_card_image_height">190dp</dimen>
+
     <!--  Font Sizes  -->
     <dimen name="text_header_1">32sp</dimen>
     <dimen name="text_header_2">28sp</dimen>
