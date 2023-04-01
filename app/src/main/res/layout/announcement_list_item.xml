@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/component_large_margin"
+        android:paddingTop="@dimen/component_medium_margin"
         android:paddingBottom="@dimen/component_medium_margin">
 
         <TextView
