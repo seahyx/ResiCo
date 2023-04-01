@@ -100,7 +100,8 @@
                     android:layout_width="@dimen/component_medium_margin"
                     android:layout_height="@dimen/component_medium_margin"
                     android:layout_marginTop="@dimen/component_small_medium_margin"
-                    android:src="@drawable/like_button"
+                    android:src="@drawable/ic_like"
+                    android:backgroundTint="?attr/colorOnSurface"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/forum_image" />
 
@@ -120,7 +121,8 @@
                     android:layout_width="@dimen/component_medium_margin"
                     android:layout_height="@dimen/component_medium_margin"
                     android:layout_marginStart="@dimen/component_large_margin"
-                    android:src="@drawable/outline_comment_24"
+                    android:src="@drawable/ic_comment"
+                    android:backgroundTint="?attr/colorOnSurface"
                     app:layout_constraintBottom_toBottomOf="@+id/like"
                     app:layout_constraintStart_toEndOf="@+id/like_amount"
                     app:layout_constraintTop_toTopOf="@+id/like" />
