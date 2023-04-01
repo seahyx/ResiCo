@@ -13,6 +13,7 @@ import com.example.resico.R;
 import com.example.resico.data.model.Event;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.EventCardBinding;
+import com.example.resico.ui.ListOnClickInterface;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.squareup.picasso.Picasso;
@@ -24,6 +25,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder> {
 
 	private ArrayList<Event> events;
+
+	private final ListOnClickInterface delegate;
 
 	public static class ViewHolder extends RecyclerView.ViewHolder {
 		private final EventCardBinding binding;
@@ -88,8 +91,9 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 	 * Initialize dataset of the Adapter.
 	 *
 	 * */
-	public EventsAdapter(ArrayList<Event> events) {
+	public EventsAdapter(ArrayList<Event> events, ListOnClickInterface onClickInterface) {
 		this.events = events;
+		delegate = onClickInterface;
 	}
 
 	@NonNull
@@ -107,6 +111,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 		holder.getBookmarkView().setChecked(event.getHasBookmarked());
 		holder.getCardDateView().setText(event.getStartDateFormatted());
 		Picasso.get().load(event.getImageUrl()).fit().centerCrop().into(holder.getBackgroundImageView());
+		holder.cardView.setOnClickListener(view -> delegate.onItemClick(event.getEventId()));
 
 
 		// Get host user information
