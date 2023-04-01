@@ -3,8 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.resico.EventDetailActivity">
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:id="@+id/menu_bookmark"
+        android:checkable="true"
+        android:title="@string/bookmark"
+        android:icon="@drawable/sl_bookmark"
+        app:actionViewClass="com.google.android.material.checkbox.MaterialCheckBox"
+        app:showAsAction="ifRoom" />
 </menu>

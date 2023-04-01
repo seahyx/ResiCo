@@ -18,7 +18,9 @@
             android:layout_height="wrap_content"
             app:title="@string/title_activity_event_detail"
             app:titleCentered="true"
+            app:navigationIconTint="?attr/colorOnSurface"
             app:navigationIcon="@drawable/ic_arrow_back"
+            app:menu="@menu/menu_event_detail"
             app:layout_scrollFlags="scroll|enterAlways"
             app:layout_scrollEffect="compress"/>
 
@@ -118,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/ResiCo.TextAppearance.EventDetailBody"
-                android:text="@string/long_text"
+                android:text="@string/search_events_hint"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/event_detail_about_header" />
 
@@ -157,6 +159,14 @@
                 android:text="@string/placeholder_display_name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/event_detail_contact_header" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rsvp"
+                android:layout_marginTop="@dimen/component_large_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/event_detail_contact" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
