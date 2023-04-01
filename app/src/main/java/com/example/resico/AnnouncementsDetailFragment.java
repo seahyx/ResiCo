@@ -1,10 +1,7 @@
 package com.example.resico;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.NavHostController;
 import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,16 +37,16 @@ public class AnnouncementsDetailFragment extends Fragment {
         ResiCoAPIHandler apiHandler = ResiCoAPIHandler.getInstance();
         User user =  LoginRepository.getUser();
         if (user != null) {
+            //get specific announcement details from announcement id
             apiHandler.getAnnouncement(id,announcement -> {
                 if (announcement == null) return;
-                //binding.collapsingBar.setTitleEnabled(false);
-                binding.collapsingBar.setTitle("A test my by cy dy widiqjid diwqhjdikren krneknre knreqwidjq wdiqjhwidjq");
+                binding.collapsingBar.setTitle("This is a very very very very very very very very very long title that will span 3 lines maximum");
+                binding.announcementsDetailDate.setText(announcement.getPostDateFormatted());
                 //binding.announcementTitle.setText(announcement.getTitle());
                 binding.announcementsDetail.setText(R.string.long_text);
                 //binding.announcementDetail.setText(announcement.getDetail());
             });
         }
-
     }
 
     @Override
@@ -57,6 +54,4 @@ public class AnnouncementsDetailFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
-
 }

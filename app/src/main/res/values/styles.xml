@@ -31,13 +31,17 @@
 
     <style name="AnnouncementCard" parent="Widget.Material3.CardView.Filled">
         <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.None</item>
-        <item name="backgroundColor">?attr/colorSurface2</item>
+        <item name="cardBackgroundColor">?attr/colorSurface2</item>
     </style>
 
     <style name="AnnouncementTitleStyle" parent="@android:style/TextAppearance">
         <item name="android:textColor">?attr/colorOnSurface</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/text_header_3</item>
         <item name="android:singleLine">false</item>
+    </style>
+
+    <style name="AnnouncementDetailActionBar" parent="@style/Theme.Design.Light.NoActionBar">
+        <item name="android:background">?attr/colorSurface2</item>
     </style>
 
     <style name="ShapeAppearanceOverlay.ResiCo.SmallComponent" parent="">

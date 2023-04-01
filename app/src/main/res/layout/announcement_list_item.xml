@@ -50,7 +50,7 @@
             android:textSize="@dimen/text_medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/announcement_date" />
+            app:layout_constraintTop_toBottomOf="@+id/announcement_date"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

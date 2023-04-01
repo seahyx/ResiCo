@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.resico.data.LoginRepository;
 import com.example.resico.data.model.Announcement;
 import com.example.resico.data.model.User;
@@ -38,17 +37,14 @@ public class AnnouncementsFragment extends Fragment {
 	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		RecyclerView recyclerView = view.findViewById(R.id.announcements_recyclerview);
-
-		// instantiate adapter only after we have set up the models
 		AnnouncementsAdapter adapter = new AnnouncementsAdapter(announcements, this::onItemClick);
 		recyclerView.setAdapter(adapter);
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
 		recyclerView.setLayoutManager(linearLayoutManager);
-
 		// Divider for recyclerView
 		MaterialDividerItemDecoration dividerItemDecoration = new MaterialDividerItemDecoration(recyclerView.getContext(), linearLayoutManager.getOrientation());
 		recyclerView.addItemDecoration(dividerItemDecoration);
-
+		//get announcements list to load into recycler view
 		ResiCoAPIHandler apiHandler = ResiCoAPIHandler.getInstance();
 		User user =  LoginRepository.getUser();
 		if (user != null) {
@@ -73,9 +69,3 @@ public class AnnouncementsFragment extends Fragment {
 		NavHostFragment.findNavController(this).navigate(action);
 	}
 }
-
-//TODO
-//1. Change AnnouncementSpecific fragment
-//2. Edit XML names to follow convention
-//3. Edit XML padding and spacing
-//4. Implement Collapsing toolbar and scroll view, add date.
