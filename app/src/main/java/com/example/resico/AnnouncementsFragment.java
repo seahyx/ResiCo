@@ -15,6 +15,7 @@ import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.FragmentAnnouncementsBinding;
 import com.example.resico.ui.adapters.AnnouncementsAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.divider.MaterialDividerItemDecoration;
 
 
@@ -67,5 +68,7 @@ public class AnnouncementsFragment extends Fragment {
 		AnnouncementsFragmentDirections.ActionNavAnnouncementsToAnnouncementsSpecificFragment action =
 				AnnouncementsFragmentDirections.actionNavAnnouncementsToAnnouncementsSpecificFragment(id);
 		NavHostFragment.findNavController(this).navigate(action);
+		BottomNavigationView btmNav = getActivity().findViewById(R.id.bottom_nav);
+		btmNav.setVisibility(View.GONE);
 	}
 }

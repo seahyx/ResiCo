@@ -11,11 +11,11 @@ import com.example.resico.data.model.Announcement;
 import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.FragmentAnnouncementsDetailBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class AnnouncementsDetailFragment extends Fragment {
 
     private FragmentAnnouncementsDetailBinding binding;
-    private Announcement announcement;
 
     @Override
     public View onCreateView(
@@ -31,23 +31,25 @@ public class AnnouncementsDetailFragment extends Fragment {
         // get id from previous announcement fragment
         String id = AnnouncementsDetailFragmentArgs.fromBundle(getArguments()).getId();
         binding.toolBar.setNavigationIcon(R.drawable.ic_arrow_back);
-        binding.toolBar.setNavigationOnClickListener(view1 ->
+        binding.toolBar.setNavigationOnClickListener(view1 ->{
                 NavHostFragment.findNavController(AnnouncementsDetailFragment.this)
-                        .navigate(R.id.action_announcements_detail_to_nav_announcements));
+                        .navigate(R.id.action_announcements_detail_to_nav_announcements);
+                BottomNavigationView btmNav = getActivity().findViewById(R.id.bottom_nav);
+                btmNav.setVisibility(View.VISIBLE);
+        });
         ResiCoAPIHandler apiHandler = ResiCoAPIHandler.getInstance();
         User user =  LoginRepository.getUser();
         if (user != null) {
             //get specific announcement details from announcement id
             apiHandler.getAnnouncement(id,announcement -> {
                 if (announcement == null) return;
-                binding.collapsingBar.setTitle("This is a very very very very very very very very very long title that will span 3 lines maximum");
+                binding.announcementsDetailTitle.setText(announcement.getTitle());
                 binding.announcementsDetailDate.setText(announcement.getPostDateFormatted());
-                //binding.announcementTitle.setText(announcement.getTitle());
-                binding.announcementsDetail.setText(R.string.long_text);
-                //binding.announcementDetail.setText(announcement.getDetail());
+                binding.announcementsDetail.setText(announcement.getDetail());
             });
         }
     }
+
 
     @Override
     public void onDestroyView() {
