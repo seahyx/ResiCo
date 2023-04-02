@@ -10,7 +10,7 @@
         android:id="@+id/comment_profile_image"
         android:layout_width="@dimen/pfp_small"
         android:layout_height="@dimen/pfp_small"
-        android:src="@drawable/placeholder_pfp"
+        android:src="@drawable/placeholder_profile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
