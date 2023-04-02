@@ -13,6 +13,8 @@ import com.example.resico.databinding.CommentBinding;
 import com.example.resico.utils.DateTimeCalc;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -40,7 +42,6 @@ public class ForumCommentAdapter extends RecyclerView.Adapter<ForumCommentAdapte
             postDateTimeView = binding.postTime;
             commentView = binding.commentBody;
             userImageView = binding.commentProfileImage;
-
         }
 
         public TextView getUserNameView() {
