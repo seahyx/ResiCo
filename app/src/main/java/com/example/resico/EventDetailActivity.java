@@ -3,17 +3,14 @@ package com.example.resico;
 import android.os.Bundle;
 
 import com.example.resico.data.LoginRepository;
-import com.example.resico.data.model.Event;
 import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.checkbox.MaterialCheckBox;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 import com.example.resico.databinding.ActivityEventDetailBinding;
 import com.squareup.picasso.Picasso;
@@ -29,6 +26,7 @@ public class EventDetailActivity extends AppCompatActivity {
 		binding = ActivityEventDetailBinding.inflate(getLayoutInflater());
 		setContentView(binding.getRoot());
 		setSupportActionBar(binding.toolbar);
+		binding.toolbar.showOverflowMenu();
 		binding.toolbar.setNavigationOnClickListener(view -> finish());
 
 		// Get event id from intent
@@ -57,6 +55,17 @@ public class EventDetailActivity extends AppCompatActivity {
 				});
 			});
 		}
+	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu_event_detail, menu);
+
+		// Update checkbox
+		MaterialCheckBox materialCheckBox = (MaterialCheckBox) menu.findItem(R.id.menu_bookmark).getActionView();
+		materialCheckBox.setButtonDrawable(R.drawable.sl_bookmark);
+
+		return true;
 	}
 }
