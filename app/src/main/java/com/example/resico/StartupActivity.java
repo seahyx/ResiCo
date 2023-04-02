@@ -61,7 +61,7 @@ public class StartupActivity extends AppCompatActivity {
 
 		// Short delay
 		final Handler handler = new Handler();
-		handler.postDelayed(this::handleStartupCheck, 2000);
+		handler.postDelayed(this::handleStartupCheck, 1500);
 	}
 
 	private void handleStartupCheck() {
