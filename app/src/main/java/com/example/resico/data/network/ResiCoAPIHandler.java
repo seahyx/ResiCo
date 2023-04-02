@@ -40,6 +40,7 @@ public class ResiCoAPIHandler {
 	public static final String ANNOUNCEMENT_QUERY_ENDPOINT = "/announcements/%s.json"; // Format with announcement id
 	public static final String FORUM_LIST_ENDPOINT = "/forums.json";// Forum
 	public static final String FORUM_COMMENTS_QUERY_ENDPOINT = "/forumComments/%s.json"; // Format with forum post id
+	public static final String POST_FORUM_COMMENTS_ENDPOINT = "/forumComments/%s/%s.json"; // Format with postId and current comment count
 	public static final String USER_QUERY_ENDPOINT = "/user/%s.json"; // Format with userId
 	public static final String APPLIED_BOOKMARKED_EVENTS_ENDPOINT = "/appliedLikedEvents/%s.json"; // Format with userId
 
@@ -319,6 +320,40 @@ public class ResiCoAPIHandler {
 			onFinishRequest.onFinishRequest(comments);
 		});
 		NetworkRequest.get(NetworkRequest.addQueryParameter(BASE_URL + String.format(FORUM_COMMENTS_QUERY_ENDPOINT, postId), AUTH_QUERY, AUTH_TOKEN), callback);
+	}
+
+	public void postForumComments(String postId,Integer currentCommentCount,String comment,String postDate,String postTime,String userId,OnFinishRequest<ForumComment[]> onFinishRequest) {
+		UrlRequestCallback callback = new UrlRequestCallback(result -> {
+			// Verify data
+			JSONArray data = getResponseBodyJSONArray(result);
+			if (!checkRequestSuccess(result) || data == null) {
+				onFinishRequest.onFinishRequest(null);
+				return;
+			}
+			ForumComment[] comments = new ForumComment[data.length()];
+			for (int i = 0; i < data.length(); i++) {
+				try {
+					JSONObject commentObj = data.getJSONObject(i);
+					comments[i] = ForumComment.buildFromJSONObject(commentObj);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+			onFinishRequest.onFinishRequest(comments);
+		});
+
+		// Put data
+		JSONObject commentPayload = new JSONObject();
+		try {
+			commentPayload.put("comment", comment);
+			commentPayload.put("postDate", postDate);
+			commentPayload.put("userId", userId);
+			commentPayload.put("postTime", postTime);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		NetworkRequest.put(NetworkRequest.addQueryParameter(BASE_URL + String.format(POST_FORUM_COMMENTS_ENDPOINT, postId,currentCommentCount), AUTH_QUERY, AUTH_TOKEN),commentPayload.toString(), callback);
 	}
 
 	public void getAppliedBookmarkedEvents(String userId, OnFinishRequest<AppliedBookmarkedEvents> onFinishRequest) {
