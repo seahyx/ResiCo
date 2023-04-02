@@ -24,6 +24,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,24 +40,21 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(binding.getRoot());
 
 		bottomNavView = binding.bottomNav;
-		navHostView = binding.contentMain.navHostFragmentContentMain;
+		navHostView = binding.navHostFragmentContentMain;
 
 		NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_content_main);
 		assert navHostFragment != null;
 
 		NavController navController = navHostFragment.getNavController();
-		navController.addOnDestinationChangedListener((navController1, navDestination, bundle) -> toggleBottomNavBehavior(false));
 		NavigationUI.setupWithNavController(bottomNavView, navController);
+
+		navController.addOnDestinationChangedListener(this::OnDestinationChanged);
 	}
 
-	private void  toggleBottomNavBehavior(boolean scrollToHide) {
-		// Get the layout params of the bottom nav
+	private void OnDestinationChanged(NavController controller, NavDestination destination, Bundle args) {
 		CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) bottomNavView.getLayoutParams();
-		params.setBehavior(scrollToHide ? new HideBottomViewOnScrollBehavior<CoordinatorLayout>(this, null) : null);
-
-		// Add margin to Nav Host fragment if the layout behaviour is not added
-		((ConstraintLayout.LayoutParams) navHostView.getLayoutParams()).setMargins(
-				0, 0, 0, scrollToHide ? 0 : bottomNavView.getHeight()
-		);
+		HideBottomViewOnScrollBehavior<BottomNavigationView> scrollBehavior = (HideBottomViewOnScrollBehavior<BottomNavigationView>) params.getBehavior();
+		if (scrollBehavior == null) return;
+		scrollBehavior.slideUp(bottomNavView);
 	}
 }

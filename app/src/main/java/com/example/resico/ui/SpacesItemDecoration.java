@@ -32,21 +32,33 @@ public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
 
 	@Override
 	public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+		int position = parent.getChildAdapterPosition(view);
+
 		if (mOrientation == HORIZONTAL) {
-			outRect.left = space;
+			outRect.left = space / 2;
+			outRect.right = space / 2;
 
 			// Remove left margin only for the first item to ensure there is only spacing between items
-			if (parent.getChildAdapterPosition(view) == 0) {
+			if (position == 0) {
 				outRect.left = 0;
+			}
+			// Remove right margin only for the last item to ensure there is only spacing between items
+			if (position == parent.getAdapter().getItemCount() - 1) {
+				outRect.right = 0;
 			}
 			return;
 		}
 		else if (mOrientation == VERTICAL) {
-			outRect.top = space;
+			outRect.top = space / 2;
+			outRect.bottom = space / 2;
 
 			// Remove top margin only for the first item to ensure there is only spacing between items
-			if (parent.getChildAdapterPosition(view) == 0) {
+			if (position == 0) {
 				outRect.top = 0;
+			}
+			// Remove bottom margin only for the last item to ensure there is only spacing between items
+			if (position == parent.getAdapter().getItemCount() - 1) {
+				outRect.bottom = 0;
 			}
 			return;
 		}

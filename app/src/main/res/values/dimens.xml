@@ -6,16 +6,22 @@
 
     <dimen name="component_extra_small_margin">4dp</dimen>
     <dimen name="component_small_margin">8dp</dimen>
+    <dimen name="component_small_medium_margin">12dp</dimen>
     <dimen name="component_medium_margin">16dp</dimen>
     <dimen name="component_large_margin">32dp</dimen>
     <dimen name="component_extra_large_margin">64dp</dimen>
 
+    <dimen name="comment_divider_inset">36dp</dimen>
+
     <dimen name="home_bar_height">88dp</dimen>
 
     <dimen name="pfp_large">64dp</dimen>
+    <dimen name="pfp_medium">45dp</dimen>
     <dimen name="pfp_small">24dp</dimen>
 
     <dimen name="event_card_height">240dp</dimen>
+
+    <dimen name="forum_card_image_height">190dp</dimen>
 
     <!--  Font Sizes  -->
     <dimen name="text_header_1">32sp</dimen>
@@ -27,4 +33,6 @@
     <dimen name="text_med_small">14sp</dimen>
     <dimen name="text_small">12sp</dimen>
     <dimen name="text_xtra_small">11sp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>

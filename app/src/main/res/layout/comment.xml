@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/activity_horizontal_margin"
+    android:paddingVertical="@dimen/component_small_margin">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/comment_profile_image"
+        android:layout_width="@dimen/pfp_small"
+        android:layout_height="@dimen/pfp_small"
+        android:src="@drawable/placeholder_pfp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/component_small_margin"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/comment_profile_image"
+        app:layout_constraintStart_toEndOf="@+id/comment_profile_image"
+        app:layout_constraintTop_toTopOf="@+id/comment_profile_image" />
+
+    <TextView
+        android:id="@+id/post_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="TextView"
+        app:layout_constraintBaseline_toBaselineOf="@id/username"
+        app:layout_constraintStart_toEndOf="@id/username" />
+
+    <TextView
+        android:id="@+id/comment_body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/component_small_margin"
+        android:text="@string/home_fragment_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/comment_profile_image" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

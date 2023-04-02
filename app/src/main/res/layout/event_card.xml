@@ -5,14 +5,15 @@
     android:id="@+id/event_card"
     android:layout_width="match_parent"
     android:layout_height="@dimen/event_card_height"
+    android:clickable="true"
     app:cardBackgroundColor="?attr/colorSurface"
     app:shapeAppearance="@style/ShapeAppearanceOverlay.ResiCo.MediumComponent">
 
     <ImageView
         android:id="@+id/event_card_background"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/event_card_height"
-        android:src="@drawable/placeholder_event"
+        android:layout_height="match_parent"
+        android:src="@drawable/placeholder_image"
         android:scaleType="centerCrop" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -85,7 +86,7 @@
                     android:layout_width="@dimen/pfp_small"
                     android:layout_height="@dimen/pfp_small"
                     android:layout_marginTop="@dimen/component_small_margin"
-                    android:src="@drawable/placeholder_pfp"
+                    android:src="@drawable/placeholder_profile"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/event_card_title"/>
 
