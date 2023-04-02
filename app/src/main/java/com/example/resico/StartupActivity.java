@@ -1,9 +1,11 @@
 package com.example.resico;
 
 import android.content.Intent;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.ImageView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -37,6 +39,25 @@ public class StartupActivity extends AppCompatActivity {
 
 		binding = ActivityStartupBinding.inflate(getLayoutInflater());
 		setContentView(binding.getRoot());
+
+		// Startup image align
+		binding.startupImage.post(() -> {
+			final ImageView imageView = binding.startupImage;
+			final Matrix matrix = imageView.getImageMatrix();
+			final double imageWidth = imageView.getDrawable().getIntrinsicWidth();
+			final int imageHeight = imageView.getDrawable().getIntrinsicHeight();
+			final double containerWidth = imageView.getMeasuredWidth();
+			final int containerHeight = imageView.getMeasuredHeight();
+			Log.d(TAG, String.format("imageWidth: %s, containerWidth: %s", imageWidth, containerWidth));
+			final double scaleRatio = imageWidth / containerWidth;
+			matrix.postScale((float) scaleRatio, (float) scaleRatio);
+			// This image is aligned top left, but if there is space at the bottom, we want to
+			// align bottom instead, which can be done by translation
+			if (imageHeight * scaleRatio < containerHeight) {
+				matrix.setTranslate(0, (float) (containerHeight - (imageHeight * scaleRatio) + 3)); // +3 for good measure
+			}
+			imageView.setImageMatrix(matrix);
+		});
 
 		// Short delay
 		final Handler handler = new Handler();
