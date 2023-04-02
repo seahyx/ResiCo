@@ -137,7 +137,4 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 	public int getItemCount() {
 		return forumPosts.size();
 	}
-
-
-
 }
