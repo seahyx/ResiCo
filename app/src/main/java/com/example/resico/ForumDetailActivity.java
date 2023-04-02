@@ -1,8 +1,10 @@
 package com.example.resico;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +15,7 @@ import com.example.resico.databinding.ActivityForumDetailBinding;
 import com.example.resico.ui.SpacesItemDecoration;
 import com.example.resico.ui.adapters.ForumCommentAdapter;
 import com.example.resico.utils.DateTimeCalc;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.divider.MaterialDivider;
 import com.google.android.material.divider.MaterialDividerItemDecoration;
 import com.squareup.picasso.Picasso;
@@ -42,11 +45,19 @@ public class ForumDetailActivity extends AppCompatActivity {
         ForumCommentAdapter adapter = new ForumCommentAdapter(forumComments);
         recyclerView.setAdapter(adapter);
 
+        // Set coordinator height
+//        int makeCommentHeight = binding.makeCommentConstraintLayout.getMeasuredHeight();
+//        int makeCommentWidth = binding.makeCommentConstraintLayout.getMeasuredWidth();
+//        int parentHeight = binding.forumDetailConstraintLayout.getMeasuredHeight();
+//        int parentWidth = binding.forumDetailConstraintLayout.getMeasuredWidth();
+//        Log.i(TAG, "onCreate: "+makeCommentHeight+makeCommentWidth+parentHeight+parentWidth);
+//        binding.forumDetailCoordinator.setLayoutParams(new ConstraintLayout.LayoutParams(parentWidth,parentHeight-makeCommentHeight));
 
         // Retrieve event data from API
         ResiCoAPIHandler apiHandler = ResiCoAPIHandler.getInstance();
         String postId = getIntent().getStringExtra(getString(R.string.post_id_key));
         if (postId != null) {
+            // Attach data to the corresponding component
             apiHandler.getForumPost(postId, post -> {
                 if (post == null) return;
                 apiHandler.getUser(post.getPosterUserId(), user -> {
