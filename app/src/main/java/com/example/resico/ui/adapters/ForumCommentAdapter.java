@@ -29,14 +29,14 @@ public class ForumCommentAdapter extends RecyclerView.Adapter<ForumCommentAdapte
     public static class ForumDetailHolder extends RecyclerView.ViewHolder {
         private final CommentBinding binding;
         private final CircleImageView userImageView;
-        private final TextView userNameView;
+        private final TextView usernameView;
         private final TextView postDateTimeView;
         private final TextView commentView;
 
         public ForumDetailHolder(CommentBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
-            userNameView = binding.username;
+            usernameView = binding.username;
             postDateTimeView = binding.postTime;
             commentView = binding.commentBody;
             userImageView = binding.commentProfileImage;
@@ -44,7 +44,7 @@ public class ForumCommentAdapter extends RecyclerView.Adapter<ForumCommentAdapte
         }
 
         public TextView getUserNameView() {
-            return userNameView;
+            return usernameView;
         }
 
         public CircleImageView getUserImageView() {
@@ -88,7 +88,7 @@ public class ForumCommentAdapter extends RecyclerView.Adapter<ForumCommentAdapte
             if (user == null) return;
             // Run UI updates on the UI thread
             holder.binding.getRoot().post(() -> {
-                holder.userNameView.setText(user.getUsername());
+                holder.usernameView.setText(user.getUsername());
                 Picasso.get().load(user.getImageUrl()).fit().centerCrop().into(holder.userImageView);
             });
         });
