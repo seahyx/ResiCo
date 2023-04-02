@@ -1,6 +1,7 @@
 package com.example.resico.ui.adapters;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.resico.R;
 import com.example.resico.data.model.ForumPost;
 import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
@@ -106,11 +108,17 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 		ForumPost post = forumPosts.get(position);
 		holder.getTitleView().setText(post.getTitle());
-		Picasso.get().load(post.getImageUrl()).fit().centerCrop().into(holder.forumImage);
 		holder.getPostDateView().setText(" ∙ " + DateTimeCalc.getDurationToNow(post.getPostDateTime()) + " ago");
 		holder.getLikeView().setText(String.valueOf(post.getLikeUserId().length));
+		holder.getCommentView().setText(String.valueOf(post.getCommentCount()));
 
-		// Get host user information
+		if (post.getImageUrl() == null || post.getImageUrl().equals("")) {
+			holder.getForumImage().setVisibility(View.GONE);
+		} else {
+			Picasso.get().load(post.getImageUrl()).error(R.drawable.placeholder_broken_image).fit().centerCrop().into(holder.getForumImage());
+		}
+
+		// Get post user information
 		ResiCoAPIHandler apiHandler = ResiCoAPIHandler.getInstance();
 		apiHandler.getUser(post.getPosterUserId(), user -> {
 			if (user == null) return;
@@ -121,6 +129,8 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 			});
 		});
 
+		// Handle onClick
+		holder.getCardView().setOnClickListener(view -> delegate.onItemClick(post.getPostId()));
 	}
 
 	@Override

@@ -69,10 +69,10 @@ public class EventsFragment extends Fragment {
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
 		recyclerView.setLayoutManager(linearLayoutManager);
 		// Add spacing between cards
-		SpacesItemDecoration itemDecoration = new SpacesItemDecoration(
+		SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(
 				(int) getResources().getDimension(R.dimen.component_medium_margin),
 				linearLayoutManager.getOrientation());
-		recyclerView.addItemDecoration(itemDecoration);
+		recyclerView.addItemDecoration(spacesItemDecoration);
 	}
 
 	@Override

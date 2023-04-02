@@ -21,6 +21,7 @@ import com.example.resico.data.model.ForumPost;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.FragmentEventsBinding;
 import com.example.resico.databinding.FragmentForumsBinding;
+import com.example.resico.ui.SpacesItemDecoration;
 import com.example.resico.ui.adapters.EventsAdapter;
 import com.example.resico.ui.adapters.ForumPostAdapter;
 
@@ -59,6 +60,12 @@ public class ForumsFragment extends Fragment {
 		// LinearLayoutManager by default has vertical orientation
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
 		recyclerView.setLayoutManager(linearLayoutManager);
+
+		// Add spacing for RecyclerView items
+		SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(
+				(int) getResources().getDimension(R.dimen.component_medium_margin),
+				linearLayoutManager.getOrientation());
+		recyclerView.addItemDecoration(spacesItemDecoration);
 
 		apiHandler.getForumPosts(posts -> {
 			if (posts == null) return;
