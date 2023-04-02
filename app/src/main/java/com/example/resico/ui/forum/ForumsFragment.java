@@ -65,6 +65,7 @@ public class ForumsFragment extends Fragment {
 			if (posts == null) return;
 			this.forumPosts.clear();
 			this.forumPosts.addAll(posts.values());
+			this.forumPosts.sort(new ForumPost.CompareMostRecent());
 			binding.getRoot().post(adapter::notifyDataSetChanged);
 		});
 	}

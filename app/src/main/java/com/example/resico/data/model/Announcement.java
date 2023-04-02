@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 
 /**
  * Data class that holds per-announcement data.
@@ -82,6 +83,15 @@ public class Announcement {
 
 	public void setDetail(String detail) {
 		this.detail = detail;
+	}
+
+	public static class CompareMostRecent implements Comparator<Announcement> {
+		@Override
+		public int compare(Announcement announcement, Announcement t1) {
+			if (announcement.getPostDateTime().isAfter(t1.getPostDateTime())) return -1;
+			if (announcement.getPostDateTime().isEqual(t1.getPostDateTime())) return 0;
+			return 1;
+		}
 	}
 
 	@NonNull

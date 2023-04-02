@@ -15,12 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.resico.R;
-import com.example.resico.data.LoginRepository;
 import com.example.resico.data.model.Announcement;
-import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.FragmentAnnouncementsBinding;
-import com.example.resico.ui.forum.ForumDetailActivity;
 import com.google.android.material.divider.MaterialDividerItemDecoration;
 
 import java.util.ArrayList;
@@ -61,6 +58,7 @@ public class AnnouncementsFragment extends Fragment {
 			if (announcements == null) return;
 			this.announcements.clear();
 			this.announcements.addAll(announcements.values());
+			this.announcements.sort(new Announcement.CompareMostRecent());
 			binding.getRoot().post(adapter::notifyDataSetChanged);
 		});
 	}

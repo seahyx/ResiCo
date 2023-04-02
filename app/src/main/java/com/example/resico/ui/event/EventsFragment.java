@@ -21,7 +21,6 @@ import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.FragmentEventsBinding;
 import com.example.resico.ui.SpacesItemDecoration;
-import com.example.resico.ui.forum.ForumDetailActivity;
 
 import java.util.ArrayList;
 
@@ -68,6 +67,7 @@ public class EventsFragment extends Fragment {
 				if (events == null) return;
 				this.events.clear();
 				this.events.addAll(events.values());
+				this.events.sort(new Event.CompareMostRecent());
 				binding.getRoot().post(adapter::notifyDataSetChanged);
 			});
 		}

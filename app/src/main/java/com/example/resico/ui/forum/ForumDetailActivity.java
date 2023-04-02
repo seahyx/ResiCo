@@ -68,6 +68,7 @@ public class ForumDetailActivity extends AppCompatActivity {
 				if (forumComments == null) return;
 				this.forumComments.clear();
 				this.forumComments.addAll(Arrays.asList(forumComments));
+				this.forumComments.sort(new ForumComment.CompareMostRecent());
 				binding.getRoot().post(() -> adapter.notifyDataSetChanged());
 			});
 		}

@@ -9,7 +9,16 @@
         android:id="@+id/nav_home"
         android:name="com.example.resico.ui.home.HomeFragment"
         android:label="@string/home_fragment_label"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_forums"
+            app:destination="@id/nav_forums"
+            app:popUpTo="@id/nav_graph" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_events"
+            app:destination="@id/nav_events"
+            app:popUpTo="@id/nav_graph" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_forums"
@@ -28,12 +37,6 @@
         android:name="com.example.resico.ui.announcements.AnnouncementsFragment"
         android:label="@string/announcements_fragment_label"
         tools:layout="@layout/fragment_announcements">
-        <action
-            android:id="@+id/action_nav_announcements_to_announcementsSpecificFragment"
-            app:destination="@id/announcements_detail"
-            app:popUpTo="@id/nav_home"
-            app:popUpToSaveState="true"
-            />
     </fragment>
 
     <fragment
@@ -41,17 +44,5 @@
         android:name="com.example.resico.ui.profile.ProfileFragment"
         android:label="@string/profile_fragment_label"
         tools:layout="@layout/fragment_profile" />
-
-    <fragment
-        android:id="@+id/announcements_detail"
-        android:name="com.example.resico.ui.announcements.AnnouncementDetailActivity"
-        android:label="AnnouncementsDetailFragment">
-        <action
-            android:id="@+id/action_announcements_detail_to_nav_announcements"
-            app:destination="@id/nav_announcements" />
-        <argument
-            android:name="id"
-            app:argType="string" />
-    </fragment>
 
 </navigation>

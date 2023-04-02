@@ -11,6 +11,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -84,6 +85,7 @@ public class HomeFragment extends Fragment {
 				if (events == null) return;
 				this.events.clear();
 				this.events.addAll(events.values());
+				this.events.sort(new Event.CompareMostRecent());
 				binding.getRoot().post(eventsAdapter::notifyDataSetChanged);
 			});
 		}
@@ -109,6 +111,7 @@ public class HomeFragment extends Fragment {
 			if (posts == null) return;
 			this.forumPosts.clear();
 			this.forumPosts.addAll(posts.values());
+			this.forumPosts.sort(new ForumPost.CompareMostRecent());
 			binding.getRoot().post(postAdapter::notifyDataSetChanged);
 		});
 
@@ -117,6 +120,10 @@ public class HomeFragment extends Fragment {
 			binding.homeUsername.setText(user.getUsername());
 			Picasso.get().load(user.getImageUrl()).error(R.drawable.placeholder_profile).fit().centerCrop().into(binding.homeProfile);
 		}
+
+		// Link the "see all" texts to the respective fragments
+		binding.homeEventsMore.setOnClickListener(view1 -> NavHostFragment.findNavController(this).navigate(HomeFragmentDirections.actionNavHomeToNavEvents()));
+		binding.homeForumPostsMore.setOnClickListener(view1 -> NavHostFragment.findNavController(this).navigate(HomeFragmentDirections.actionNavHomeToNavForums()));
 	}
 
 	@Override

@@ -50,7 +50,7 @@ public class EventDetailActivity extends AppCompatActivity {
 				apiHandler.getUser(event.getHostId(), host -> {
 					binding.getRoot().post(() -> {
 						// Update UI in ui thread
-						binding.eventDetailContact.setText(host.getUsername());
+						binding.eventDetailContact.setText(String.format("%s (%s)", host.getFullName(), host.getPhoneNo()));
 					});
 				});
 			});

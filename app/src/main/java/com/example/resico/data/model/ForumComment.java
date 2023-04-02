@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 
 public class ForumComment {
 	public interface API_FIELDS {
@@ -76,6 +77,15 @@ public class ForumComment {
 
 	public String[] getLikeUserId() {
 		return likeUserId;
+	}
+
+	public static class CompareMostRecent implements Comparator<ForumComment> {
+		@Override
+		public int compare(ForumComment forumComment, ForumComment t1) {
+			if (forumComment.getPostDateTime().isAfter(t1.getPostDateTime())) return -1;
+			if (forumComment.getPostDateTime().isEqual(t1.getPostDateTime())) return 0;
+			return 1;
+		}
 	}
 
 	@NonNull

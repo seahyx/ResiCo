@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 
 public class ForumPost {
 	public interface API_FIELDS {
@@ -124,6 +125,15 @@ public class ForumPost {
 
 	public Integer getCommentCount() {
 		return commentCount;
+	}
+
+	public static class CompareMostRecent implements Comparator<ForumPost> {
+		@Override
+		public int compare(ForumPost forumPost, ForumPost t1) {
+			if (forumPost.getPostDateTime().isAfter(t1.getPostDateTime())) return -1;
+			if (forumPost.getPostDateTime().isEqual(t1.getPostDateTime())) return 0;
+			return 1;
+		}
 	}
 
 	@NonNull

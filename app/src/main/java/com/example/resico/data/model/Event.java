@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 
 /**
  * Data class that holds per-event data.
@@ -228,6 +229,22 @@ public class Event {
 		String dateTimeStr = date + time;
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmm");
 		return LocalDateTime.parse(dateTimeStr, formatter);
+	}
+
+	public static class CompareMostRecent implements Comparator<Event> {
+		@Override
+		public int compare(Event event, Event t1) {
+			if (event.getStartDateTime().isBefore(t1.getStartDateTime())) return -1;
+			if (event.getStartDateTime().isEqual(t1.getStartDateTime())) return 0;
+			return 1;
+		}
+	}
+
+	public static class CompareMostParticipants implements Comparator<Event> {
+		@Override
+		public int compare(Event event, Event t1) {
+			return Integer.parseInt(t1.getParticipantCount()) - Integer.parseInt(event.getParticipantCount());
+		}
 	}
 
 	@NonNull
