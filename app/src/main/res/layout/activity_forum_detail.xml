@@ -173,9 +173,13 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/makeCommentUserImage"
-            android:layout_width="@dimen/pfp_large"
-            android:layout_height="@dimen/pfp_large"
+            android:layout_width="@dimen/pfp_medium"
+            android:layout_height="@dimen/pfp_medium"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/component_medium_margin"
+            android:layout_marginBottom="@dimen/component_medium_margin"
             android:src="@drawable/placeholder_event"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
@@ -183,17 +187,25 @@
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/prompt_email"
-            app:layout_constraintBottom_toBottomOf="@+id/makeCommentUserImage"
+
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="@dimen/component_medium_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/component_medium_margin"
+            android:hint="Comment"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/makeCommentUserImage"
-            app:layout_constraintTop_toTopOf="@+id/makeCommentUserImage">
+            app:layout_constraintTop_toBottomOf="@+id/divider2">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:autofillHints="@string/prompt_email"
-                android:inputType="textEmailAddress"
-                android:selectAllOnFocus="true" />
+                android:autofillHints="Comment"
+                android:inputType="textMultiLine"
+                android:maxLines="4"
+                android:selectAllOnFocus="true"
+                android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
