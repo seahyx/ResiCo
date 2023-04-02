@@ -24,6 +24,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,5 +47,14 @@ public class MainActivity extends AppCompatActivity {
 
 		NavController navController = navHostFragment.getNavController();
 		NavigationUI.setupWithNavController(bottomNavView, navController);
+
+		navController.addOnDestinationChangedListener(this::OnDestinationChanged);
+	}
+
+	private void OnDestinationChanged(NavController controller, NavDestination destination, Bundle args) {
+		CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) bottomNavView.getLayoutParams();
+		HideBottomViewOnScrollBehavior<BottomNavigationView> scrollBehavior = (HideBottomViewOnScrollBehavior<BottomNavigationView>) params.getBehavior();
+		if (scrollBehavior == null) return;
+		scrollBehavior.slideUp(bottomNavView);
 	}
 }
