@@ -1,4 +1,4 @@
-package com.example.resico.ui.adapters;
+package com.example.resico.ui.forum;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -13,14 +13,7 @@ import com.example.resico.databinding.CommentBinding;
 import com.example.resico.utils.DateTimeCalc;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 

@@ -1,4 +1,4 @@
-package com.example.resico.ui;
+package com.example.resico.utils;
 
 public interface ListOnClickInterface {
     void onItemClick(String id);

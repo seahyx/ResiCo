@@ -1,20 +1,18 @@
-package com.example.resico;
+package com.example.resico.ui.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.resico.StartupActivity;
 import com.example.resico.data.LoginRepository;
 import com.example.resico.data.model.User;
-import com.example.resico.data.network.ResiCoAPIHandler;
-import com.example.resico.databinding.FragmentHomeBinding;
 import com.example.resico.databinding.FragmentProfileBinding;
 import com.squareup.picasso.Picasso;
 

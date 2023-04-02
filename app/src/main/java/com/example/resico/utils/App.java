@@ -1,4 +1,4 @@
-package com.example.resico;
+package com.example.resico.utils;
 
 import android.app.Application;
 import android.content.Context;

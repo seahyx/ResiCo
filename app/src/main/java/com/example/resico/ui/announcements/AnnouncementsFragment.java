@@ -1,4 +1,4 @@
-package com.example.resico;
+package com.example.resico.ui.announcements;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,12 +9,14 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.resico.AnnouncementsFragmentDirections;
+import com.example.resico.R;
 import com.example.resico.data.LoginRepository;
 import com.example.resico.data.model.Announcement;
 import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.FragmentAnnouncementsBinding;
-import com.example.resico.ui.adapters.AnnouncementsAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.divider.MaterialDividerItemDecoration;
 
@@ -37,7 +39,7 @@ public class AnnouncementsFragment extends Fragment {
 
 	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		RecyclerView recyclerView = view.findViewById(R.id.announcements_recyclerview);
+		RecyclerView recyclerView = view.findViewById(R.id.announcements_list);
 		AnnouncementsAdapter adapter = new AnnouncementsAdapter(announcements, this::onItemClick);
 		recyclerView.setAdapter(adapter);
 		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
@@ -65,7 +67,7 @@ public class AnnouncementsFragment extends Fragment {
 	}
 
 	public void onItemClick(String id) {
-		AnnouncementsFragmentDirections.ActionNavAnnouncementsToAnnouncementsSpecificFragment action =
+		com.example.resico.AnnouncementsFragmentDirections.ActionNavAnnouncementsToAnnouncementsSpecificFragment action =
 				AnnouncementsFragmentDirections.actionNavAnnouncementsToAnnouncementsSpecificFragment(id);
 		NavHostFragment.findNavController(this).navigate(action);
 		BottomNavigationView btmNav = getActivity().findViewById(R.id.bottom_nav);

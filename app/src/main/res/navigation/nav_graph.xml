@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.resico.HomeFragment"
+        android:name="com.example.resico.ui.home.HomeFragment"
         android:label="@string/home_fragment_label"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_forums"
-        android:name="com.example.resico.ForumsFragment"
+        android:name="com.example.resico.ui.forum.ForumsFragment"
         android:label="@string/title_activity_forum"
         tools:layout="@layout/fragment_forums" />
 
     <fragment
         android:id="@+id/nav_events"
-        android:name="com.example.resico.EventsFragment"
+        android:name="com.example.resico.ui.event.EventsFragment"
         android:label="@string/events_fragment_label"
         tools:layout="@layout/fragment_events" />
 
     <fragment
         android:id="@+id/nav_announcements"
-        android:name="com.example.resico.AnnouncementsFragment"
+        android:name="com.example.resico.ui.announcements.AnnouncementsFragment"
         android:label="@string/announcements_fragment_label"
         tools:layout="@layout/fragment_announcements">
         <action
@@ -38,13 +38,13 @@
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.example.resico.ProfileFragment"
+        android:name="com.example.resico.ui.profile.ProfileFragment"
         android:label="@string/profile_fragment_label"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/announcements_detail"
-        android:name="com.example.resico.AnnouncementsDetailFragment"
+        android:name="com.example.resico.ui.announcements.AnnouncementsDetailFragment"
         android:label="AnnouncementsDetailFragment">
         <action
             android:id="@+id/action_announcements_detail_to_nav_announcements"

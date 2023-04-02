@@ -1,4 +1,4 @@
-package com.example.resico.ui.adapters;
+package com.example.resico.ui.forum;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,15 +7,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.resico.R;
 import com.example.resico.data.model.ForumPost;
-import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.ForumCardBinding;
-import com.example.resico.ui.ListOnClickInterface;
+import com.example.resico.utils.ListOnClickInterface;
 import com.example.resico.utils.DateTimeCalc;
 import com.google.android.material.card.MaterialCardView;
 import com.squareup.picasso.Picasso;

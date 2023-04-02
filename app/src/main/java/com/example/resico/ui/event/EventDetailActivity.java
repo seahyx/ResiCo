@@ -1,7 +1,9 @@
-package com.example.resico;
+package com.example.resico.ui.event;
 
 import android.os.Bundle;
 
+import com.example.resico.utils.App;
+import com.example.resico.R;
 import com.example.resico.data.LoginRepository;
 import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;

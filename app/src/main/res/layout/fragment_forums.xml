@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ForumsFragment">
+    tools:context=".ui.forum.ForumsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,11 +14,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+            android:layout_marginVertical="@dimen/component_medium_margin"
             android:text="@string/title_activity_forum"
             android:textSize="@dimen/text_header_2"
-            android:textColor="?attr/colorOnSurface"
-            android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-            android:layout_marginVertical="@dimen/component_medium_margin" />
+            android:textColor="?attr/colorOnSurface" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/forums_post_list"

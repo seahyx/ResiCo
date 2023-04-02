@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.example.resico.App;
+import com.example.resico.utils.App;
 
 import org.chromium.net.CronetException;
 import org.chromium.net.UrlRequest;

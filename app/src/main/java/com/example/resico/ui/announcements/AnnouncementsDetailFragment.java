@@ -1,4 +1,4 @@
-package com.example.resico;
+package com.example.resico.ui.announcements;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -6,11 +6,12 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.resico.AnnouncementsDetailFragmentArgs;
+import com.example.resico.R;
 import com.example.resico.data.LoginRepository;
-import com.example.resico.data.model.Announcement;
 import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
-import com.example.resico.databinding.FragmentAnnouncementsDetailBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class AnnouncementsDetailFragment extends Fragment {

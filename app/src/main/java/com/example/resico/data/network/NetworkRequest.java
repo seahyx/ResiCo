@@ -1,6 +1,6 @@
 package com.example.resico.data.network;
 
-import com.example.resico.App;
+import com.example.resico.utils.App;
 
 import org.chromium.net.CronetEngine;
 import org.chromium.net.UploadDataProvider;

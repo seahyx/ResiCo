@@ -4,10 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.resico.App;
+import com.example.resico.utils.App;
 import com.example.resico.R;
 import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;

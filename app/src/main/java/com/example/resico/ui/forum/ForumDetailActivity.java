@@ -1,23 +1,16 @@
-package com.example.resico;
+package com.example.resico.ui.forum;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.resico.R;
 import com.example.resico.data.model.ForumComment;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.ActivityForumDetailBinding;
-import com.example.resico.ui.SpacesItemDecoration;
-import com.example.resico.ui.adapters.ForumCommentAdapter;
 import com.example.resico.utils.DateTimeCalc;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.divider.MaterialDivider;
-import com.google.android.material.divider.MaterialDividerItemDecoration;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

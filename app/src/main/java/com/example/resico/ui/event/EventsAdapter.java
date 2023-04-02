@@ -1,4 +1,4 @@
-package com.example.resico.ui.adapters;
+package com.example.resico.ui.event;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -8,12 +8,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.resico.App;
+import com.example.resico.utils.App;
 import com.example.resico.R;
 import com.example.resico.data.model.Event;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.EventCardBinding;
-import com.example.resico.ui.ListOnClickInterface;
+import com.example.resico.utils.ListOnClickInterface;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.squareup.picasso.Picasso;
