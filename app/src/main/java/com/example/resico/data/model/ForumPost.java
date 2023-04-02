@@ -18,6 +18,7 @@ public class ForumPost {
 		String POST_TIME = "postTime";
 		String POSTER_USER_ID = "posterUserId";
 		String LIKE_USER_ID = "likeUserId";
+		String COMMENT_COUNT = "commentCount";
 	}
 	private final String postId;
 	private final String title;
@@ -26,6 +27,7 @@ public class ForumPost {
 	private final LocalDateTime postDateTime;
 	private final String posterUserId;
 	private final String[] likeUserId;
+	private final Integer commentCount;
 
 	public ForumPost(
 			String postId,
@@ -34,7 +36,8 @@ public class ForumPost {
 			String imageUrl,
 			LocalDateTime postDateTime,
 			String posterUserId,
-			String[] likeUserId) {
+			String[] likeUserId,
+			Integer commentCount) {
 		this.postId = postId;
 		this.title = title;
 		this.content = content;
@@ -42,6 +45,7 @@ public class ForumPost {
 		this.postDateTime = postDateTime;
 		this.posterUserId = posterUserId;
 		this.likeUserId = likeUserId;
+		this.commentCount = commentCount;
 	}
 
 	public ForumPost(
@@ -52,7 +56,8 @@ public class ForumPost {
 			String postDate,
 			String postTime,
 			String posterUserId,
-			String[] likeUserId) {
+			String[] likeUserId,
+			Integer commentCount) {
 		this.postId = postId;
 		this.title = title;
 		this.content = content;
@@ -60,6 +65,7 @@ public class ForumPost {
 		this.postDateTime = Event.convertDateTimeIntToDate(postDate, postTime);
 		this.posterUserId = posterUserId;
 		this.likeUserId = likeUserId;
+		this.commentCount = commentCount;
 	}
 
 	public static ForumPost buildFromJSONObject(JSONObject jsonObject) {
@@ -78,7 +84,8 @@ public class ForumPost {
 					jsonObject.getString(API_FIELDS.POST_DATE),
 					jsonObject.getString(API_FIELDS.POST_TIME),
 					jsonObject.getString(API_FIELDS.POSTER_USER_ID),
-					likeStrArray
+					likeStrArray,
+					jsonObject.getInt(API_FIELDS.COMMENT_COUNT)
 			);
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -114,6 +121,10 @@ public class ForumPost {
 		return likeUserId;
 	}
 
+	public Integer getCommentCount() {
+		return commentCount;
+	}
+
 	@NonNull
 	@Override
 	public String toString() {
@@ -125,8 +136,9 @@ public class ForumPost {
 				API_FIELDS.CONTENT + den + content + sep +
 				API_FIELDS.POST_DATE + den + postDateTime + sep +
 				API_FIELDS.POSTER_USER_ID + den + posterUserId + sep +
-				API_FIELDS.IMAGE_URL + den + imageUrl +
-				API_FIELDS.LIKE_USER_ID + den + String.join(", ", likeUserId) +
+				API_FIELDS.IMAGE_URL + den + imageUrl + sep +
+				API_FIELDS.LIKE_USER_ID + den + String.join(", ", likeUserId) + sep +
+				API_FIELDS.COMMENT_COUNT + den +
 				"}";
 	}
 }
