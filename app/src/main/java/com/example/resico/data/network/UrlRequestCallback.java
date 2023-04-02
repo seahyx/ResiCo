@@ -69,7 +69,7 @@ class UrlRequestCallback extends UrlRequest.Callback {
 		// Format the response string
 		responseBodyString = responseBodyString.trim().replaceAll("(\r\n|\n\r|\r|\n|\r0|\n0)", "");
 		if (responseBodyString.endsWith("0")) {
-			responseBodyString = responseBodyString.substring(0, responseBodyString.length()-1);
+			responseBodyString = responseBodyString.substring(0, responseBodyString.length() - 1);
 		}
 
 		responseBody = responseBodyString;
@@ -102,7 +102,7 @@ class UrlRequestCallback extends UrlRequest.Callback {
 		String inform = "Failed request: " + info.getUrl() +
 				" | Status code: " + info.getHttpStatusCode() +
 				" | Bytes received: " + info.getReceivedByteCount() +
-				" | Caused by: " + error.getLocalizedMessage() + " (" + info.getHttpStatusText()+ ").";
+				" | Caused by: " + error.getLocalizedMessage() + " (" + info.getHttpStatusText() + ").";
 		Log.e(TAG, inform);
 
 		JSONObject results = new JSONObject();
@@ -110,7 +110,7 @@ class UrlRequestCallback extends UrlRequest.Callback {
 			results.put("headers", createHeaders(info.getAllHeaders()));
 			results.put("body", inform);
 			results.put("statusCode", info.getHttpStatusCode());
-		} catch (JSONException e ) {
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 
@@ -129,7 +129,7 @@ class UrlRequestCallback extends UrlRequest.Callback {
 			List<String> accTok = headers.get("Access-Token");
 
 			if (accTok.size() > 0) {
-				accessToken = accTok.get(accTok.size()-1);
+				accessToken = accTok.get(accTok.size() - 1);
 			}
 		}
 
@@ -137,7 +137,7 @@ class UrlRequestCallback extends UrlRequest.Callback {
 			List<String> cl = headers.get("Client");
 
 			if (cl.size() > 0) {
-				client = cl.get(cl.size()-1);
+				client = cl.get(cl.size() - 1);
 			}
 		}
 
@@ -145,7 +145,7 @@ class UrlRequestCallback extends UrlRequest.Callback {
 			List<String> u = headers.get("Uid");
 
 			if (u.size() > 0) {
-				uid = u.get(u.size()-1);
+				uid = u.get(u.size() - 1);
 			}
 		}
 
@@ -153,7 +153,7 @@ class UrlRequestCallback extends UrlRequest.Callback {
 			List<String> ex = headers.get("Expiry");
 
 			if (ex.size() > 0) {
-				expiry = Long.parseLong(ex.get(ex.size()-1));
+				expiry = Long.parseLong(ex.get(ex.size() - 1));
 			}
 		}
 

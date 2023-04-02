@@ -11,6 +11,7 @@ public class AppliedBookmarkedEvents {
 		String APPLIED_EVENTS_LIST = "appliedEventsId";
 		String BOOKMARKED_EVENTS_LIST = "likedEventId";
 	}
+
 	private final String[] appliedEvents;
 	private final String[] bookmarkedEvents;
 

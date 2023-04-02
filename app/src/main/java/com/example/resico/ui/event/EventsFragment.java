@@ -55,7 +55,7 @@ public class EventsFragment extends Fragment {
 		recyclerView.setAdapter(adapter);
 
 		// Retrieve event data from API
-		User user =  LoginRepository.getUser();
+		User user = LoginRepository.getUser();
 		if (user != null) {
 			apiHandler.getEventList(user.getUserId(), events -> {
 				if (events == null) return;
@@ -83,6 +83,7 @@ public class EventsFragment extends Fragment {
 
 	/**
 	 * OnClick function for {@link RecyclerView} event cards.
+	 *
 	 * @param eventId String ID of the event clicked.
 	 */
 	private void onEventClick(String eventId) {

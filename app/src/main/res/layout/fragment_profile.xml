@@ -18,11 +18,11 @@
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="@string/profile_title"
-            app:titleCentered="true"
-            app:menu="@menu/menu_profile"
+            app:layout_scrollEffect="compress"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:layout_scrollEffect="compress" />
+            app:menu="@menu/menu_profile"
+            app:title="@string/profile_title"
+            app:titleCentered="true" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -43,7 +43,7 @@
                 android:layout_height="@dimen/pfp_large"
                 android:src="@drawable/placeholder_profile"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/profile_display_name"
@@ -51,28 +51,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/component_medium_margin"
                 android:text="@string/profile_name_placeholder"
-                android:textSize="@dimen/text_header_3"
                 android:textColor="?attr/colorOnSurface"
-                app:layout_constraintTop_toTopOf="@id/profile_image"
+                android:textSize="@dimen/text_header_3"
                 app:layout_constraintBottom_toBottomOf="@id/profile_image"
-                app:layout_constraintStart_toEndOf="@id/profile_image" />
+                app:layout_constraintStart_toEndOf="@id/profile_image"
+                app:layout_constraintTop_toTopOf="@id/profile_image" />
 
             <TextView
                 android:id="@+id/profile_username_header"
+                style="@style/ResiCo.TextAppearance.ProfileHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/component_large_margin"
-                style="@style/ResiCo.TextAppearance.ProfileHeader"
                 android:text="@string/profile_username_header"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/profile_image" />
 
             <TextView
                 android:id="@+id/profile_username"
+                style="@style/ResiCo.TextAppearance.ProfileValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/component_small_margin"
-                style="@style/ResiCo.TextAppearance.ProfileValue"
                 android:text="@string/profile_username_placeholder"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/profile_username_header" />
@@ -86,20 +86,20 @@
 
             <TextView
                 android:id="@+id/profile_email_header"
+                style="@style/ResiCo.TextAppearance.ProfileHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/component_large_margin"
-                style="@style/ResiCo.TextAppearance.ProfileHeader"
                 android:text="@string/profile_email_header"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/profile_username" />
 
             <TextView
                 android:id="@+id/profile_email"
+                style="@style/ResiCo.TextAppearance.ProfileValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/component_small_margin"
-                style="@style/ResiCo.TextAppearance.ProfileValue"
                 android:text="@string/profile_email_placeholder"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/profile_email_header" />
@@ -113,20 +113,20 @@
 
             <TextView
                 android:id="@+id/profile_phone_header"
+                style="@style/ResiCo.TextAppearance.ProfileHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/component_large_margin"
-                style="@style/ResiCo.TextAppearance.ProfileHeader"
                 android:text="@string/profile_phone_header"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/profile_email" />
 
             <TextView
                 android:id="@+id/profile_phone"
+                style="@style/ResiCo.TextAppearance.ProfileValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/component_small_margin"
-                style="@style/ResiCo.TextAppearance.ProfileValue"
                 android:text="@string/profile_phone_placeholder"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/profile_phone_header" />
@@ -144,9 +144,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/component_extra_large_margin"
                 android:text="@string/profile_logout"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/profile_phone"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_phone" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

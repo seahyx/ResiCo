@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,9 +14,9 @@ import com.example.resico.databinding.ActivityStartupBinding;
 import com.example.resico.ui.login.LoginActivity;
 
 /**
-* Starter activity that will check whether the user is logged in, and if so, direct the user to the MainActivity.
-* If the user is not logged in, the user will be directed to the LoginActivity.
-* */
+ * Starter activity that will check whether the user is logged in, and if so, direct the user to the MainActivity.
+ * If the user is not logged in, the user will be directed to the LoginActivity.
+ */
 public class StartupActivity extends AppCompatActivity {
 	private final String TAG = this.getClass().getSimpleName();
 

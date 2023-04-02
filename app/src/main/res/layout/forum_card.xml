@@ -2,29 +2,29 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/forum_card"
-    android:clickable="true"
+    style="?attr/materialCardViewFilledStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    style="?attr/materialCardViewFilledStyle"
-    android:background="?attr/colorSurface">
+    android:background="?attr/colorSurface"
+    android:clickable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/component_medium_margin"
-        android:paddingHorizontal="@dimen/component_medium_margin">
+        android:paddingHorizontal="@dimen/component_medium_margin"
+        android:paddingVertical="@dimen/component_medium_margin">
 
         <TextView
             android:id="@+id/forum_card_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/placeholder_announcement_title"
-            android:textSize="@dimen/text_large"
-            android:textFontWeight="600"
-            android:maxLines="3"
             android:ellipsize="end"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:maxLines="3"
+            android:text="@string/placeholder_announcement_title"
+            android:textFontWeight="600"
+            android:textSize="@dimen/text_large"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/forum_card_profile"
@@ -32,8 +32,8 @@
             android:layout_height="@dimen/pfp_small"
             android:layout_marginTop="@dimen/component_small_margin"
             android:src="@drawable/placeholder_profile"
-            app:layout_constraintTop_toBottomOf="@id/forum_card_title"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/forum_card_title" />
 
         <TextView
             android:id="@+id/forum_card_username"
@@ -41,9 +41,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/component_small_margin"
             android:text="@string/placeholder_display_name"
+            app:layout_constraintBottom_toBottomOf="@id/forum_card_profile"
             app:layout_constraintStart_toEndOf="@id/forum_card_profile"
-            app:layout_constraintTop_toTopOf="@id/forum_card_profile"
-            app:layout_constraintBottom_toBottomOf="@id/forum_card_profile"/>
+            app:layout_constraintTop_toTopOf="@id/forum_card_profile" />
 
         <TextView
             android:id="@+id/forum_card_post_time"
@@ -51,15 +51,15 @@
             android:layout_height="wrap_content"
             android:text="@string/placeholder_event_date"
             app:layout_constraintBaseline_toBaselineOf="@id/forum_card_username"
-            app:layout_constraintStart_toEndOf="@id/forum_card_username"/>
-        
+            app:layout_constraintStart_toEndOf="@id/forum_card_username" />
+
         <ImageView
             android:id="@+id/forum_card_image"
             android:layout_width="match_parent"
             android:layout_height="@dimen/forum_card_image_height"
             android:layout_marginTop="@dimen/component_small_margin"
-            android:src="@drawable/placeholder_image"
             android:scaleType="centerCrop"
+            android:src="@drawable/placeholder_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/forum_card_profile" />
 
@@ -68,8 +68,8 @@
             android:layout_width="@dimen/component_medium_margin"
             android:layout_height="@dimen/component_medium_margin"
             android:layout_marginTop="@dimen/component_small_medium_margin"
-            android:src="@drawable/ic_like"
             android:backgroundTint="?attr/colorOnSurface"
+            android:src="@drawable/ic_like"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/forum_card_image" />
 
@@ -89,8 +89,8 @@
             android:layout_width="@dimen/component_medium_margin"
             android:layout_height="@dimen/component_medium_margin"
             android:layout_marginStart="@dimen/component_large_margin"
-            android:src="@drawable/ic_comment"
             android:backgroundTint="?attr/colorOnSurface"
+            android:src="@drawable/ic_comment"
             app:layout_constraintBottom_toBottomOf="@+id/forum_card_like_ic"
             app:layout_constraintStart_toEndOf="@+id/forum_card_like_amount"
             app:layout_constraintTop_toTopOf="@+id/forum_card_like_ic" />
@@ -102,8 +102,8 @@
             android:layout_marginStart="@dimen/component_small_margin"
             android:text="TextView"
             android:textSize="@dimen/text_small"
-            app:layout_constraintStart_toEndOf="@+id/forum_card_comment_ic"
-            app:layout_constraintBaseline_toBaselineOf="@id/forum_card_like_amount" />
+            app:layout_constraintBaseline_toBaselineOf="@id/forum_card_like_amount"
+            app:layout_constraintStart_toEndOf="@+id/forum_card_comment_ic" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

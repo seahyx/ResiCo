@@ -17,6 +17,7 @@ public class ForumComment {
 		String POST_TIME = "postTime";
 		String LIKE_USER_ID = "likeUserId";
 	}
+
 	private final String userId;
 	private final String comment;
 	private final LocalDateTime postDateTime;

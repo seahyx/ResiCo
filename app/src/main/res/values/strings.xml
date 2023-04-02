@@ -20,6 +20,7 @@
     <string name="user_display_name_key">username</string>
     <string name="event_id_key">eventId</string>
     <string name="post_id_key">postId</string>
+    <string name="announcement_id_key">announcementId</string>
 
     <!-- Navigation bar actions -->
     <string name="action_home">Home</string>

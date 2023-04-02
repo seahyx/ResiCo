@@ -68,7 +68,8 @@ public class ResiCoAPIHandler {
 	/**
 	 * Private access: Singleton pattern.
 	 */
-	private ResiCoAPIHandler() {}
+	private ResiCoAPIHandler() {
+	}
 
 	public static ResiCoAPIHandler getInstance() {
 		if (instance == null) {
@@ -184,7 +185,7 @@ public class ResiCoAPIHandler {
 				try {
 					JSONObject eventObj = data.getJSONObject(i);
 					Event event = Event.buildFromJSONObject(eventObj);
-					if (event == null ||  event.getEventId() == null) continue;
+					if (event == null || event.getEventId() == null) continue;
 					events.put(event.getEventId(), event);
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -245,7 +246,7 @@ public class ResiCoAPIHandler {
 				try {
 					JSONObject announcementObj = data.getJSONObject(i);
 					Announcement announcement = Announcement.buildFromJSONObject(announcementObj, String.valueOf(i));
-					if (announcement == null ||  announcement.getAnnouncementId() == null) continue;
+					if (announcement == null || announcement.getAnnouncementId() == null) continue;
 					announcements.put(announcement.getAnnouncementId(), announcement);
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -270,7 +271,7 @@ public class ResiCoAPIHandler {
 				try {
 					JSONObject postObj = data.getJSONObject(i);
 					ForumPost post = ForumPost.buildFromJSONObject(postObj);
-					if (post == null ||  post.getPostId() == null) continue;
+					if (post == null || post.getPostId() == null) continue;
 					postTable.put(post.getPostId(), post);
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -322,7 +323,7 @@ public class ResiCoAPIHandler {
 		NetworkRequest.get(NetworkRequest.addQueryParameter(BASE_URL + String.format(FORUM_COMMENTS_QUERY_ENDPOINT, postId), AUTH_QUERY, AUTH_TOKEN), callback);
 	}
 
-	public void postForumComments(String postId,Integer currentCommentCount,String comment,String postDate,String postTime,String userId,OnFinishRequest<ForumComment[]> onFinishRequest) {
+	public void postForumComments(String postId, Integer currentCommentCount, String comment, String postDate, String postTime, String userId, OnFinishRequest<ForumComment[]> onFinishRequest) {
 		UrlRequestCallback callback = new UrlRequestCallback(result -> {
 			// Verify data
 			JSONArray data = getResponseBodyJSONArray(result);
@@ -353,7 +354,7 @@ public class ResiCoAPIHandler {
 			e.printStackTrace();
 		}
 
-		NetworkRequest.put(NetworkRequest.addQueryParameter(BASE_URL + String.format(POST_FORUM_COMMENTS_ENDPOINT, postId,currentCommentCount), AUTH_QUERY, AUTH_TOKEN),commentPayload.toString(), callback);
+		NetworkRequest.put(NetworkRequest.addQueryParameter(BASE_URL + String.format(POST_FORUM_COMMENTS_ENDPOINT, postId, currentCommentCount), AUTH_QUERY, AUTH_TOKEN), commentPayload.toString(), callback);
 	}
 
 	public void getAppliedBookmarkedEvents(String userId, OnFinishRequest<AppliedBookmarkedEvents> onFinishRequest) {
@@ -372,6 +373,7 @@ public class ResiCoAPIHandler {
 
 	/**
 	 * Check whether the network request is successful from the result data.
+	 *
 	 * @param result Network request data.
 	 * @return True if network request is successful with status code <399, false otherwise.
 	 */
@@ -389,6 +391,7 @@ public class ResiCoAPIHandler {
 
 	/**
 	 * Gets the response body of the request result if available, null if otherwise.
+	 *
 	 * @param result Network request data.
 	 * @return True if the response body is a {@link JSONObject}, false if is {@link JSONArray}. Returns null if neither.
 	 */
@@ -409,6 +412,7 @@ public class ResiCoAPIHandler {
 
 	/**
 	 * Gets the response body of the request result in {@link JSONObject}, null if otherwise.
+	 *
 	 * @param result Network request data.
 	 * @return Response body if the request in {@link JSONObject}. Null if otherwise.
 	 */
@@ -425,6 +429,7 @@ public class ResiCoAPIHandler {
 
 	/**
 	 * Gets the response body of the request result in {@link JSONArray}, null if otherwise.
+	 *
 	 * @param result Network request data.
 	 * @return Response body if the request in {@link JSONArray}. Null if otherwise.
 	 */
@@ -440,12 +445,14 @@ public class ResiCoAPIHandler {
 
 	/**
 	 * Delegate to be executed when a network request is completed.
+	 *
 	 * @param <T> Processed object to return.
 	 */
 	public interface OnFinishRequest<T> {
 		/**
 		 * Method invoked when network request is completed. If network request is unsuccessful,
 		 * null is returned.
+		 *
 		 * @param data Converted object data from the network request. Null if request is unsuccessful or empty.
 		 */
 		void onFinishRequest(@Nullable T data);

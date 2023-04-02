@@ -2,6 +2,10 @@ package com.example.resico.ui.forum;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -9,11 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.resico.R;
 import com.example.resico.data.model.ForumPost;
@@ -24,7 +23,6 @@ import com.example.resico.ui.SpacesItemDecoration;
 import java.util.ArrayList;
 
 public class ForumsFragment extends Fragment {
-
 	private final String TAG = this.getClass().getSimpleName();
 	private FragmentForumsBinding binding;
 
@@ -36,8 +34,7 @@ public class ForumsFragment extends Fragment {
 			result -> Log.d(TAG, "Returned from details page."));
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-	                         Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		binding = FragmentForumsBinding.inflate(inflater, container, false);
 
@@ -73,6 +70,7 @@ public class ForumsFragment extends Fragment {
 
 	/**
 	 * OnClick function for {@link RecyclerView} event cards.
+	 *
 	 * @param postId String ID of the event clicked.
 	 */
 	private void onEventClick(String postId) {

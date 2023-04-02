@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <style name="ResiCo.TextAppearance.Logo1" parent="">
-        <item name="android:textSize">32sp</item>
-        <item name="android:textFontWeight">600</item>
-        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
-    </style>
-</resources>

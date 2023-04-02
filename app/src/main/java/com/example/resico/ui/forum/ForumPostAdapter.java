@@ -13,8 +13,8 @@ import com.example.resico.R;
 import com.example.resico.data.model.ForumPost;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.ForumCardBinding;
-import com.example.resico.utils.ListOnClickInterface;
 import com.example.resico.utils.DateTimeCalc;
+import com.example.resico.utils.ListOnClickInterface;
 import com.google.android.material.card.MaterialCardView;
 import com.squareup.picasso.Picasso;
 
@@ -27,7 +27,7 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 	private final ArrayList<ForumPost> forumPosts;
 	private final ListOnClickInterface delegate;
 
-	public static class ViewHolder extends RecyclerView.ViewHolder{
+	public static class ViewHolder extends RecyclerView.ViewHolder {
 		private final ForumCardBinding binding;
 
 		private final MaterialCardView cardView;
@@ -75,7 +75,7 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 			return commentView;
 		}
 
-		public ViewHolder(ForumCardBinding binding){
+		public ViewHolder(ForumCardBinding binding) {
 			super(binding.getRoot());
 			this.binding = binding;
 

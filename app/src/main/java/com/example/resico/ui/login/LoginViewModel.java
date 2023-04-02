@@ -1,14 +1,13 @@
 package com.example.resico.ui.login;
 
+import android.util.Patterns;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import android.util.Patterns;
-
-import com.example.resico.data.LoginRepository;
-import com.example.resico.data.Result;
 import com.example.resico.R;
+import com.example.resico.data.LoginRepository;
 import com.example.resico.data.model.User;
 
 public class LoginViewModel extends ViewModel {

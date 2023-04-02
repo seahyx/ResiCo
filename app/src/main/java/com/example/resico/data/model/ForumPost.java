@@ -20,6 +20,7 @@ public class ForumPost {
 		String LIKE_USER_ID = "likeUserId";
 		String COMMENT_COUNT = "commentCount";
 	}
+
 	private final String postId;
 	private final String title;
 	private final String content;

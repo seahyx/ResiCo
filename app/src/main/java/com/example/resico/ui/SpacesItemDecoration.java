@@ -22,7 +22,7 @@ public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
 	 * Creates a spacer {@link RecyclerView.ItemDecoration} that can be used with a
 	 * {@link LinearLayoutManager}.
 	 *
-	 * @param space Current context, it will be used to access resources.
+	 * @param space       Current context, it will be used to access resources.
 	 * @param orientation Divider orientation. Should be {@link #HORIZONTAL} or {@link #VERTICAL}.
 	 */
 	public SpacesItemDecoration(int space, int orientation) {
@@ -47,8 +47,7 @@ public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
 				outRect.right = 0;
 			}
 			return;
-		}
-		else if (mOrientation == VERTICAL) {
+		} else if (mOrientation == VERTICAL) {
 			outRect.top = space / 2;
 			outRect.bottom = space / 2;
 

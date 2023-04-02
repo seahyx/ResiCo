@@ -67,18 +67,18 @@ public class Event {
 	}
 
 	public Event(String eventId,
-				  String startDate,
-				  String startTime,
-				  String endDate,
-				  String endTime,
-	              String title,
-	              String detail,
-	              String venue,
-	              String imageUrl,
-	              String hostId,
-	              String participantCount,
-	              Boolean hasApplied,
-	              Boolean hasBookmarked) {
+	             String startDate,
+	             String startTime,
+	             String endDate,
+	             String endTime,
+	             String title,
+	             String detail,
+	             String venue,
+	             String imageUrl,
+	             String hostId,
+	             String participantCount,
+	             Boolean hasApplied,
+	             Boolean hasBookmarked) {
 		this.eventId = eventId;
 		this.startDateTime = convertDateTimeIntToDate(startDate, startTime);
 		this.endDateTime = convertDateTimeIntToDate(endDate, endTime);
@@ -94,6 +94,7 @@ public class Event {
 
 	/**
 	 * Creates an event object from a {@link JSONObject}.
+	 *
 	 * @param jsonObject {@link JSONObject} obtained from an API request response.
 	 * @return An {@link Event} object with fields filled from the {@link JSONObject}. Returns null if any exception is encountered.
 	 */
@@ -180,7 +181,9 @@ public class Event {
 		return detail;
 	}
 
-	public void setDetail(String detail) { this.detail = detail; }
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
 
 	public String getVenue() {
 		return venue;
@@ -216,6 +219,7 @@ public class Event {
 
 	/**
 	 * Converts a date integer in the form of day|month|full-year (e.g. 10052023) and time integer in the form of 24-hour time (e.g. 1800) into a Java {@link java.time.LocalDateTime} object.
+	 *
 	 * @param date Date integer in the form of day|month|full-year (e.g. 10052023)
 	 * @param time Time integer in the form of 24-hour time (e.g. 1800)
 	 * @return LocalDateTime object with the input date and time values.

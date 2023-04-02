@@ -6,10 +6,10 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.example.resico.utils.App;
 import com.example.resico.R;
 import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
+import com.example.resico.utils.App;
 
 import java.util.Calendar;
 
@@ -53,12 +53,15 @@ public class LoginRepository {
 	 * However, it is possible to get into this state where the user is null but this function
 	 * is called, most likely attempting to access the user's getter methods within.
 	 * We catch our own exception so we know when illegal state happens, if it happens.
+	 *
 	 * @return The user object if the network request succeeded, otherwise null.
 	 */
 	@Nullable
 	public static User getUser() {
 		try {
-			if (user == null) { throw new NullPointerException("user field is null! getUser() is called while the user is logged out, which is illegal."); }
+			if (user == null) {
+				throw new NullPointerException("user field is null! getUser() is called while the user is logged out, which is illegal.");
+			}
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
@@ -94,9 +97,10 @@ public class LoginRepository {
 	}
 
 	/**
-	* Get the last cached login details from SharedPreferences.
+	 * Get the last cached login details from SharedPreferences.
+	 *
 	 * @return True if a previous login exists, false if otherwise.
-	* */
+	 */
 	public void getLastLogin(OnLoginReceived<Boolean> onLoginReceived) {
 		String userId = sharedPref.getString(App.getContext().getString(R.string.user_id_key), "");
 		if (!userId.equals("")) {
@@ -129,12 +133,14 @@ public class LoginRepository {
 
 	/**
 	 * Delegate to be executed when a login is completed.
+	 *
 	 * @param <T> Processed object to return.
 	 */
 	public interface OnLoginReceived<T> {
 		/**
 		 * Method invoked when network request is completed. If network request is unsuccessful,
 		 * null is returned.
+		 *
 		 * @param data Converted object data from the network request. Null if request is unsuccessful or empty.
 		 */
 		void onLoginReceived(@Nullable T data);

@@ -18,6 +18,7 @@ public class User {
 		String PHONE_NO = "phoneNo";
 		String IMAGE_URL = "imageUrl";
 	}
+
 	private final String userId;
 	private final String username;
 	private final String firstName;
@@ -31,7 +32,7 @@ public class User {
 	            String firstName,
 	            String lastName,
 	            String email,
-				String phoneNo,
+	            String phoneNo,
 	            String imageUrl) {
 		this.userId = userId;
 		this.username = username;

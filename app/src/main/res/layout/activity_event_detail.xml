@@ -16,13 +16,13 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="@string/title_activity_event_detail"
-            app:titleCentered="true"
-            app:navigationIconTint="?attr/colorOnSurface"
-            app:navigationIcon="@drawable/ic_arrow_back"
-            app:menu="@menu/menu_event_detail"
+            app:layout_scrollEffect="compress"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:layout_scrollEffect="compress"/>
+            app:menu="@menu/menu_event_detail"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="?attr/colorOnSurface"
+            app:title="@string/title_activity_event_detail"
+            app:titleCentered="true" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -38,13 +38,13 @@
             android:paddingVertical="@dimen/activity_vertical_margin">
 
             <com.google.android.material.card.MaterialCardView
-                style="?attr/materialCardViewElevatedStyle"
                 android:id="@+id/event_detail_card"
+                style="?attr/materialCardViewElevatedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/event_card_height"
-                app:shapeAppearance="@style/ShapeAppearanceOverlay.ResiCo.MediumComponent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/ShapeAppearanceOverlay.ResiCo.MediumComponent">
 
                 <ImageView
                     android:id="@+id/event_detail_image"
@@ -59,24 +59,24 @@
                     android:padding="@dimen/component_medium_margin">
 
                     <com.google.android.material.card.MaterialCardView
+                        style="?attr/materialCardViewElevatedStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="?attr/materialCardViewElevatedStyle"
-                        app:shapeAppearance="@style/ShapeAppearanceOverlay.ResiCo.Full"
-                        app:contentPaddingTop="@dimen/component_extra_small_margin"
                         app:contentPaddingBottom="@dimen/component_extra_small_margin"
                         app:contentPaddingLeft="@dimen/component_medium_margin"
                         app:contentPaddingRight="@dimen/component_medium_margin"
+                        app:contentPaddingTop="@dimen/component_extra_small_margin"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearance="@style/ShapeAppearanceOverlay.ResiCo.Full">
 
                         <TextView
                             android:id="@+id/event_detail_participants"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/event_participants"
-                            android:textSize="@dimen/text_small"
-                            android:textColor="?attr/colorOnBackground"/>
+                            android:textColor="?attr/colorOnBackground"
+                            android:textSize="@dimen/text_small" />
 
                     </com.google.android.material.card.MaterialCardView>
 
@@ -91,71 +91,71 @@
                 android:layout_marginTop="@dimen/component_large_margin"
                 android:text="@string/placeholder_event_title"
                 android:textColor="?attr/colorOnSurface"
+                android:textFontWeight="@integer/font_semi_bold"
                 android:textSize="@dimen/text_header_1"
-                android:textFontWeight="600"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/event_detail_card"/>
+                app:layout_constraintTop_toBottomOf="@id/event_detail_card" />
 
             <TextView
                 android:id="@+id/event_detail_date"
+                style="@style/ResiCo.TextAppearance.EventDetailBody"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/ResiCo.TextAppearance.EventDetailBody"
                 android:text="@string/placeholder_event_date"
-                android:textFontWeight="300"
+                android:textFontWeight="@integer/font_light"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/event_detail_title"/>
+                app:layout_constraintTop_toBottomOf="@id/event_detail_title" />
 
             <TextView
                 android:id="@+id/event_detail_about_header"
+                style="@style/ResiCo.TextAppearance.EventDetailHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/ResiCo.TextAppearance.EventDetailHeader"
                 android:text="@string/event_about"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/event_detail_date" />
 
             <TextView
                 android:id="@+id/event_detail_about"
+                style="@style/ResiCo.TextAppearance.EventDetailBody"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/ResiCo.TextAppearance.EventDetailBody"
                 android:text="@string/search_events_hint"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/event_detail_about_header" />
 
             <TextView
                 android:id="@+id/event_detail_venue_header"
+                style="@style/ResiCo.TextAppearance.EventDetailHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/ResiCo.TextAppearance.EventDetailHeader"
                 android:text="@string/event_venue"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/event_detail_about" />
 
             <TextView
                 android:id="@+id/event_detail_venue"
+                style="@style/ResiCo.TextAppearance.EventDetailBody"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/ResiCo.TextAppearance.EventDetailBody"
                 android:text="@string/events_fragment_label"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/event_detail_venue_header" />
 
             <TextView
                 android:id="@+id/event_detail_contact_header"
+                style="@style/ResiCo.TextAppearance.EventDetailHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/ResiCo.TextAppearance.EventDetailHeader"
                 android:text="@string/event_host"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/event_detail_venue" />
 
             <TextView
                 android:id="@+id/event_detail_contact"
+                style="@style/ResiCo.TextAppearance.EventDetailBody"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/ResiCo.TextAppearance.EventDetailBody"
                 android:text="@string/placeholder_display_name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/event_detail_contact_header" />
@@ -163,8 +163,8 @@
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/rsvp"
                 android:layout_marginTop="@dimen/component_large_margin"
+                android:text="@string/rsvp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/event_detail_contact" />
 

@@ -8,11 +8,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.resico.utils.App;
 import com.example.resico.R;
 import com.example.resico.data.model.Event;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.EventCardBinding;
+import com.example.resico.utils.App;
 import com.example.resico.utils.ListOnClickInterface;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.checkbox.MaterialCheckBox;
@@ -89,8 +89,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 
 	/**
 	 * Initialize dataset of the Adapter.
-	 *
-	 * */
+	 */
 	public EventsAdapter(ArrayList<Event> events, ListOnClickInterface onClickInterface) {
 		this.events = events;
 		delegate = onClickInterface;

@@ -1,20 +1,18 @@
 package com.example.resico.ui.event;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 
-import com.example.resico.utils.App;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.resico.R;
 import com.example.resico.data.LoginRepository;
 import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
-import com.google.android.material.checkbox.MaterialCheckBox;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.Menu;
-import android.view.MenuInflater;
-
 import com.example.resico.databinding.ActivityEventDetailBinding;
+import com.example.resico.utils.App;
+import com.google.android.material.checkbox.MaterialCheckBox;
 import com.squareup.picasso.Picasso;
 
 public class EventDetailActivity extends AppCompatActivity {

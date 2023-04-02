@@ -2,13 +2,12 @@ package com.example.resico.ui.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.example.resico.StartupActivity;
 import com.example.resico.data.LoginRepository;
@@ -16,20 +15,12 @@ import com.example.resico.data.model.User;
 import com.example.resico.databinding.FragmentProfileBinding;
 import com.squareup.picasso.Picasso;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ProfileFragment extends Fragment {
 
 	private FragmentProfileBinding binding;
 
 	@Override
-	public View onCreateView(
-			LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState
-	) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		binding = FragmentProfileBinding.inflate(inflater, container, false);
 		return binding.getRoot();
 	}

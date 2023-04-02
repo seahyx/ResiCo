@@ -19,6 +19,7 @@ public class Announcement {
 		String DETAIL = "detail";
 		String TITLE = "title";
 	}
+
 	private static final String DATE_FORMAT = "dd MMM yyyy";
 	private static final String TIME_FORMAT = "h:mm a";
 	private final String announcementId;
