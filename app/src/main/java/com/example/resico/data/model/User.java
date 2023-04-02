@@ -87,6 +87,10 @@ public class User {
 		return imageUrl;
 	}
 
+	public String getPhoneNo() {
+		return phoneNo;
+	}
+
 	@NonNull
 	@Override
 	public String toString() {

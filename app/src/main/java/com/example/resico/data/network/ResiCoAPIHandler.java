@@ -111,8 +111,8 @@ public class ResiCoAPIHandler {
 	public void getUser(String userId, OnFinishRequest<User> onFinishRequest) {
 		UrlRequestCallback callback = new UrlRequestCallback(result -> {
 			// Verify data
-			JSONObject data = getResponseBodyJSONObject(result);
-			if (!checkRequestSuccess(result) || data == null) {
+			JSONObject data = ResiCoAPIHandler.this.getResponseBodyJSONObject(result);
+			if (!ResiCoAPIHandler.this.checkRequestSuccess(result) || data == null) {
 				onFinishRequest.onFinishRequest(null);
 				return;
 			}

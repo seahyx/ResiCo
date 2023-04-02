@@ -49,12 +49,15 @@ public class LoginRepository {
 		getLastLogin(data -> onLoginReceived.onLoginReceived(user != null));
 	}
 
+	/**
+	 * This function should not be run when the user is not logged in, aka user = null.
+	 * However, it is possible to get into this state where the user is null but this function
+	 * is called, most likely attempting to access the user's getter methods within.
+	 * We catch our own exception so we know when illegal state happens, if it happens.
+	 * @return The user object if the network request succeeded, otherwise null.
+	 */
 	@Nullable
 	public static User getUser() {
-		// This function should not be run when the user is not logged in, aka user = null.
-		// However, it is possible to get into this state where the user is null but this function
-		// is called, most likely attempting to access the user's getter methods within.
-		// We catch our own exception so we know when illegal state happens, if it happens.
 		try {
 			if (user == null) { throw new NullPointerException("user field is null! getUser() is called while the user is logged out, which is illegal."); }
 		} catch (NullPointerException e) {

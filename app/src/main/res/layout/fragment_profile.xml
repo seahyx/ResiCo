@@ -1,172 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.resico.ui.NestedCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSurface1"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ProfileFragment">
 
     <!-- AppBar layout for using Toolbar as AppBar -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:liftOnScroll="true">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:navigationIcon="@drawable/ic_vector_asset_toolbar"
-            app:title="@string/my_profile_toolbar"
+            android:layout_height="wrap_content"
+            app:title="@string/profile_title"
             app:titleCentered="true"
-            app:logoScaleType="fitEnd"/>
-            <!-- TODO: Make the Navigation Icon on the right side -->
+            app:menu="@menu/menu_profile"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:layout_scrollEffect="compress" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- TODO: Follow YX's paddings and dimensions -->
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_layout1"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="@dimen/component_large_margin"
-        android:paddingTop="@dimen/component_large_margin"
-        android:paddingRight="@dimen/component_large_margin"
-        android:paddingBottom="@dimen/component_large_margin">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
-            android:layout_width="@dimen/pfp_large"
-            android:layout_height="@dimen/pfp_large"
-            android:src="@drawable/placeholder_pfp"
-            app:layout_constraintBottom_toTopOf="@+id/usernameView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-            <!-- TODO: Position the Profile Image to the left -->
-            <!-- TODO: Change the Profile Pic to Mr AI Seah Ying Xiang -->
-
-        <TextView
-            android:id="@+id/SeahYingXiangView"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/component_extra_large_margin"
-            android:layout_marginBottom="@dimen/component_extra_large_margin"
-            android:text="@string/profile_name"
-            android:textAlignment="viewStart"
-            android:textSize="@dimen/text_header_3"
-            app:layout_constraintBottom_toTopOf="@+id/usernameView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/profile_image"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="@dimen/component_small_margin"/>
+            android:paddingHorizontal="@dimen/activity_horizontal_margin"
+            android:paddingVertical="@dimen/activity_vertical_margin">
 
-        <TextView
-            android:id="@+id/usernameView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/component_extra_large_margin"
-            android:layout_marginBottom="@dimen/component_small_margin"
-            android:text="@string/Username_TextView"
-            android:textColor="@color/md_theme_light_onSurfaceVariant"
-            android:textSize="@dimen/text_med_small"
-            app:layout_constraintBottom_toTopOf="@+id/seahyx_View"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="@dimen/pfp_large"
+                android:layout_height="@dimen/pfp_large"
+                android:src="@drawable/placeholder_profile"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:id="@+id/seahyx_View"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/component_small_margin"
-            android:layout_marginBottom="@dimen/component_medium_margin"
-            android:text="@string/seahyx"
-            android:textSize="@dimen/text_med_small"
-            app:layout_constraintBottom_toTopOf="@+id/emailView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/usernameView" />
+            <TextView
+                android:id="@+id/profile_display_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/component_medium_margin"
+                android:text="@string/profile_name_placeholder"
+                android:textSize="@dimen/text_header_3"
+                android:textColor="?attr/colorOnSurface"
+                app:layout_constraintTop_toTopOf="@id/profile_image"
+                app:layout_constraintBottom_toBottomOf="@id/profile_image"
+                app:layout_constraintStart_toEndOf="@id/profile_image" />
 
-        <!-- TODO: Add a divider_1 -->
+            <TextView
+                android:id="@+id/profile_username_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/component_large_margin"
+                style="@style/ResiCo.TextAppearance.ProfileHeader"
+                android:text="@string/profile_username_header"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_image" />
 
-        <TextView
-            android:id="@+id/emailView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/component_medium_margin"
-            android:layout_marginBottom="@dimen/component_small_margin"
-            android:text="@string/Email_TextView"
-            android:textColor="@color/md_theme_light_onSurfaceVariant"
-            android:textSize="@dimen/text_med_small"
-            app:layout_constraintBottom_toTopOf="@+id/emailIDView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seahyx_View" />
+            <TextView
+                android:id="@+id/profile_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/component_small_margin"
+                style="@style/ResiCo.TextAppearance.ProfileValue"
+                android:text="@string/profile_username_placeholder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_username_header" />
 
-        <TextView
-            android:id="@+id/emailIDView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/component_small_margin"
-            android:layout_marginBottom="@dimen/component_medium_margin"
-            android:text="@string/Email_ID_TextView"
-            android:textSize="@dimen/text_med_small"
-            app:layout_constraintBottom_toTopOf="@+id/PhoneView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailView" />
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/component_extra_small_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_username" />
 
-        <!-- TODO: Add a divider_2 -->
+            <TextView
+                android:id="@+id/profile_email_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/component_large_margin"
+                style="@style/ResiCo.TextAppearance.ProfileHeader"
+                android:text="@string/profile_email_header"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_username" />
 
-        <TextView
-            android:id="@+id/PhoneView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/component_medium_margin"
-            android:layout_marginBottom="@dimen/component_small_margin"
-            android:text="@string/Phone_TextView"
-            android:textColor="@color/md_theme_light_onSurfaceVariant"
-            android:textSize="@dimen/text_med_small"
-            app:layout_constraintBottom_toTopOf="@+id/PhoneNoView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailIDView" />
+            <TextView
+                android:id="@+id/profile_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/component_small_margin"
+                style="@style/ResiCo.TextAppearance.ProfileValue"
+                android:text="@string/profile_email_placeholder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_email_header" />
 
-        <TextView
-            android:id="@+id/PhoneNoView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/component_small_margin"
-            android:layout_marginBottom="@dimen/component_extra_large_margin"
-            android:text="@string/PhoneNo_TextView"
-            android:textSize="@dimen/text_med_small"
-            app:layout_constraintBottom_toTopOf="@+id/logout_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/PhoneView" />
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/component_extra_small_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_email" />
 
-        <!-- TODO: Add a divider_3 -->
+            <TextView
+                android:id="@+id/profile_phone_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/component_large_margin"
+                style="@style/ResiCo.TextAppearance.ProfileHeader"
+                android:text="@string/profile_phone_header"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_email" />
 
-        <Button
-            android:id="@+id/logout_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/component_extra_large_margin"
-            android:layout_marginBottom="@dimen/component_large_margin"
-            android:text="@string/Logout_TextView"
-            android:textSize="@dimen/text_med_small"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/PhoneNoView" />
+            <TextView
+                android:id="@+id/profile_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/component_small_margin"
+                style="@style/ResiCo.TextAppearance.ProfileValue"
+                android:text="@string/profile_phone_placeholder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_phone_header" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/component_extra_small_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_phone" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <Button
+                android:id="@+id/profile_logout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/component_extra_large_margin"
+                android:text="@string/profile_logout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_phone"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</com.example.resico.ui.NestedCoordinatorLayout>

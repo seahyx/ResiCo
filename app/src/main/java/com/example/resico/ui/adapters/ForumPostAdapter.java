@@ -30,7 +30,6 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 	private final ListOnClickInterface delegate;
 
 	public static class ViewHolder extends RecyclerView.ViewHolder{
-
 		private final ForumCardBinding binding;
 
 		private final MaterialCardView cardView;

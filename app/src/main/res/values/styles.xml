@@ -13,35 +13,9 @@
         <item name="android:textColor">?attr/colorPrimary</item>
     </style>
 
-    <style name="ResiCo.TextAppearance.EventDetailHeader" parent="">
-        <item name="android:textColor">?attr/colorOnSurface</item>
-        <item name="android:textFontWeight">500</item>
-        <item name="android:layout_marginTop">@dimen/component_medium_margin</item>
-    </style>
-
-    <style name="ResiCo.TextAppearance.EventDetailBody" parent="">
-        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
-        <item name="android:layout_marginTop">@dimen/component_small_margin</item>
-    </style>
-
     <style name="StandardBottomSheet" parent="Widget.Material3.BottomSheet">
         <item name="layout_behavior">@string/bottom_sheet_behavior</item>
         <item name="shapeAppearance">@style/ShapeAppearanceOverlay.ResiCo.LargeComponent</item>
-    </style>
-
-    <style name="AnnouncementCard" parent="Widget.Material3.CardView.Filled">
-        <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.None</item>
-        <item name="cardBackgroundColor">?attr/colorSurface2</item>
-    </style>
-
-    <style name="AnnouncementTitleStyle" parent="@android:style/TextAppearance">
-        <item name="android:textColor">?attr/colorOnSurface</item>
-        <item name="android:textSize">@dimen/text_header_3</item>
-        <item name="android:singleLine">false</item>
-    </style>
-
-    <style name="AnnouncementDetailActionBar" parent="@style/Theme.Design.Light.NoActionBar">
-        <item name="android:background">?attr/colorSurface2</item>
     </style>
 
     <style name="ShapeAppearanceOverlay.ResiCo.SmallComponent" parent="">
@@ -62,5 +36,44 @@
     <style name="ShapeAppearanceOverlay.ResiCo.Full" parent="">
         <item name="cornerSize">50%</item>
         <item name="cornerFamily">rounded</item>
+    </style>
+
+    <!-- Event Page Styles -->
+    <style name="ResiCo.TextAppearance.EventDetailHeader" parent="">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:layout_marginTop">@dimen/component_medium_margin</item>
+    </style>
+
+    <style name="ResiCo.TextAppearance.EventDetailBody" parent="">
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+        <item name="android:layout_marginTop">@dimen/component_small_margin</item>
+    </style>
+
+    <!-- Profile Page Styles -->
+    <style name="ResiCo.TextAppearance.ProfileHeader" parent="">
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+    </style>
+
+    <style name="ResiCo.TextAppearance.ProfileValue" parent="">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+    </style>
+
+    <!-- Announcement Page Styles -->
+    <style name="AnnouncementCard" parent="Widget.Material3.CardView.Filled">
+        <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.None</item>
+        <item name="cardBackgroundColor">?attr/colorSurface2</item>
+    </style>
+
+    <style name="AnnouncementTitleStyle" parent="@android:style/TextAppearance">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textSize">@dimen/text_header_3</item>
+        <item name="android:singleLine">false</item>
+    </style>
+
+    <style name="AnnouncementDetailActionBar" parent="@style/Theme.Design.Light.NoActionBar">
+        <item name="android:background">?attr/colorSurface2</item>
     </style>
 </resources>
