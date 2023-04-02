@@ -44,7 +44,7 @@ public class EventDetailActivity extends AppCompatActivity {
 					binding.eventDetailAbout.setText(event.getDetail());
 					binding.eventDetailVenue.setText(event.getVenue());
 					binding.eventDetailParticipants.setText(App.getContext().getString(R.string.event_participants, event.getParticipantCount()));
-					Picasso.get().load(event.getImageUrl()).fit().centerCrop().into(binding.eventDetailImage);
+					Picasso.get().load(event.getImageUrl()).error(R.drawable.placeholder_broken_image).fit().centerCrop().into(binding.eventDetailImage);
 				});
 				// Get the host user data (requiring another API call)
 				apiHandler.getUser(event.getHostId(), host -> {

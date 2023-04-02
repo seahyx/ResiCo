@@ -21,6 +21,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@string/placeholder_announcement_title"
+            android:textColor="?attr/colorOnSurface"
             android:textFontWeight="@integer/font_semi_bold"
             android:textSize="@dimen/text_xtra_large"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,13 +41,13 @@
 
         <TextView
             android:id="@+id/announcement_preview"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="2"
             android:text="@string/long_text"
             android:textFontWeight="@integer/font_light"
-            android:textSize="@dimen/text_medium"
+            android:textSize="@dimen/text_med_small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/announcement_date" />

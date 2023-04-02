@@ -7,6 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.resico.R;
 import com.example.resico.data.model.ForumComment;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.CommentBinding;
@@ -82,7 +83,7 @@ public class ForumCommentAdapter extends RecyclerView.Adapter<ForumCommentAdapte
 			// Run UI updates on the UI thread
 			holder.binding.getRoot().post(() -> {
 				holder.usernameView.setText(user.getUsername());
-				Picasso.get().load(user.getImageUrl()).fit().centerCrop().into(holder.userImageView);
+				Picasso.get().load(user.getImageUrl()).error(R.drawable.placeholder_profile).fit().centerCrop().into(holder.userImageView);
 			});
 		});
 	}

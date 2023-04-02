@@ -122,7 +122,7 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 			// Run UI updates on the UI thread
 			holder.binding.getRoot().post(() -> {
 				holder.getUsernameView().setText(user.getUsername());
-				Picasso.get().load(user.getImageUrl()).fit().centerCrop().into(holder.profileView);
+				Picasso.get().load(user.getImageUrl()).error(R.drawable.placeholder_profile).fit().centerCrop().into(holder.profileView);
 			});
 		});
 

@@ -26,8 +26,8 @@ public class ForumsFragment extends Fragment {
 	private final String TAG = this.getClass().getSimpleName();
 	private FragmentForumsBinding binding;
 
-	private ArrayList<ForumPost> forumPosts = new ArrayList<>();
 	private RecyclerView recyclerView;
+	private ArrayList<ForumPost> forumPosts = new ArrayList<>();
 
 	private final ActivityResultLauncher<Intent> detailLauncher = registerForActivityResult(
 			new ActivityResultContracts.StartActivityForResult(),
@@ -47,7 +47,7 @@ public class ForumsFragment extends Fragment {
 
 		// Attach event adapter to RecyclerView
 		recyclerView = binding.forumsPostList;
-		ForumPostAdapter adapter = new ForumPostAdapter(forumPosts, this::onEventClick);
+		ForumPostAdapter adapter = new ForumPostAdapter(forumPosts, this::onPostClick);
 		recyclerView.setAdapter(adapter);
 
 		// LinearLayoutManager by default has vertical orientation
@@ -60,6 +60,7 @@ public class ForumsFragment extends Fragment {
 				linearLayoutManager.getOrientation());
 		recyclerView.addItemDecoration(spacesItemDecoration);
 
+		// Retrieve forum data from API
 		apiHandler.getForumPosts(posts -> {
 			if (posts == null) return;
 			this.forumPosts.clear();
@@ -71,9 +72,9 @@ public class ForumsFragment extends Fragment {
 	/**
 	 * OnClick function for {@link RecyclerView} event cards.
 	 *
-	 * @param postId String ID of the event clicked.
+	 * @param postId String ID of the post clicked.
 	 */
-	private void onEventClick(String postId) {
+	private void onPostClick(String postId) {
 		// Navigate to the specific post page
 		Intent detailIntent = new Intent(getActivity(), ForumDetailActivity.class);
 		detailIntent.putExtra(getString(R.string.post_id_key), postId);

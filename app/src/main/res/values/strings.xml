@@ -57,6 +57,7 @@
     <string name="event_host">Contact</string>
     <string name="title_activity_event_detail">Event Details</string>
     <string name="title_activity_forum_detail">Forum Comment</string>
+    <string name="title_activity_announcement_detail">Announcement Details</string>
     <string name="title_activity_forum">Forum</string>
     <string name="rsvp">RSVP</string>
     <string name="bookmark">Bookmark</string>
@@ -66,7 +67,12 @@
 
     <string name="search_events_hint">Search for events</string>
 
-    <!-- String for Profile -->
+    <!-- Strings for Home -->
+    <string name="home_event_popular">Popular Events</string>
+    <string name="home_forum_latest">Latest Forum Posts</string>
+    <string name="home_see_all">See All</string>
+
+    <!-- Strings for Profile -->
     <string name="profile_title">My Profile</string>
     <string name="profile_edit">Edit Profile</string>
     <string name="profile_username_header">Username</string>

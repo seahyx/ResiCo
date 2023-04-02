@@ -57,15 +57,12 @@ public class AnnouncementsFragment extends Fragment {
 
 		// Get announcements list to load into recycler view
 		ResiCoAPIHandler apiHandler = ResiCoAPIHandler.getInstance();
-		User user = LoginRepository.getUser();
-		if (user != null) {
-			apiHandler.getAnnouncementList(announcements -> {
-				if (announcements == null) return;
-				this.announcements.clear();
-				this.announcements.addAll(announcements.values());
-				binding.getRoot().post(adapter::notifyDataSetChanged);
-			});
-		}
+		apiHandler.getAnnouncementList(announcements -> {
+			if (announcements == null) return;
+			this.announcements.clear();
+			this.announcements.addAll(announcements.values());
+			binding.getRoot().post(adapter::notifyDataSetChanged);
+		});
 	}
 
 	@Override
@@ -76,7 +73,7 @@ public class AnnouncementsFragment extends Fragment {
 
 	public void onItemClick(String announcementId) {
 		// Navigate to the specific announcement page
-		Intent detailIntent = new Intent(getActivity(), ForumDetailActivity.class);
+		Intent detailIntent = new Intent(getActivity(), AnnouncementDetailActivity.class);
 		detailIntent.putExtra(getString(R.string.announcement_id_key), announcementId);
 		detailLauncher.launch(detailIntent);
 	}

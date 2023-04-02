@@ -109,7 +109,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 		holder.getParticipantsView().setText(App.getContext().getString(R.string.event_participants, event.getParticipantCount()));
 		holder.getBookmarkView().setChecked(event.getHasBookmarked());
 		holder.getCardDateView().setText(event.getStartDateFormatted());
-		Picasso.get().load(event.getImageUrl()).fit().centerCrop().into(holder.getBackgroundImageView());
+		Picasso.get().load(event.getImageUrl()).error(R.drawable.placeholder_broken_image).fit().centerCrop().into(holder.getBackgroundImageView());
 		holder.cardView.setOnClickListener(view -> delegate.onItemClick(event.getEventId()));
 
 
@@ -120,7 +120,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 			// Run UI updates on the UI thread
 			holder.binding.getRoot().post(() -> {
 				holder.getHostNameView().setText(user.getUsername());
-				Picasso.get().load(user.getImageUrl()).fit().centerCrop().into(holder.hostProfileView);
+				Picasso.get().load(user.getImageUrl()).error(R.drawable.placeholder_profile).fit().centerCrop().into(holder.hostProfileView);
 			});
 		});
 	}

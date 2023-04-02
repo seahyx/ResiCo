@@ -21,13 +21,14 @@ import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.FragmentEventsBinding;
 import com.example.resico.ui.SpacesItemDecoration;
+import com.example.resico.ui.forum.ForumDetailActivity;
 
 import java.util.ArrayList;
 
 public class EventsFragment extends Fragment {
 	private final String TAG = this.getClass().getSimpleName();
-
 	private FragmentEventsBinding binding;
+
 	private RecyclerView recyclerView;
 	private ArrayList<Event> events = new ArrayList<>();
 
@@ -36,23 +37,29 @@ public class EventsFragment extends Fragment {
 			result -> Log.d(TAG, "Returned from details page."));
 
 	@Override
-	public View onCreateView(
-			LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState
-	) {
-
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		binding = FragmentEventsBinding.inflate(inflater, container, false);
 		return binding.getRoot();
 	}
 
 	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
+
 		ResiCoAPIHandler apiHandler = ResiCoAPIHandler.getInstance();
 
 		// Attach event adapter to RecyclerView
 		recyclerView = binding.eventsList;
 		EventsAdapter adapter = new EventsAdapter(this.events, this::onEventClick);
 		recyclerView.setAdapter(adapter);
+
+		// LinearLayoutManager by default has vertical orientation
+		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
+		recyclerView.setLayoutManager(linearLayoutManager);
+		// Add spacing between cards
+		SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(
+				(int) getResources().getDimension(R.dimen.component_medium_margin),
+				linearLayoutManager.getOrientation());
+		recyclerView.addItemDecoration(spacesItemDecoration);
 
 		// Retrieve event data from API
 		User user = LoginRepository.getUser();
@@ -64,15 +71,6 @@ public class EventsFragment extends Fragment {
 				binding.getRoot().post(adapter::notifyDataSetChanged);
 			});
 		}
-
-		// LinearLayoutManager by default has vertical orientation
-		LinearLayoutManager linearLayoutManager = new LinearLayoutManager(recyclerView.getContext());
-		recyclerView.setLayoutManager(linearLayoutManager);
-		// Add spacing between cards
-		SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(
-				(int) getResources().getDimension(R.dimen.component_medium_margin),
-				linearLayoutManager.getOrientation());
-		recyclerView.addItemDecoration(spacesItemDecoration);
 	}
 
 	@Override
@@ -92,5 +90,4 @@ public class EventsFragment extends Fragment {
 		detailIntent.putExtra(getString(R.string.event_id_key), eventId);
 		detailLauncher.launch(detailIntent);
 	}
-
 }

@@ -53,13 +53,14 @@
             app:layout_constraintBaseline_toBaselineOf="@id/forum_card_username"
             app:layout_constraintStart_toEndOf="@id/forum_card_username" />
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/forum_card_image"
             android:layout_width="match_parent"
             android:layout_height="@dimen/forum_card_image_height"
             android:layout_marginTop="@dimen/component_small_margin"
             android:scaleType="centerCrop"
             android:src="@drawable/placeholder_image"
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.ResiCo.MediumComponent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/forum_card_profile" />
 
@@ -68,10 +69,10 @@
             android:layout_width="@dimen/component_medium_margin"
             android:layout_height="@dimen/component_medium_margin"
             android:layout_marginTop="@dimen/component_small_medium_margin"
-            android:backgroundTint="?attr/colorOnSurface"
             android:src="@drawable/ic_like"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/forum_card_image" />
+            app:layout_constraintTop_toBottomOf="@+id/forum_card_image"
+            app:tint="?attr/colorOnSurface" />
 
         <TextView
             android:id="@+id/forum_card_like_amount"
@@ -89,11 +90,11 @@
             android:layout_width="@dimen/component_medium_margin"
             android:layout_height="@dimen/component_medium_margin"
             android:layout_marginStart="@dimen/component_large_margin"
-            android:backgroundTint="?attr/colorOnSurface"
             android:src="@drawable/ic_comment"
             app:layout_constraintBottom_toBottomOf="@+id/forum_card_like_ic"
             app:layout_constraintStart_toEndOf="@+id/forum_card_like_amount"
-            app:layout_constraintTop_toTopOf="@+id/forum_card_like_ic" />
+            app:layout_constraintTop_toTopOf="@+id/forum_card_like_ic"
+            app:tint="?attr/colorOnSurface" />
 
         <TextView
             android:id="@+id/forum_card_comment_amount"

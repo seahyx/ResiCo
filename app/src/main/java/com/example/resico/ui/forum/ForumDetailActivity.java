@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.resico.R;
+import com.example.resico.data.LoginRepository;
 import com.example.resico.data.model.ForumComment;
+import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.ActivityForumDetailBinding;
 import com.example.resico.utils.DateTimeCalc;
@@ -49,18 +51,17 @@ public class ForumDetailActivity extends AppCompatActivity {
 			// Attach data to the corresponding component
 			apiHandler.getForumPost(postId, post -> {
 				if (post == null) return;
-				apiHandler.getUser(post.getPosterUserId(), user -> {
-					binding.getRoot().post(() -> {
-						binding.postUserName.setText(user.getUsername());
-						Picasso.get().load(user.getImageUrl()).fit().centerCrop().into(binding.postUserImage);
-					});
-				});
+				apiHandler.getUser(post.getPosterUserId(), user -> binding.getRoot().post(() -> {
+					binding.forumDetailPosterUsername.setText(user.getUsername());
+					Picasso.get().load(user.getImageUrl()).error(R.drawable.placeholder_profile).fit().centerCrop().into(binding.forumDetailPosterProfile);
+				}));
 				binding.getRoot().post(() -> {
-					binding.forumTitle.setText(post.getTitle());
-					binding.forumDetail.setText(post.getContent());
-					Picasso.get().load(post.getImageUrl()).fit().centerCrop().into(binding.forumImage);
-					binding.likeAmount.setText(String.valueOf(post.getLikeUserId().length));
-					binding.postPostingTime.setText(" ∙ " + DateTimeCalc.getDurationToNow(post.getPostDateTime()) + " ago");
+					binding.forumDetailTitle.setText(post.getTitle());
+					binding.forumDetailBody.setText(post.getContent());
+					Picasso.get().load(post.getImageUrl()).error(R.drawable.placeholder_broken_image).fit().centerCrop().into(binding.forumDetailImage);
+					binding.forumDetailLikeAmount.setText(String.valueOf(post.getLikeUserId().length));
+					binding.forumDetailCommentAmount.setText(String.valueOf(post.getCommentCount()));
+					binding.forumDetailPostTime.setText(" ∙ " + DateTimeCalc.getDurationToNow(post.getPostDateTime()) + " ago");
 				});
 			});
 			apiHandler.getForumComments(postId, forumComments -> {
@@ -69,6 +70,13 @@ public class ForumDetailActivity extends AppCompatActivity {
 				this.forumComments.addAll(Arrays.asList(forumComments));
 				binding.getRoot().post(() -> adapter.notifyDataSetChanged());
 			});
+		}
+
+
+		// Update make comment user image
+		User user = LoginRepository.getUser();
+		if (user != null) {
+			Picasso.get().load(user.getImageUrl()).error(R.drawable.placeholder_profile).fit().centerCrop().into(binding.forumDetailUserProfile);
 		}
 	}
 }
