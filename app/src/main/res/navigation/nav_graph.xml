@@ -9,23 +9,7 @@
         android:id="@+id/nav_home"
         android:name="com.example.resico.ui.home.HomeFragment"
         android:label="@string/home_fragment_label"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_nav_home_to_nav_forums"
-            app:destination="@id/nav_forums"
-            app:enterAnim="@anim/slide_in_right"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popUpTo="@id/nav_forums"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_nav_home_to_nav_events"
-            app:destination="@id/nav_events"
-            app:enterAnim="@anim/slide_in_right"
-            app:launchSingleTop="false"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popUpTo="@id/nav_events"
-            app:popUpToInclusive="true" />
-    </fragment>
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_forums"

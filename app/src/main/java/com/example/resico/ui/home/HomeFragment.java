@@ -28,6 +28,7 @@ import com.example.resico.ui.event.EventDetailActivity;
 import com.example.resico.ui.event.EventsAdapter;
 import com.example.resico.ui.forum.ForumDetailActivity;
 import com.example.resico.ui.forum.ForumPostAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -122,8 +123,10 @@ public class HomeFragment extends Fragment {
 		}
 
 		// Link the "see all" texts to the respective fragments
-		binding.homeEventsMore.setOnClickListener(view1 -> NavHostFragment.findNavController(this).navigate(HomeFragmentDirections.actionNavHomeToNavEvents()));
-		binding.homeForumPostsMore.setOnClickListener(view1 -> NavHostFragment.findNavController(this).navigate(HomeFragmentDirections.actionNavHomeToNavForums()));
+		// A little bit hacky, but it's the easiest method allow back navigation to home while not causing this fragment to be added the back stack, which can
+		// prevent pressing Home tab in the bottom nav to actually return to home.
+		binding.homeEventsMore.setOnClickListener(view1 -> ((BottomNavigationView) getActivity().findViewById(R.id.bottom_nav)).setSelectedItemId(R.id.nav_events));
+		binding.homeForumPostsMore.setOnClickListener(view1 -> ((BottomNavigationView) getActivity().findViewById(R.id.bottom_nav)).setSelectedItemId(R.id.nav_forums));
 	}
 
 	@Override
