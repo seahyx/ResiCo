@@ -1,6 +1,7 @@
 package com.example.resico.ui.forum;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -58,10 +59,15 @@ public class ForumDetailActivity extends AppCompatActivity {
 				binding.getRoot().post(() -> {
 					binding.forumDetailTitle.setText(post.getTitle());
 					binding.forumDetailBody.setText(post.getContent());
-					Picasso.get().load(post.getImageUrl()).error(R.drawable.placeholder_broken_image).fit().centerCrop().into(binding.forumDetailImage);
 					binding.forumDetailLikeAmount.setText(String.valueOf(post.getLikeUserId().length));
 					binding.forumDetailCommentAmount.setText(String.valueOf(post.getCommentCount()));
 					binding.forumDetailPostTime.setText(" ∙ " + DateTimeCalc.getDurationToNow(post.getPostDateTime()) + " ago");
+
+					if (post.getImageUrl() == null || post.getImageUrl().equals("")) {
+						binding.forumDetailImage.setVisibility(View.GONE);
+					} else {
+						Picasso.get().load(post.getImageUrl()).error(R.drawable.placeholder_broken_image).fit().centerCrop().into(binding.forumDetailImage);
+					}
 				});
 			});
 			apiHandler.getForumComments(postId, forumComments -> {

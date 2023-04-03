@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
+import java.util.Objects;
 
 public class ForumPost {
 	public interface API_FIELDS {
@@ -108,6 +109,7 @@ public class ForumPost {
 	}
 
 	public String getImageUrl() {
+		if (Objects.equals(imageUrl, "-")) return "";
 		return imageUrl;
 	}
 

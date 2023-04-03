@@ -13,11 +13,18 @@
         <action
             android:id="@+id/action_nav_home_to_nav_forums"
             app:destination="@id/nav_forums"
-            app:popUpTo="@id/nav_graph" />
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popUpTo="@id/nav_forums"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_nav_home_to_nav_events"
             app:destination="@id/nav_events"
-            app:popUpTo="@id/nav_graph" />
+            app:enterAnim="@anim/slide_in_right"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popUpTo="@id/nav_events"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment

@@ -16,6 +16,7 @@ import com.example.resico.databinding.ForumCardBinding;
 import com.example.resico.utils.DateTimeCalc;
 import com.example.resico.utils.ListOnClickInterface;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 		private final ForumCardBinding binding;
 
 		private final MaterialCardView cardView;
-		private final ImageView forumImage;
+		private final ShapeableImageView forumImage;
 		private final TextView titleView;
 		private final CircleImageView profileView;
 		private final TextView usernameView;
@@ -47,7 +48,7 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 			return cardView;
 		}
 
-		public ImageView getForumImage() {
+		public ShapeableImageView getForumImage() {
 			return forumImage;
 		}
 
@@ -112,7 +113,9 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 		if (post.getImageUrl() == null || post.getImageUrl().equals("")) {
 			holder.getForumImage().setVisibility(View.GONE);
 		} else {
-			Picasso.get().load(post.getImageUrl()).error(R.drawable.placeholder_broken_image).fit().centerCrop().into(holder.getForumImage());
+			holder.getForumImage().post(() -> {
+				Picasso.get().load(post.getImageUrl()).error(R.drawable.placeholder_broken_image).into(holder.getForumImage());
+			});
 		}
 
 		// Get post user information
@@ -120,7 +123,7 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 		apiHandler.getUser(post.getPosterUserId(), user -> {
 			if (user == null) return;
 			// Run UI updates on the UI thread
-			holder.binding.getRoot().post(() -> {
+			holder.getCardView().post(() -> {
 				holder.getUsernameView().setText(user.getUsername());
 				Picasso.get().load(user.getImageUrl()).error(R.drawable.placeholder_profile).fit().centerCrop().into(holder.profileView);
 			});
