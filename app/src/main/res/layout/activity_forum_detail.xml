@@ -68,17 +68,15 @@
                         android:id="@+id/forum_detail_post_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:text="TextView"
                         app:layout_constraintBaseline_toBaselineOf="@+id/forum_detail_poster_username"
                         app:layout_constraintStart_toEndOf="@+id/forum_detail_poster_username" />
 
                     <TextView
                         android:id="@+id/forum_detail_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/component_small_medium_margin"
-                        android:layout_weight="1"
                         android:text="Title"
                         android:textSize="@dimen/text_header_2"
                         app:layout_constraintStart_toStartOf="parent"
