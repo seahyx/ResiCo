@@ -44,6 +44,11 @@
         <item name="textInputOutlinedStyle">@style/Widget.ResiCo.TextInputLayout</item>
     </style>
 
+    <style name="Theme.ResiCo.NoActionBar.TransparentStatusBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
     <style name="Widget.ResiCo.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
         <item name="shapeAppearance">@style/ShapeAppearanceOverlay.ResiCo.SmallComponent</item>
     </style>

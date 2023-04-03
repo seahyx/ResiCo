@@ -56,6 +56,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="Theme.ResiCo.NoActionBar.TransparentStatusBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
     <style name="Theme.ResiCo.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.ResiCo.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

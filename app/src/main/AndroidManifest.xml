@@ -37,22 +37,22 @@
             android:excludeFromRecents="false"
             android:exported="true"
             android:noHistory="false"
-            android:theme="@style/Theme.ResiCo.NoActionBar" />
+            android:theme="@style/Theme.ResiCo.NoActionBar.TransparentStatusBar" />
         <activity
             android:name=".ui.event.EventDetailActivity"
             android:exported="false"
             android:label="@string/title_activity_event_detail"
-            android:theme="@style/Theme.ResiCo.NoActionBar" />
+            android:theme="@style/Theme.ResiCo.NoActionBar.TransparentStatusBar" />
         <activity
             android:name=".ui.forum.ForumDetailActivity"
             android:exported="false"
             android:label="@string/title_activity_forum_detail"
-            android:theme="@style/Theme.ResiCo.NoActionBar" />
+            android:theme="@style/Theme.ResiCo.NoActionBar.TransparentStatusBar" />
         <activity
             android:name=".ui.announcements.AnnouncementDetailActivity"
             android:exported="false"
             android:label="@string/title_activity_announcement_detail"
-            android:theme="@style/Theme.ResiCo.NoActionBar" />
+            android:theme="@style/Theme.ResiCo.NoActionBar.TransparentStatusBar" />
     </application>
 
 </manifest>
