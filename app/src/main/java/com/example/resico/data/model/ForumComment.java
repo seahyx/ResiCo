@@ -74,7 +74,7 @@ public class ForumComment {
 		String postTime = dateAndTime[1];
 		// Don't need likedUserId because we just post the thing
 		try {
-			forumCommentJSON.put("comment",forumComment.getComment());
+			forumCommentJSON.put("comment",forumComment.getComment().trim());
 			forumCommentJSON.put("userId",forumComment.getUserId());
 			forumCommentJSON.put("postDate",postDate);
 			forumCommentJSON.put("postTime",postTime);

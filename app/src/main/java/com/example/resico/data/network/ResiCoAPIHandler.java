@@ -350,7 +350,6 @@ public class ResiCoAPIHandler {
 			// prepare comment body
 			JSONObject postCommentBody = ForumComment.buildJSONObject(forumComment);
 
-
 			// call back to return false if post comment unsuccessful, else true
 			UrlRequestCallback callbackPutComment = new UrlRequestCallback(resultPutComment -> {
 				JSONObject putRespond = getResponseBodyJSONObject(resultPutComment);
@@ -358,7 +357,7 @@ public class ResiCoAPIHandler {
 					onFinishRequest.onFinishRequest(null);
 					return;
 				}
-				onFinishRequest.onFinishRequest(forumComment.getComment() == putRespond.optString(ForumComment.API_FIELDS.COMMENT));
+				onFinishRequest.onFinishRequest( forumComment.getComment().equals(putRespond.optString(ForumComment.API_FIELDS.COMMENT)));
 			});
 
 			// call put command endpoint
@@ -367,8 +366,6 @@ public class ResiCoAPIHandler {
 
 		// call getForumComments first to check the current comment count, call post comment api in the callback
 		NetworkRequest.get(NetworkRequest.addQueryParameter(BASE_URL + String.format(FORUM_COMMENTS_QUERY_ENDPOINT, postId), AUTH_QUERY, AUTH_TOKEN), callbackGetComment);
-
-
 	}
 
 	public void getAppliedBookmarkedEvents(String userId, OnFinishRequest<AppliedBookmarkedEvents> onFinishRequest) {

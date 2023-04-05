@@ -1,7 +1,9 @@
 package com.example.resico.ui.forum;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +18,8 @@ import com.example.resico.databinding.ActivityForumDetailBinding;
 import com.example.resico.utils.DateTimeUtils;
 import com.squareup.picasso.Picasso;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -79,11 +83,32 @@ public class ForumDetailActivity extends AppCompatActivity {
 			});
 		}
 
-
 		// Update make comment user image
 		User user = LoginRepository.getUser();
 		if (user != null) {
 			Picasso.get().load(user.getImageUrl()).error(R.drawable.placeholder_profile).fit().centerCrop().into(binding.forumDetailUserProfile);
 		}
+
+		// Set comment send icon onClickListener
+		binding.forumDetailMakeCommentField.setEndIconOnClickListener(v -> {
+			LocalDateTime localDateTime = LocalDateTime.now();
+			DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmm");
+			dateTimeFormatter.format(localDateTime);
+			String[] emptyList = new String[0];
+			ForumComment forumComment = new ForumComment(user.getUserId(),binding.userInputComment.getText().toString(),localDateTime,emptyList);
+			Log.i(TAG, "end icon on click");
+			apiHandler.putForumComments(forumComment,postId,data -> {
+				if (data == null) return;
+				binding.getRoot().post(() -> {
+					if (data == true){
+						Toast.makeText(this,"Comment success!",Toast.LENGTH_LONG).show();
+					}
+					else{
+						Toast.makeText(this,"Comment fail!",Toast.LENGTH_LONG).show();
+					}
+				});
+
+			});
+		});
 	}
 }
