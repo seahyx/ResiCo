@@ -97,17 +97,18 @@ public class ForumDetailActivity extends AppCompatActivity {
 			String[] emptyList = new String[0];
 			ForumComment forumComment = new ForumComment(user.getUserId(),binding.userInputComment.getText().toString(),localDateTime,emptyList);
 			Log.i(TAG, "end icon on click");
-			apiHandler.putForumComments(forumComment,postId,data -> {
-				if (data == null) return;
+			apiHandler.putForumComments(forumComment, postId, success -> {
+				if (success == null) return;
 				binding.getRoot().post(() -> {
-					if (data == true){
-						Toast.makeText(this,"Comment success!",Toast.LENGTH_LONG).show();
+					if (success) {
+						Toast.makeText(this,"Comment success!",Toast.LENGTH_SHORT).show();
+						forumComments.add(forumComment);
+						adapter.notifyItemInserted(forumComments.size()-1);
 					}
-					else{
-						Toast.makeText(this,"Comment fail!",Toast.LENGTH_LONG).show();
+					else {
+						Toast.makeText(this,"Comment fail!",Toast.LENGTH_SHORT).show();
 					}
 				});
-
 			});
 		});
 	}

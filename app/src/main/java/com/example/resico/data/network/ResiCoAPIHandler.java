@@ -11,6 +11,7 @@ import com.example.resico.data.model.Event;
 import com.example.resico.data.model.ForumComment;
 import com.example.resico.data.model.ForumPost;
 import com.example.resico.data.model.User;
+import com.example.resico.utils.DateTimeUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,7 +41,8 @@ public class ResiCoAPIHandler {
 	public static final String ANNOUNCEMENT_QUERY_ENDPOINT = "/announcements/%s.json"; // Format with announcement id
 	public static final String FORUM_LIST_ENDPOINT = "/forums.json";// Forum
 	public static final String FORUM_COMMENTS_QUERY_ENDPOINT = "/forumComments/%s.json"; // Format with forum post id
-	public static final String PUT_FORUM_COMMENTS_ENDPOINT = "/forumComments/%s/%s.json"; // Format with postId and current comment count
+	public static final String PUT_FORUM_COMMENTS_ENDPOINT = "/forumComments/%s/%s.json"; // Format with postId and comment count
+	public static final String UPDATE_COMMENT_COUNT = "/forums/%s/commentCount.json"; // Format with comment count
 	public static final String USER_QUERY_ENDPOINT = "/user/%s.json"; // Format with userId
 	public static final String APPLIED_BOOKMARKED_EVENTS_ENDPOINT = "/appliedLikedEvents/%s.json"; // Format with userId
 
@@ -347,6 +349,7 @@ public class ResiCoAPIHandler {
 			}
 			String commentCount = String.valueOf(comments.length);
 
+
 			// prepare comment body
 			JSONObject postCommentBody = ForumComment.buildJSONObject(forumComment);
 
@@ -360,8 +363,21 @@ public class ResiCoAPIHandler {
 				onFinishRequest.onFinishRequest( forumComment.getComment().equals(putRespond.optString(ForumComment.API_FIELDS.COMMENT)));
 			});
 
+			UrlRequestCallback callbackPutCommentCount = new UrlRequestCallback(resultPutCommentCount -> {
+			});
+
+			// prepare to put comment count
+			JSONObject commentCountBody = new JSONObject();
+			Integer commentCountInt = Integer.valueOf(commentCount);
+			try {
+				commentCountBody.put(ForumComment.API_FIELDS.COMMENT,commentCountInt+1);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+
 			// call put command endpoint
 			NetworkRequest.put(NetworkRequest.addQueryParameter(BASE_URL + String.format(PUT_FORUM_COMMENTS_ENDPOINT, postId, commentCount), AUTH_QUERY, AUTH_TOKEN), postCommentBody.toString(), callbackPutComment);
+			NetworkRequest.put(NetworkRequest.addQueryParameter(BASE_URL + String.format(UPDATE_COMMENT_COUNT, postId), AUTH_QUERY, AUTH_TOKEN), String.valueOf(commentCountInt+1), callbackPutCommentCount);
 		});
 
 		// call getForumComments first to check the current comment count, call post comment api in the callback

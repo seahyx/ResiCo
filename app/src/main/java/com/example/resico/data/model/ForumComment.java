@@ -74,10 +74,10 @@ public class ForumComment {
 		String postTime = dateAndTime[1];
 		// Don't need likedUserId because we just post the thing
 		try {
-			forumCommentJSON.put("comment",forumComment.getComment().trim());
-			forumCommentJSON.put("userId",forumComment.getUserId());
-			forumCommentJSON.put("postDate",postDate);
-			forumCommentJSON.put("postTime",postTime);
+			forumCommentJSON.put(API_FIELDS.COMMENT,forumComment.getComment().trim());
+			forumCommentJSON.put(API_FIELDS.USER_ID,forumComment.getUserId());
+			forumCommentJSON.put(API_FIELDS.POST_DATE,postDate);
+			forumCommentJSON.put(API_FIELDS.POST_TIME,postTime);
 		} catch (JSONException e) {
 			e.printStackTrace();
 			return null;
