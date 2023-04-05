@@ -30,6 +30,7 @@
             android:id="@+id/forum_card_tags"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/component_small_margin"
             app:layout_constraintTop_toBottomOf="@id/forum_card_title"
             app:layout_constraintStart_toStartOf="parent"/>
 
