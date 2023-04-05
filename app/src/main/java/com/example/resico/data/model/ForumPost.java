@@ -23,6 +23,7 @@ public class ForumPost {
 		String POSTER_USER_ID = "posterUserId";
 		String LIKE_USER_ID = "likeUserId";
 		String COMMENT_COUNT = "commentCount";
+		String FORUM_TAGS = "forumTag";
 	}
 
 	private final String postId;
@@ -33,6 +34,7 @@ public class ForumPost {
 	private final String posterUserId;
 	private final String[] likeUserId;
 	private final Integer commentCount;
+	private final String[] forumTags;
 
 	public ForumPost(
 			String postId,
@@ -42,7 +44,8 @@ public class ForumPost {
 			LocalDateTime postDateTime,
 			String posterUserId,
 			String[] likeUserId,
-			Integer commentCount) {
+			Integer commentCount,
+			String[] forumTags) {
 		this.postId = postId;
 		this.title = title;
 		this.content = content;
@@ -51,6 +54,7 @@ public class ForumPost {
 		this.posterUserId = posterUserId;
 		this.likeUserId = likeUserId;
 		this.commentCount = commentCount;
+		this.forumTags = forumTags;
 	}
 
 	public ForumPost(
@@ -62,7 +66,8 @@ public class ForumPost {
 			String postTime,
 			String posterUserId,
 			String[] likeUserId,
-			Integer commentCount) {
+			Integer commentCount,
+			String[] forumTags) {
 		this.postId = postId;
 		this.title = title;
 		this.content = content;
@@ -71,12 +76,13 @@ public class ForumPost {
 		this.posterUserId = posterUserId;
 		this.likeUserId = likeUserId;
 		this.commentCount = commentCount;
+		this.forumTags = forumTags;
 	}
 
 	public static ForumPost buildFromJSONObject(JSONObject jsonObject) {
 		try {
 			// likeUserId is an array, we must extract it
-			JSONArray likeUserIdJSONArray = jsonObject.optJSONArray(ForumComment.API_FIELDS.LIKE_USER_ID);
+			JSONArray likeUserIdJSONArray = jsonObject.optJSONArray(API_FIELDS.LIKE_USER_ID);
 			String[] likeStrArray = new String[0];
 			if (likeUserIdJSONArray != null) {
 				likeStrArray = new String[likeUserIdJSONArray.length()];
@@ -84,6 +90,17 @@ public class ForumPost {
 					likeStrArray[i] = likeUserIdJSONArray.getString(i);
 				}
 			}
+
+			// forumTags is an array
+			JSONArray forumTagJSONArray = jsonObject.optJSONArray(API_FIELDS.FORUM_TAGS);
+			String[] forumTagsStrArray = new String[0];
+			if (forumTagJSONArray != null) {
+				forumTagsStrArray = new String[forumTagJSONArray.length()];
+				for (int i = 0; i < forumTagsStrArray.length; i++) {
+					forumTagsStrArray[i] = forumTagJSONArray.getString(i);
+				}
+			}
+
 			return new ForumPost(
 					jsonObject.getString(API_FIELDS.POST_ID),
 					jsonObject.getString(API_FIELDS.TITLE),
@@ -93,7 +110,8 @@ public class ForumPost {
 					jsonObject.getString(API_FIELDS.POST_TIME),
 					jsonObject.getString(API_FIELDS.POSTER_USER_ID),
 					likeStrArray,
-					jsonObject.getInt(API_FIELDS.COMMENT_COUNT)
+					jsonObject.getInt(API_FIELDS.COMMENT_COUNT),
+					forumTagsStrArray
 			);
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -134,6 +152,10 @@ public class ForumPost {
 		return commentCount;
 	}
 
+	public String[] getForumTags() {
+		return forumTags;
+	}
+
 	public static class CompareMostRecent implements Comparator<ForumPost> {
 		@Override
 		public int compare(ForumPost forumPost, ForumPost t1) {
@@ -156,7 +178,8 @@ public class ForumPost {
 				API_FIELDS.POSTER_USER_ID + den + posterUserId + sep +
 				API_FIELDS.IMAGE_URL + den + imageUrl + sep +
 				API_FIELDS.LIKE_USER_ID + den + String.join(", ", likeUserId) + sep +
-				API_FIELDS.COMMENT_COUNT + den +
+				API_FIELDS.COMMENT_COUNT + den + sep +
+				API_FIELDS.FORUM_TAGS + den + String.join(", ", forumTags) + sep +
 				"}";
 	}
 }

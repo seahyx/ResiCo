@@ -6,7 +6,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.resico.R;
 import com.example.resico.data.model.ForumPost;
@@ -14,11 +16,13 @@ import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.ForumCardBinding;
 import com.example.resico.utils.DateTimeUtils;
 import com.example.resico.utils.ListOnClickInterface;
+import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -31,6 +35,7 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 		private final ForumCardBinding binding;
 
 		private final MaterialCardView cardView;
+		private final RecyclerView forumTagsView;
 		private final ShapeableImageView forumImage;
 		private final TextView titleView;
 		private final CircleImageView profileView;
@@ -75,6 +80,10 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 			return commentView;
 		}
 
+		public RecyclerView getForumTagsView() {
+			return forumTagsView;
+		}
+
 		public ViewHolder(ForumCardBinding binding) {
 			super(binding.getRoot());
 			this.binding = binding;
@@ -87,6 +96,7 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 			postDateView = binding.forumCardPostTime;
 			likeView = binding.forumCardLikeAmount;
 			commentView = binding.forumCardCommentAmount;
+			forumTagsView = binding.forumCardTags;
 		}
 	}
 
@@ -108,6 +118,15 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 		holder.getPostDateView().setText(" ∙ " + DateTimeUtils.getDurationToNow(post.getPostDateTime()) + " ago");
 		holder.getLikeView().setText(String.valueOf(post.getLikeUserId().length));
 		holder.getCommentView().setText(String.valueOf(post.getCommentCount()));
+
+		// Set adapter to forum tags recycle view
+		RecyclerView forumTagsRecycleView = holder.getForumTagsView();
+		ForumTagsAdapter adapter = new ForumTagsAdapter(new ArrayList<>(Arrays.asList(post.getForumTags())));
+		forumTagsRecycleView.setAdapter(adapter);
+
+		// LinearLayoutManager by default has vertical orientation
+		FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(forumTagsRecycleView.getContext());
+		forumTagsRecycleView.setLayoutManager(flexboxLayoutManager);
 
 		if (post.getImageUrl() == null || post.getImageUrl().equals("")) {
 			holder.getForumImage().setVisibility(View.GONE);

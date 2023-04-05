@@ -201,11 +201,11 @@
             android:hint="@string/comment_hint"
             app:endIconMode="custom"
             app:endIconDrawable="@drawable/ic_send"
+            app:endIconTint="?attr/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/forum_detail_user_profile"
             app:layout_constraintTop_toTopOf="parent">
-
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/userInputComment"
