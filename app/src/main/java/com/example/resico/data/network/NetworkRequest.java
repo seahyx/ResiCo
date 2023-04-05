@@ -6,8 +6,11 @@ import org.chromium.net.CronetEngine;
 import org.chromium.net.UploadDataProvider;
 import org.chromium.net.UploadDataProviders;
 import org.chromium.net.UrlRequest;
+import org.json.JSONObject;
 
 import java.nio.ByteBuffer;
+import java.util.HashMap;
+import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -60,6 +63,7 @@ public class NetworkRequest {
 		UrlRequest.Builder requestBuilder = makeRequestBuilder(url, "PUT", callback);
 
 		requestBuilder.setUploadDataProvider(generateUploadDataProvider(payload), executor);
+		requestBuilder.addHeader("Content-Type", "application/json");
 
 		UrlRequest request = requestBuilder.build();
 

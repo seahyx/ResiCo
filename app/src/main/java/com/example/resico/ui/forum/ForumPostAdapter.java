@@ -3,7 +3,6 @@ package com.example.resico.ui.forum;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,7 +12,7 @@ import com.example.resico.R;
 import com.example.resico.data.model.ForumPost;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.ForumCardBinding;
-import com.example.resico.utils.DateTimeCalc;
+import com.example.resico.utils.DateTimeUtils;
 import com.example.resico.utils.ListOnClickInterface;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -106,7 +105,7 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 		ForumPost post = forumPosts.get(position);
 		holder.getTitleView().setText(post.getTitle());
-		holder.getPostDateView().setText(" ∙ " + DateTimeCalc.getDurationToNow(post.getPostDateTime()) + " ago");
+		holder.getPostDateView().setText(" ∙ " + DateTimeUtils.getDurationToNow(post.getPostDateTime()) + " ago");
 		holder.getLikeView().setText(String.valueOf(post.getLikeUserId().length));
 		holder.getCommentView().setText(String.valueOf(post.getCommentCount()));
 

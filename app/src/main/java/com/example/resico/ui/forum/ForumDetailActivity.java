@@ -13,7 +13,7 @@ import com.example.resico.data.model.ForumComment;
 import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.ActivityForumDetailBinding;
-import com.example.resico.utils.DateTimeCalc;
+import com.example.resico.utils.DateTimeUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -61,7 +61,7 @@ public class ForumDetailActivity extends AppCompatActivity {
 					binding.forumDetailBody.setText(post.getContent());
 					binding.forumDetailLikeAmount.setText(String.valueOf(post.getLikeUserId().length));
 					binding.forumDetailCommentAmount.setText(String.valueOf(post.getCommentCount()));
-					binding.forumDetailPostTime.setText(" ∙ " + DateTimeCalc.getDurationToNow(post.getPostDateTime()) + " ago");
+					binding.forumDetailPostTime.setText(" ∙ " + DateTimeUtils.getDurationToNow(post.getPostDateTime()) + " ago");
 
 					if (post.getImageUrl() == null || post.getImageUrl().equals("")) {
 						binding.forumDetailImage.setVisibility(View.GONE);

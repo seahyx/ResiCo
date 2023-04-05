@@ -2,6 +2,8 @@ package com.example.resico.data.model;
 
 import androidx.annotation.NonNull;
 
+import com.example.resico.utils.DateTimeUtils;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -65,7 +67,7 @@ public class ForumPost {
 		this.title = title;
 		this.content = content;
 		this.imageUrl = imageUrl;
-		this.postDateTime = Event.convertDateTimeIntToDate(postDate, postTime);
+		this.postDateTime = DateTimeUtils.convertDateTimeStringToLocalDateTime(postDate, postTime);
 		this.posterUserId = posterUserId;
 		this.likeUserId = likeUserId;
 		this.commentCount = commentCount;
@@ -74,10 +76,13 @@ public class ForumPost {
 	public static ForumPost buildFromJSONObject(JSONObject jsonObject) {
 		try {
 			// likeUserId is an array, we must extract it
-			JSONArray likeUserIdJSONArray = jsonObject.getJSONArray(API_FIELDS.LIKE_USER_ID);
-			String[] likeStrArray = new String[likeUserIdJSONArray.length()];
-			for (int i = 0; i < likeStrArray.length; i++) {
-				likeStrArray[i] = likeUserIdJSONArray.getString(i);
+			JSONArray likeUserIdJSONArray = jsonObject.optJSONArray(ForumComment.API_FIELDS.LIKE_USER_ID);
+			String[] likeStrArray = new String[0];
+			if (likeUserIdJSONArray != null) {
+				likeStrArray = new String[likeUserIdJSONArray.length()];
+				for (int i = 0; i < likeStrArray.length; i++) {
+					likeStrArray[i] = likeUserIdJSONArray.getString(i);
+				}
 			}
 			return new ForumPost(
 					jsonObject.getString(API_FIELDS.POST_ID),
