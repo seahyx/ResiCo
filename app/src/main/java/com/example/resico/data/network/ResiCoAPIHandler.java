@@ -40,7 +40,7 @@ public class ResiCoAPIHandler {
 	public static final String ANNOUNCEMENT_LIST_ENDPOINT = "/announcements.json";
 	public static final String ANNOUNCEMENT_QUERY_ENDPOINT = "/announcements/%s.json"; // Format with announcement id
 	public static final String FORUM_LIST_ENDPOINT = "/forums.json";// Forum
-	public static final String FORUM_LIKED_USERID_ENDPOINT = "/forums/%s/likeUserId/%s.json"; // Format with forum post id and likeUserId count
+	public static final String FORUM_LIKED_USERID_ENDPOINT = "/forums/%s/likeUserId.json"; // Format with forum post id and likeUserId count
 	public static final String FORUM_COMMENTS_QUERY_ENDPOINT = "/forumComments/%s.json"; // Format with forum post id
 	public static final String PUT_FORUM_COMMENTS_ENDPOINT = "/forumComments/%s/%s.json"; // Format with postId and comment count
 	public static final String UPDATE_COMMENT_COUNT_ENDPOINT = "/forums/%s/commentCount.json"; // Format with comment count
@@ -286,20 +286,26 @@ public class ResiCoAPIHandler {
 		NetworkRequest.get(NetworkRequest.addQueryParameter(BASE_URL + FORUM_LIST_ENDPOINT, AUTH_QUERY, AUTH_TOKEN), callback);
 	}
 
-	public void putForumLike(String postId,Integer likeUserIdCount, OnFinishRequest<Boolean> onFinishRequest){
+	public void putForumLike(String postId,String[] likeUserId, OnFinishRequest<Boolean> onFinishRequest){
 		// Prepare likeUserId body
 		JSONObject likeUserIdBody = new JSONObject();
 		String userId = LoginRepository.getUserId();
+		Integer count = 0;
 		try {
-			likeUserIdBody.put(ForumComment.API_FIELDS.LIKE_USER_ID,userId);
+			for (String i: likeUserId){
+				likeUserIdBody.put(count.toString(),i);
+				count += 1;
+			}
+			likeUserIdBody.put(String.valueOf(count),userId);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 
 		UrlRequestCallback callback = new UrlRequestCallback(result -> {
+			Log.i(TAG, "putForumLike: "+result);
 		});
 
-		NetworkRequest.put(NetworkRequest.addQueryParameter(BASE_URL + String.format(FORUM_LIKED_USERID_ENDPOINT, postId, likeUserIdCount), AUTH_QUERY, AUTH_TOKEN), likeUserIdBody.toString(), callback);
+		NetworkRequest.put(NetworkRequest.addQueryParameter(BASE_URL + String.format(FORUM_LIKED_USERID_ENDPOINT, postId), AUTH_QUERY, AUTH_TOKEN), likeUserIdBody.toString(), callback);
 	}
 
 	public void getForumPost(String postId, OnFinishRequest<ForumPost> onFinishRequest) {

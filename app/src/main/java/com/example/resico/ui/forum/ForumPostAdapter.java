@@ -3,6 +3,7 @@ package com.example.resico.ui.forum;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,6 +44,7 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 		private final TextView postDateView;
 		private final TextView likeView;
 		private final TextView commentView;
+		private final ImageView likeIcView;
 
 		public ForumCardBinding getBinding() {
 			return binding;
@@ -84,6 +86,10 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 			return forumTagsView;
 		}
 
+		public ImageView getLikeIcView() {
+			return likeIcView;
+		}
+
 		public ViewHolder(ForumCardBinding binding) {
 			super(binding.getRoot());
 			this.binding = binding;
@@ -97,6 +103,7 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 			likeView = binding.forumCardLikeAmount;
 			commentView = binding.forumCardCommentAmount;
 			forumTagsView = binding.forumCardTags;
+			likeIcView =binding.forumCardLikeIc;
 		}
 	}
 
@@ -149,6 +156,12 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 
 		// Handle onClick
 		holder.getCardView().setOnClickListener(view -> delegate.onItemClick(post.getPostId()));
+
+		// Handle onClick on like button
+		holder.getLikeIcView().setOnClickListener(v -> {
+			apiHandler.putForumLike(post.getPostId(),post.getLikeUserId(),data -> {if (data == null) return;});
+		});
+
 	}
 
 	@Override
