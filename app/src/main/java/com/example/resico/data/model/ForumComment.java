@@ -3,12 +3,15 @@ package com.example.resico.data.model;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.resico.utils.DateTimeUtils;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
+import java.util.HashMap;
 
 public class ForumComment {
 	public interface API_FIELDS {
@@ -35,7 +38,7 @@ public class ForumComment {
 	public ForumComment(String userId, String comment, String postDate, String postTime, String[] likeUserId) {
 		this.userId = userId;
 		this.comment = comment;
-		this.postDateTime = Event.convertDateTimeIntToDate(postDate, postTime);
+		this.postDateTime = DateTimeUtils.convertDateTimeStringToLocalDateTime(postDate, postTime);
 		this.likeUserId = likeUserId;
 	}
 
@@ -43,7 +46,7 @@ public class ForumComment {
 		try {
 			// likeUserId is an array, we must extract it
 			JSONArray likeUserIdJSONArray = jsonObject.optJSONArray(API_FIELDS.LIKE_USER_ID);
-			String[] likeStrArray = null;
+			String[] likeStrArray = new String[0];
 			if (likeUserIdJSONArray != null) {
 				likeStrArray = new String[likeUserIdJSONArray.length()];
 				for (int i = 0; i < likeStrArray.length; i++) {
@@ -61,6 +64,25 @@ public class ForumComment {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	public static JSONObject buildJSONObject(ForumComment forumComment) {
+		JSONObject forumCommentJSON = new JSONObject();
+		String[] dateAndTime = DateTimeUtils.convertLocalDateTimeToDateAndTime(
+				forumComment.getPostDateTime(), "ddMMyyyy", "HHmm");
+		String postDate = dateAndTime[0];
+		String postTime = dateAndTime[1];
+		// Don't need likedUserId because we just post the thing
+		try {
+			forumCommentJSON.put(API_FIELDS.COMMENT,forumComment.getComment().trim());
+			forumCommentJSON.put(API_FIELDS.USER_ID,forumComment.getUserId());
+			forumCommentJSON.put(API_FIELDS.POST_DATE,postDate);
+			forumCommentJSON.put(API_FIELDS.POST_TIME,postTime);
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return forumCommentJSON;
 	}
 
 	public String getUserId() {

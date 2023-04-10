@@ -1,7 +1,9 @@
 package com.example.resico.ui.forum;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,9 +15,11 @@ import com.example.resico.data.model.ForumComment;
 import com.example.resico.data.model.User;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.ActivityForumDetailBinding;
-import com.example.resico.utils.DateTimeCalc;
+import com.example.resico.utils.DateTimeUtils;
 import com.squareup.picasso.Picasso;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -61,7 +65,7 @@ public class ForumDetailActivity extends AppCompatActivity {
 					binding.forumDetailBody.setText(post.getContent());
 					binding.forumDetailLikeAmount.setText(String.valueOf(post.getLikeUserId().length));
 					binding.forumDetailCommentAmount.setText(String.valueOf(post.getCommentCount()));
-					binding.forumDetailPostTime.setText(" ∙ " + DateTimeCalc.getDurationToNow(post.getPostDateTime()) + " ago");
+					binding.forumDetailPostTime.setText(" ∙ " + DateTimeUtils.getDurationToNow(post.getPostDateTime()) + " ago");
 
 					if (post.getImageUrl() == null || post.getImageUrl().equals("")) {
 						binding.forumDetailImage.setVisibility(View.GONE);
@@ -79,11 +83,33 @@ public class ForumDetailActivity extends AppCompatActivity {
 			});
 		}
 
-
 		// Update make comment user image
 		User user = LoginRepository.getUser();
 		if (user != null) {
 			Picasso.get().load(user.getImageUrl()).error(R.drawable.placeholder_profile).fit().centerCrop().into(binding.forumDetailUserProfile);
 		}
+
+		// Set comment send icon onClickListener
+		binding.forumDetailMakeCommentField.setEndIconOnClickListener(v -> {
+			LocalDateTime localDateTime = LocalDateTime.now();
+			DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmm");
+			dateTimeFormatter.format(localDateTime);
+			String[] emptyList = new String[0];
+			ForumComment forumComment = new ForumComment(user.getUserId(),binding.userInputComment.getText().toString(),localDateTime,emptyList);
+			Log.i(TAG, "end icon on click");
+			apiHandler.putForumComments(forumComment, postId, success -> {
+				if (success == null) return;
+				binding.getRoot().post(() -> {
+					if (success) {
+						Toast.makeText(this,"Comment success!",Toast.LENGTH_SHORT).show();
+						forumComments.add(forumComment);
+						adapter.notifyItemInserted(forumComments.size()-1);
+					}
+					else {
+						Toast.makeText(this,"Comment fail!",Toast.LENGTH_SHORT).show();
+					}
+				});
+			});
+		});
 	}
 }

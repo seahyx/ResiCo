@@ -2,6 +2,8 @@ package com.example.resico.data.model;
 
 import androidx.annotation.NonNull;
 
+import com.example.resico.utils.DateTimeUtils;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -37,7 +39,7 @@ public class Announcement {
 
 	public Announcement(String announcementId, String postDate, String postTime, String title, String detail) {
 		this.announcementId = announcementId;
-		this.postDateTime = Event.convertDateTimeIntToDate(postDate, postTime);
+		this.postDateTime = DateTimeUtils.convertDateTimeStringToLocalDateTime(postDate, postTime);
 		this.title = title;
 		this.detail = detail;
 	}

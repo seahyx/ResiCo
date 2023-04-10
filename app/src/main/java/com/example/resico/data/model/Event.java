@@ -2,6 +2,8 @@ package com.example.resico.data.model;
 
 import androidx.annotation.NonNull;
 
+import com.example.resico.utils.DateTimeUtils;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -81,8 +83,8 @@ public class Event {
 	             Boolean hasApplied,
 	             Boolean hasBookmarked) {
 		this.eventId = eventId;
-		this.startDateTime = convertDateTimeIntToDate(startDate, startTime);
-		this.endDateTime = convertDateTimeIntToDate(endDate, endTime);
+		this.startDateTime = DateTimeUtils.convertDateTimeStringToLocalDateTime(startDate, startTime);
+		this.endDateTime = DateTimeUtils.convertDateTimeStringToLocalDateTime(endDate, endTime);
 		this.title = title;
 		this.detail = detail;
 		this.venue = venue;
@@ -134,7 +136,7 @@ public class Event {
 	}
 
 	public void setStartDateTime(String date, String time) {
-		startDateTime = convertDateTimeIntToDate(date, time);
+		startDateTime = DateTimeUtils.convertDateTimeStringToLocalDateTime(date, time);
 	}
 
 	public String getStartDateFormatted() {
@@ -154,7 +156,7 @@ public class Event {
 	}
 
 	public void setEndDateTime(String date, String time) {
-		endDateTime = convertDateTimeIntToDate(date, time);
+		endDateTime = DateTimeUtils.convertDateTimeStringToLocalDateTime(date, time);
 	}
 
 	public String getEndDateFormatted() {
@@ -216,19 +218,6 @@ public class Event {
 
 	public void setHasBookmarked(Boolean hasBookmarked) {
 		this.hasBookmarked = hasBookmarked;
-	}
-
-	/**
-	 * Converts a date integer in the form of day|month|full-year (e.g. 10052023) and time integer in the form of 24-hour time (e.g. 1800) into a Java {@link java.time.LocalDateTime} object.
-	 *
-	 * @param date Date integer in the form of day|month|full-year (e.g. 10052023)
-	 * @param time Time integer in the form of 24-hour time (e.g. 1800)
-	 * @return LocalDateTime object with the input date and time values.
-	 */
-	public static LocalDateTime convertDateTimeIntToDate(String date, String time) {
-		String dateTimeStr = date + time;
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmm");
-		return LocalDateTime.parse(dateTimeStr, formatter);
 	}
 
 	public static class CompareMostRecent implements Comparator<Event> {

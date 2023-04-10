@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.resico.data.LoginRepository;
 import com.example.resico.data.Result;
 import com.example.resico.data.model.Announcement;
 import com.example.resico.data.model.AppliedBookmarkedEvents;
@@ -39,8 +40,10 @@ public class ResiCoAPIHandler {
 	public static final String ANNOUNCEMENT_LIST_ENDPOINT = "/announcements.json";
 	public static final String ANNOUNCEMENT_QUERY_ENDPOINT = "/announcements/%s.json"; // Format with announcement id
 	public static final String FORUM_LIST_ENDPOINT = "/forums.json";// Forum
+	public static final String FORUM_LIKED_USERID_ENDPOINT = "/forums/%s/likeUserId.json"; // Format with forum post id and likeUserId count
 	public static final String FORUM_COMMENTS_QUERY_ENDPOINT = "/forumComments/%s.json"; // Format with forum post id
-	public static final String POST_FORUM_COMMENTS_ENDPOINT = "/forumComments/%s/%s.json"; // Format with postId and current comment count
+	public static final String PUT_FORUM_COMMENTS_ENDPOINT = "/forumComments/%s/%s.json"; // Format with postId and comment count
+	public static final String UPDATE_COMMENT_COUNT_ENDPOINT = "/forums/%s/commentCount.json"; // Format with comment count
 	public static final String USER_QUERY_ENDPOINT = "/user/%s.json"; // Format with userId
 	public static final String APPLIED_BOOKMARKED_EVENTS_ENDPOINT = "/appliedLikedEvents/%s.json"; // Format with userId
 
@@ -283,6 +286,28 @@ public class ResiCoAPIHandler {
 		NetworkRequest.get(NetworkRequest.addQueryParameter(BASE_URL + FORUM_LIST_ENDPOINT, AUTH_QUERY, AUTH_TOKEN), callback);
 	}
 
+	public void putForumLike(String postId,String[] likeUserId, OnFinishRequest<Boolean> onFinishRequest){
+		// Prepare likeUserId body
+		JSONObject likeUserIdBody = new JSONObject();
+		String userId = LoginRepository.getUserId();
+		Integer count = 0;
+		try {
+			for (String i: likeUserId){
+				likeUserIdBody.put(count.toString(),i);
+				count += 1;
+			}
+			likeUserIdBody.put(String.valueOf(count),userId);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		UrlRequestCallback callback = new UrlRequestCallback(result -> {
+			Log.i(TAG, "putForumLike: "+result);
+		});
+
+		NetworkRequest.put(NetworkRequest.addQueryParameter(BASE_URL + String.format(FORUM_LIKED_USERID_ENDPOINT, postId), AUTH_QUERY, AUTH_TOKEN), likeUserIdBody.toString(), callback);
+	}
+
 	public void getForumPost(String postId, OnFinishRequest<ForumPost> onFinishRequest) {
 		// Get forum post from table if already retrieved, otherwise need to fetch all forum posts first
 		if (forumPostTable != null && forumPostTable.containsKey(postId)) {
@@ -321,6 +346,65 @@ public class ResiCoAPIHandler {
 			onFinishRequest.onFinishRequest(comments);
 		});
 		NetworkRequest.get(NetworkRequest.addQueryParameter(BASE_URL + String.format(FORUM_COMMENTS_QUERY_ENDPOINT, postId), AUTH_QUERY, AUTH_TOKEN), callback);
+	}
+
+	/**
+	 * Check the current comment length and put comment into corresponding path, callback return true if comment success, else false
+	 * @param forumComment
+	 * @param onFinishRequest
+	 */
+	public void putForumComments(ForumComment forumComment,String postId, OnFinishRequest<Boolean> onFinishRequest) {
+		UrlRequestCallback callbackGetComment = new UrlRequestCallback(resultGetComment -> {
+			// get comment count
+			JSONArray data = getResponseBodyJSONArray(resultGetComment);
+			if (!checkRequestSuccess(resultGetComment) || data == null) {
+				onFinishRequest.onFinishRequest(null);
+				return;
+			}
+			ForumComment[] comments = new ForumComment[data.length()];
+			for (int i = 0; i < data.length(); i++) {
+				try {
+					JSONObject commentObj = data.getJSONObject(i);
+					comments[i] = ForumComment.buildFromJSONObject(commentObj);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+			String commentCount = String.valueOf(comments.length);
+
+
+			// prepare comment body
+			JSONObject postCommentBody = ForumComment.buildJSONObject(forumComment);
+
+			// call back to return false if post comment unsuccessful, else true
+			UrlRequestCallback callbackPutComment = new UrlRequestCallback(resultPutComment -> {
+				JSONObject putRespond = getResponseBodyJSONObject(resultPutComment);
+				if (!checkRequestSuccess(resultPutComment) || putRespond == null) {
+					onFinishRequest.onFinishRequest(null);
+					return;
+				}
+				onFinishRequest.onFinishRequest( forumComment.getComment().equals(putRespond.optString(ForumComment.API_FIELDS.COMMENT)));
+			});
+
+			UrlRequestCallback callbackPutCommentCount = new UrlRequestCallback(resultPutCommentCount -> {
+			});
+
+			// prepare to put comment count
+			JSONObject commentCountBody = new JSONObject();
+			Integer commentCountInt = Integer.valueOf(commentCount);
+			try {
+				commentCountBody.put(ForumComment.API_FIELDS.COMMENT,commentCountInt+1);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+
+			// call put command endpoint
+			NetworkRequest.put(NetworkRequest.addQueryParameter(BASE_URL + String.format(PUT_FORUM_COMMENTS_ENDPOINT, postId, commentCount), AUTH_QUERY, AUTH_TOKEN), postCommentBody.toString(), callbackPutComment);
+			NetworkRequest.put(NetworkRequest.addQueryParameter(BASE_URL + String.format(UPDATE_COMMENT_COUNT_ENDPOINT, postId), AUTH_QUERY, AUTH_TOKEN), String.valueOf(commentCountInt+1), callbackPutCommentCount);
+		});
+
+		// call getForumComments first to check the current comment count, call post comment api in the callback
+		NetworkRequest.get(NetworkRequest.addQueryParameter(BASE_URL + String.format(FORUM_COMMENTS_QUERY_ENDPOINT, postId), AUTH_QUERY, AUTH_TOKEN), callbackGetComment);
 	}
 
 	public void getAppliedBookmarkedEvents(String userId, OnFinishRequest<AppliedBookmarkedEvents> onFinishRequest) {

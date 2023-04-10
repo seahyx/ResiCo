@@ -1,5 +1,6 @@
 package com.example.resico.ui.forum;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,19 +8,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.resico.R;
 import com.example.resico.data.model.ForumPost;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.ForumCardBinding;
-import com.example.resico.utils.DateTimeCalc;
+import com.example.resico.ui.SpacesItemDecoration;
+import com.example.resico.utils.App;
+import com.example.resico.utils.DateTimeUtils;
 import com.example.resico.utils.ListOnClickInterface;
+import com.google.android.flexbox.FlexboxItemDecoration;
+import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -32,6 +41,7 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 		private final ForumCardBinding binding;
 
 		private final MaterialCardView cardView;
+		private final RecyclerView forumTagsView;
 		private final ShapeableImageView forumImage;
 		private final TextView titleView;
 		private final CircleImageView profileView;
@@ -39,6 +49,7 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 		private final TextView postDateView;
 		private final TextView likeView;
 		private final TextView commentView;
+		private final ImageView likeIcView;
 
 		public ForumCardBinding getBinding() {
 			return binding;
@@ -76,6 +87,14 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 			return commentView;
 		}
 
+		public RecyclerView getForumTagsView() {
+			return forumTagsView;
+		}
+
+		public ImageView getLikeIcView() {
+			return likeIcView;
+		}
+
 		public ViewHolder(ForumCardBinding binding) {
 			super(binding.getRoot());
 			this.binding = binding;
@@ -88,6 +107,8 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 			postDateView = binding.forumCardPostTime;
 			likeView = binding.forumCardLikeAmount;
 			commentView = binding.forumCardCommentAmount;
+			forumTagsView = binding.forumCardTags;
+			likeIcView =binding.forumCardLikeIc;
 		}
 	}
 
@@ -106,9 +127,29 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 		ForumPost post = forumPosts.get(position);
 		holder.getTitleView().setText(post.getTitle());
-		holder.getPostDateView().setText(" ∙ " + DateTimeCalc.getDurationToNow(post.getPostDateTime()) + " ago");
+		holder.getPostDateView().setText(" ∙ " + DateTimeUtils.getDurationToNow(post.getPostDateTime()) + " ago");
 		holder.getLikeView().setText(String.valueOf(post.getLikeUserId().length));
 		holder.getCommentView().setText(String.valueOf(post.getCommentCount()));
+
+		// Set adapter to forum tags recycle view
+		RecyclerView forumTagsRecycleView = holder.getForumTagsView();
+		ForumTagsAdapter adapter = new ForumTagsAdapter(new ArrayList<>(Arrays.asList(post.getForumTags())));
+		forumTagsRecycleView.setAdapter(adapter);
+
+		// Flexbox layout
+		FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(forumTagsRecycleView.getContext());
+		forumTagsRecycleView.setLayoutManager(flexboxLayoutManager);
+
+		// Add spacing between recycle items
+		FlexboxItemDecoration itemDecoration = new FlexboxItemDecoration(forumTagsRecycleView.getContext());
+		itemDecoration.setOrientation(FlexboxItemDecoration.HORIZONTAL); // or VERTICAL or BOTH
+		forumTagsRecycleView.addItemDecoration(itemDecoration);
+
+		SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(
+				(int) App.getContext().getResources().getDimension(R.dimen.component_small_margin),
+				LinearLayoutManager.HORIZONTAL);
+		forumTagsRecycleView.addItemDecoration(spacesItemDecoration);
+
 
 		if (post.getImageUrl() == null || post.getImageUrl().equals("")) {
 			holder.getForumImage().setVisibility(View.GONE);
@@ -131,6 +172,13 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 
 		// Handle onClick
 		holder.getCardView().setOnClickListener(view -> delegate.onItemClick(post.getPostId()));
+
+		// Handle onClick on like button
+		holder.getLikeIcView().setOnClickListener(v -> {
+			apiHandler.putForumLike(post.getPostId(),post.getLikeUserId(),data -> {if (data == null) return;});
+//			holder.getLikeIcView().setImageDrawable();
+		});
+
 	}
 
 	@Override

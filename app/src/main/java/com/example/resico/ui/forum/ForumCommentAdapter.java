@@ -11,7 +11,7 @@ import com.example.resico.R;
 import com.example.resico.data.model.ForumComment;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.CommentBinding;
-import com.example.resico.utils.DateTimeCalc;
+import com.example.resico.utils.DateTimeUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -73,7 +73,7 @@ public class ForumCommentAdapter extends RecyclerView.Adapter<ForumCommentAdapte
 		// Bind the data to the element in the specified position
 		ForumComment comment = forumComments.get(position);
 		holder.getCommentView().setText(comment.getComment());
-		holder.getPostDateTimeView().setText(" ∙ " + DateTimeCalc.getDurationToNow(comment.getPostDateTime()) + " ago");
+		holder.getPostDateTimeView().setText(" ∙ " + DateTimeUtils.getDurationToNow(comment.getPostDateTime()) + " ago");
 
 
 		// Get host user information
