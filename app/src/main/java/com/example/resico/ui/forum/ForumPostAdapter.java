@@ -1,5 +1,6 @@
 package com.example.resico.ui.forum;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -15,8 +17,11 @@ import com.example.resico.R;
 import com.example.resico.data.model.ForumPost;
 import com.example.resico.data.network.ResiCoAPIHandler;
 import com.example.resico.databinding.ForumCardBinding;
+import com.example.resico.ui.SpacesItemDecoration;
+import com.example.resico.utils.App;
 import com.example.resico.utils.DateTimeUtils;
 import com.example.resico.utils.ListOnClickInterface;
+import com.google.android.flexbox.FlexboxItemDecoration;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -131,9 +136,20 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 		ForumTagsAdapter adapter = new ForumTagsAdapter(new ArrayList<>(Arrays.asList(post.getForumTags())));
 		forumTagsRecycleView.setAdapter(adapter);
 
-		// LinearLayoutManager by default has vertical orientation
+		// Flexbox layout
 		FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(forumTagsRecycleView.getContext());
 		forumTagsRecycleView.setLayoutManager(flexboxLayoutManager);
+
+		// Add spacing between recycle items
+		FlexboxItemDecoration itemDecoration = new FlexboxItemDecoration(forumTagsRecycleView.getContext());
+		itemDecoration.setOrientation(FlexboxItemDecoration.HORIZONTAL); // or VERTICAL or BOTH
+		forumTagsRecycleView.addItemDecoration(itemDecoration);
+
+		SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(
+				(int) App.getContext().getResources().getDimension(R.dimen.component_small_margin),
+				LinearLayoutManager.HORIZONTAL);
+		forumTagsRecycleView.addItemDecoration(spacesItemDecoration);
+
 
 		if (post.getImageUrl() == null || post.getImageUrl().equals("")) {
 			holder.getForumImage().setVisibility(View.GONE);
@@ -160,6 +176,7 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 		// Handle onClick on like button
 		holder.getLikeIcView().setOnClickListener(v -> {
 			apiHandler.putForumLike(post.getPostId(),post.getLikeUserId(),data -> {if (data == null) return;});
+//			holder.getLikeIcView().setImageDrawable();
 		});
 
 	}
