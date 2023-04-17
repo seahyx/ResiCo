@@ -25,4 +25,17 @@
         app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
         app:menu="@menu/bottom_nav_menu" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/forums_add_post"
+        style="?attr/floatingActionButtonPrimaryStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/component_medium_margin"
+        android:translationY="-16dp"
+        app:layout_anchor="@id/bottom_nav"
+        app:layout_anchorGravity="top|end"
+        android:layout_gravity="top"
+        app:srcCompat="@drawable/ic_add"
+        android:visibility="gone" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

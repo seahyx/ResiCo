@@ -18,17 +18,14 @@ import java.util.Calendar;
  * maintains an in-memory cache of login status and user credentials information.
  */
 public class LoginRepository {
-	private final String TAG = this.getClass().getSimpleName();
-
 	private static volatile LoginRepository instance;
-
-	private final ResiCoAPIHandler apiHandler;
-	private final SharedPreferences sharedPref;
-	private final SharedPreferences.Editor editor;
-
 	// If user credentials will be cached in local storage, it is recommended it be encrypted
 	// @see https://developer.android.com/training/articles/keystore
 	private static User user = null;
+	private final String TAG = this.getClass().getSimpleName();
+	private final ResiCoAPIHandler apiHandler;
+	private final SharedPreferences sharedPref;
+	private final SharedPreferences.Editor editor;
 
 	// private constructor : singleton access
 	private LoginRepository() {
@@ -42,10 +39,6 @@ public class LoginRepository {
 			instance = new LoginRepository();
 		}
 		return instance;
-	}
-
-	public void isLoggedIn(OnLoginReceived<Boolean> onLoginReceived) {
-		getLastLogin(data -> onLoginReceived.onLoginReceived(user != null));
 	}
 
 	/**
@@ -75,6 +68,10 @@ public class LoginRepository {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public void isLoggedIn(OnLoginReceived<Boolean> onLoginReceived) {
+		getLastLogin(data -> onLoginReceived.onLoginReceived(user != null));
 	}
 
 	public void logout() {

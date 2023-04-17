@@ -15,21 +15,12 @@ import java.util.Comparator;
  * Data class that holds per-announcement data.
  */
 public class Announcement {
-	public interface API_FIELDS {
-		String ANNOUNCEMENT_ID = "announcementId";
-		String START_DATE = "startDate";
-		String START_TIME = "startTime";
-		String DETAIL = "detail";
-		String TITLE = "title";
-	}
-
 	private static final String DATE_FORMAT = "dd MMM yyyy";
 	private static final String TIME_FORMAT = "h:mm a";
 	private final String announcementId;
-	private LocalDateTime postDateTime;
 	private final String title;
+	private LocalDateTime postDateTime;
 	private String detail;
-
 	public Announcement(String announcementId, LocalDateTime postDateTime, String title, String detail) {
 		this.announcementId = announcementId;
 		this.postDateTime = postDateTime;
@@ -87,15 +78,6 @@ public class Announcement {
 		this.detail = detail;
 	}
 
-	public static class CompareMostRecent implements Comparator<Announcement> {
-		@Override
-		public int compare(Announcement announcement, Announcement t1) {
-			if (announcement.getPostDateTime().isAfter(t1.getPostDateTime())) return -1;
-			if (announcement.getPostDateTime().isEqual(t1.getPostDateTime())) return 0;
-			return 1;
-		}
-	}
-
 	@NonNull
 	@Override
 	public String toString() {
@@ -107,5 +89,22 @@ public class Announcement {
 				API_FIELDS.START_DATE + den + postDateTime.toString() + sep +
 				API_FIELDS.DETAIL + den + detail +
 				"}";
+	}
+
+	public interface API_FIELDS {
+		String ANNOUNCEMENT_ID = "announcementId";
+		String START_DATE = "startDate";
+		String START_TIME = "startTime";
+		String DETAIL = "detail";
+		String TITLE = "title";
+	}
+
+	public static class CompareMostRecent implements Comparator<Announcement> {
+		@Override
+		public int compare(Announcement announcement, Announcement t1) {
+			if (announcement.getPostDateTime().isAfter(t1.getPostDateTime())) return -1;
+			if (announcement.getPostDateTime().isEqual(t1.getPostDateTime())) return 0;
+			return 1;
+		}
 	}
 }

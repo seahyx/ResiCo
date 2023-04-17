@@ -1,7 +1,6 @@
 package com.example.resico.ui.forum;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -91,25 +90,29 @@ public class ForumDetailActivity extends AppCompatActivity {
 
 		// Set comment send icon onClickListener
 		binding.forumDetailMakeCommentField.setEndIconOnClickListener(v -> {
+			if (binding.userInputComment.getText() == null) return;
+
 			LocalDateTime localDateTime = LocalDateTime.now();
 			DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmm");
 			dateTimeFormatter.format(localDateTime);
 			String[] emptyList = new String[0];
-			ForumComment forumComment = new ForumComment(user.getUserId(),binding.userInputComment.getText().toString(),localDateTime,emptyList);
-			Log.i(TAG, "end icon on click");
+			ForumComment forumComment = new ForumComment(user.getUserId(), binding.userInputComment.getText().toString(), localDateTime, emptyList);
 			apiHandler.putForumComments(forumComment, postId, success -> {
 				if (success == null) return;
 				binding.getRoot().post(() -> {
 					if (success) {
-						Toast.makeText(this,"Comment success!",Toast.LENGTH_SHORT).show();
+						Toast.makeText(this, "Comment posted", Toast.LENGTH_SHORT).show();
 						forumComments.add(forumComment);
-						adapter.notifyItemInserted(forumComments.size()-1);
-					}
-					else {
-						Toast.makeText(this,"Comment fail!",Toast.LENGTH_SHORT).show();
+						adapter.notifyItemInserted(forumComments.size() - 1);
+						recyclerView.getLayoutManager().scrollToPosition(forumComments.size() - 1);
+					} else {
+						Toast.makeText(this, "Failed to comment", Toast.LENGTH_SHORT).show();
 					}
 				});
 			});
+
+			// Clear edit text anyways
+			binding.userInputComment.setText("");
 		});
 	}
 }

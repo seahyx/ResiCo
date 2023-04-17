@@ -18,6 +18,8 @@
     <dimen name="pfp_medium">45dp</dimen>
     <dimen name="pfp_small">24dp</dimen>
 
+    <dimen name="img_button">128dp</dimen>
+
 
     <dimen name="inline_icon_width">20sp</dimen>
     <dimen name="inline_icon_height">20sp</dimen>

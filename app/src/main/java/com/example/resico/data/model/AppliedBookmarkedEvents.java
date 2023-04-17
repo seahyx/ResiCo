@@ -7,14 +7,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class AppliedBookmarkedEvents {
-	public interface API_FIELDS {
-		String APPLIED_EVENTS_LIST = "appliedEventsId";
-		String BOOKMARKED_EVENTS_LIST = "likedEventId";
-	}
-
 	private final String[] appliedEvents;
 	private final String[] bookmarkedEvents;
-
 	public AppliedBookmarkedEvents(String[] appliedEvents, String[] bookmarkedEvents) {
 		this.appliedEvents = appliedEvents;
 		this.bookmarkedEvents = bookmarkedEvents;
@@ -65,5 +59,10 @@ public class AppliedBookmarkedEvents {
 				API_FIELDS.APPLIED_EVENTS_LIST + den + String.join(", ", appliedEvents) + sep +
 				API_FIELDS.BOOKMARKED_EVENTS_LIST + den + String.join(", ", bookmarkedEvents) +
 				"}";
+	}
+
+	public interface API_FIELDS {
+		String APPLIED_EVENTS_LIST = "appliedEventsId";
+		String BOOKMARKED_EVENTS_LIST = "likedEventId";
 	}
 }

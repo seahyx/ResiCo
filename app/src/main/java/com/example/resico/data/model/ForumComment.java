@@ -11,23 +11,13 @@ import org.json.JSONObject;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
-import java.util.HashMap;
 
 public class ForumComment {
-	public interface API_FIELDS {
-		String USER_ID = "userId";
-		String COMMENT = "comment";
-		String POST_DATE = "postDate";
-		String POST_TIME = "postTime";
-		String LIKE_USER_ID = "likeUserId";
-	}
-
 	private final String userId;
 	private final String comment;
 	private final LocalDateTime postDateTime;
 	@Nullable
 	private final String[] likeUserId;
-
 	public ForumComment(String userId, String comment, LocalDateTime postDateTime, String[] likeUserId) {
 		this.userId = userId;
 		this.comment = comment;
@@ -74,10 +64,10 @@ public class ForumComment {
 		String postTime = dateAndTime[1];
 		// Don't need likedUserId because we just post the thing
 		try {
-			forumCommentJSON.put(API_FIELDS.COMMENT,forumComment.getComment().trim());
-			forumCommentJSON.put(API_FIELDS.USER_ID,forumComment.getUserId());
-			forumCommentJSON.put(API_FIELDS.POST_DATE,postDate);
-			forumCommentJSON.put(API_FIELDS.POST_TIME,postTime);
+			forumCommentJSON.put(API_FIELDS.COMMENT, forumComment.getComment().trim());
+			forumCommentJSON.put(API_FIELDS.USER_ID, forumComment.getUserId());
+			forumCommentJSON.put(API_FIELDS.POST_DATE, postDate);
+			forumCommentJSON.put(API_FIELDS.POST_TIME, postTime);
 		} catch (JSONException e) {
 			e.printStackTrace();
 			return null;
@@ -101,15 +91,6 @@ public class ForumComment {
 		return likeUserId;
 	}
 
-	public static class CompareMostRecent implements Comparator<ForumComment> {
-		@Override
-		public int compare(ForumComment forumComment, ForumComment t1) {
-			if (forumComment.getPostDateTime().isAfter(t1.getPostDateTime())) return -1;
-			if (forumComment.getPostDateTime().isEqual(t1.getPostDateTime())) return 0;
-			return 1;
-		}
-	}
-
 	@NonNull
 	@Override
 	public String toString() {
@@ -122,5 +103,22 @@ public class ForumComment {
 				API_FIELDS.POST_DATE + den + postDateTime + sep +
 				API_FIELDS.LIKE_USER_ID + den + likeUserStr +
 				"}";
+	}
+
+	public interface API_FIELDS {
+		String USER_ID = "userId";
+		String COMMENT = "comment";
+		String POST_DATE = "postDate";
+		String POST_TIME = "postTime";
+		String LIKE_USER_ID = "likeUserId";
+	}
+
+	public static class CompareMostRecent implements Comparator<ForumComment> {
+		@Override
+		public int compare(ForumComment forumComment, ForumComment t1) {
+			if (forumComment.getPostDateTime().isAfter(t1.getPostDateTime())) return -1;
+			if (forumComment.getPostDateTime().isEqual(t1.getPostDateTime())) return 0;
+			return 1;
+		}
 	}
 }

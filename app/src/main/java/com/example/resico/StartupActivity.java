@@ -21,17 +21,13 @@ import com.example.resico.ui.login.LoginActivity;
  */
 public class StartupActivity extends AppCompatActivity {
 	private final String TAG = this.getClass().getSimpleName();
-
-	private ActivityStartupBinding binding;
-
-	private final ActivityResultLauncher<Intent> loginLauncher = registerForActivityResult(
+	private final LoginRepository loginRepository = LoginRepository.getInstance();
+	private ActivityStartupBinding binding;	private final ActivityResultLauncher<Intent> loginLauncher = registerForActivityResult(
 			new ActivityResultContracts.StartActivityForResult(),
 			result -> {
 				Log.d(TAG, "Returned from login page, checking if user is logged in...");
 				handleStartupCheck();
 			});
-	private final LoginRepository loginRepository = LoginRepository.getInstance();
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,4 +75,6 @@ public class StartupActivity extends AppCompatActivity {
 			loginLauncher.launch(new Intent(this, LoginActivity.class));
 		});
 	}
+
+
 }

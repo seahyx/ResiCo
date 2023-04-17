@@ -9,16 +9,6 @@ import org.json.JSONObject;
  * Data class that captures user information for logged in users retrieved from {@link com.example.resico.data.LoginRepository}
  */
 public class User {
-	public interface API_FIELDS {
-		String USER_ID = "userId";
-		String USERNAME = "username";
-		String FIRST_NAME = "firstName";
-		String LAST_NAME = "lastName";
-		String EMAIL = "email";
-		String PHONE_NO = "phoneNo";
-		String IMAGE_URL = "imageUrl";
-	}
-
 	private final String userId;
 	private final String username;
 	private final String firstName;
@@ -26,7 +16,6 @@ public class User {
 	private final String email;
 	private final String phoneNo;
 	private final String imageUrl;
-
 	public User(String userId,
 	            String username,
 	            String firstName,
@@ -106,5 +95,15 @@ public class User {
 				API_FIELDS.PHONE_NO + den + phoneNo + sep +
 				API_FIELDS.IMAGE_URL + den + imageUrl +
 				"}";
+	}
+
+	public interface API_FIELDS {
+		String USER_ID = "userId";
+		String USERNAME = "username";
+		String FIRST_NAME = "firstName";
+		String LAST_NAME = "lastName";
+		String EMAIL = "email";
+		String PHONE_NO = "phoneNo";
+		String IMAGE_URL = "imageUrl";
 	}
 }

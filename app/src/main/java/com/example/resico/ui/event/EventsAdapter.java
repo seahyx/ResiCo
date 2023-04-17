@@ -24,68 +24,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder> {
 
-	private ArrayList<Event> events;
-
 	private final ListOnClickInterface delegate;
-
-	public static class ViewHolder extends RecyclerView.ViewHolder {
-		private final EventCardBinding binding;
-
-		private final MaterialCardView cardView;
-		private final ImageView backgroundImageView;
-		private final TextView participantsView;
-		private final MaterialCheckBox bookmarkView;
-		private final TextView eventTitleView;
-		private final CircleImageView hostProfileView;
-		private final TextView hostNameView;
-		private final TextView cardDateView;
-
-		public MaterialCardView getCardView() {
-			return cardView;
-		}
-
-		public ImageView getBackgroundImageView() {
-			return backgroundImageView;
-		}
-
-		public TextView getParticipantsView() {
-			return participantsView;
-		}
-
-		public MaterialCheckBox getBookmarkView() {
-			return bookmarkView;
-		}
-
-		public TextView getEventTitleView() {
-			return eventTitleView;
-		}
-
-		public CircleImageView getHostProfileView() {
-			return hostProfileView;
-		}
-
-		public TextView getHostNameView() {
-			return hostNameView;
-		}
-
-		public TextView getCardDateView() {
-			return cardDateView;
-		}
-
-		public ViewHolder(EventCardBinding binding) {
-			super(binding.getRoot());
-			this.binding = binding;
-
-			cardView = binding.eventCard;
-			backgroundImageView = binding.eventCardBackground;
-			participantsView = binding.eventCardParticipants;
-			bookmarkView = binding.eventCardBookmark;
-			eventTitleView = binding.eventCardTitle;
-			hostProfileView = binding.eventCardHostProfile;
-			hostNameView = binding.eventCardHostName;
-			cardDateView = binding.eventCardDate;
-		}
-	}
+	private ArrayList<Event> events;
 
 	/**
 	 * Initialize dataset of the Adapter.
@@ -128,5 +68,64 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.ViewHolder
 	@Override
 	public int getItemCount() {
 		return events.size();
+	}
+
+	public static class ViewHolder extends RecyclerView.ViewHolder {
+		private final EventCardBinding binding;
+
+		private final MaterialCardView cardView;
+		private final ImageView backgroundImageView;
+		private final TextView participantsView;
+		private final MaterialCheckBox bookmarkView;
+		private final TextView eventTitleView;
+		private final CircleImageView hostProfileView;
+		private final TextView hostNameView;
+		private final TextView cardDateView;
+
+		public ViewHolder(EventCardBinding binding) {
+			super(binding.getRoot());
+			this.binding = binding;
+
+			cardView = binding.eventCard;
+			backgroundImageView = binding.eventCardBackground;
+			participantsView = binding.eventCardParticipants;
+			bookmarkView = binding.eventCardBookmark;
+			eventTitleView = binding.eventCardTitle;
+			hostProfileView = binding.eventCardHostProfile;
+			hostNameView = binding.eventCardHostName;
+			cardDateView = binding.eventCardDate;
+		}
+
+		public MaterialCardView getCardView() {
+			return cardView;
+		}
+
+		public ImageView getBackgroundImageView() {
+			return backgroundImageView;
+		}
+
+		public TextView getParticipantsView() {
+			return participantsView;
+		}
+
+		public MaterialCheckBox getBookmarkView() {
+			return bookmarkView;
+		}
+
+		public TextView getEventTitleView() {
+			return eventTitleView;
+		}
+
+		public CircleImageView getHostProfileView() {
+			return hostProfileView;
+		}
+
+		public TextView getHostNameView() {
+			return hostNameView;
+		}
+
+		public TextView getCardDateView() {
+			return cardDateView;
+		}
 	}
 }

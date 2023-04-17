@@ -3,6 +3,8 @@ package com.example.resico.ui.event;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -55,6 +57,19 @@ public class EventDetailActivity extends AppCompatActivity {
 				});
 			});
 		}
+
+		binding.eventDetailRsvp.setOnClickListener(view -> {
+			binding.eventDetailCancelRsvp.setVisibility(View.VISIBLE);
+			binding.eventDetailRsvp.setVisibility(View.GONE);
+
+			Toast.makeText(this, "Succesfully RSVP for this event", Toast.LENGTH_SHORT).show();
+		});
+		binding.eventDetailCancelRsvp.setOnClickListener(view -> {
+			binding.eventDetailCancelRsvp.setVisibility(View.GONE);
+			binding.eventDetailRsvp.setVisibility(View.VISIBLE);
+
+			Toast.makeText(this, "Cancelled RSVP for this event", Toast.LENGTH_SHORT).show();
+		});
 	}
 
 	@Override

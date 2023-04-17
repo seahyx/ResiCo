@@ -15,36 +15,19 @@ import java.util.Comparator;
  * Data class that holds per-event data.
  */
 public class Event {
-	public interface API_FIELDS {
-		String EVENT_ID = "eventId";
-		String START_DATE = "startDate";
-		String START_TIME = "startTime";
-		String END_DATE = "endDate";
-		String END_TIME = "endTime";
-		String TITLE = "title";
-		String VENUE = "venue";
-		String DETAIL = "detail";
-		String IMAGE_URL = "imageUrl";
-		String HOST_ID = "hostUserId";
-		String PARTICIPANT_COUNT = "participants";
-		String HAS_APPLIED = "isApplied";
-		String HAS_BOOKMARKED = "isBookmarked";
-	}
-
 	private static final String DATE_FORMAT = "dd MMM yyyy";
 	private static final String TIME_FORMAT = "h:mm a";
 	private final String eventId;
-	private LocalDateTime startDateTime;
-	private LocalDateTime endDateTime;
 	private final String title;
-	private String detail;
 	private final String venue;
 	private final String imageUrl;
 	private final String hostId;
 	private final String participantCount;
+	private LocalDateTime startDateTime;
+	private LocalDateTime endDateTime;
+	private String detail;
 	private Boolean hasApplied;
 	private Boolean hasBookmarked;
-
 	public Event(String eventId,
 	             LocalDateTime startDateTime,
 	             LocalDateTime endDateTime,
@@ -220,22 +203,6 @@ public class Event {
 		this.hasBookmarked = hasBookmarked;
 	}
 
-	public static class CompareMostRecent implements Comparator<Event> {
-		@Override
-		public int compare(Event event, Event t1) {
-			if (event.getStartDateTime().isBefore(t1.getStartDateTime())) return -1;
-			if (event.getStartDateTime().isEqual(t1.getStartDateTime())) return 0;
-			return 1;
-		}
-	}
-
-	public static class CompareMostParticipants implements Comparator<Event> {
-		@Override
-		public int compare(Event event, Event t1) {
-			return Integer.parseInt(t1.getParticipantCount()) - Integer.parseInt(event.getParticipantCount());
-		}
-	}
-
 	@NonNull
 	@Override
 	public String toString() {
@@ -254,5 +221,37 @@ public class Event {
 				API_FIELDS.HAS_APPLIED + den + hasApplied + sep +
 				API_FIELDS.HAS_BOOKMARKED + den + hasBookmarked +
 				"}";
+	}
+
+	public interface API_FIELDS {
+		String EVENT_ID = "eventId";
+		String START_DATE = "startDate";
+		String START_TIME = "startTime";
+		String END_DATE = "endDate";
+		String END_TIME = "endTime";
+		String TITLE = "title";
+		String VENUE = "venue";
+		String DETAIL = "detail";
+		String IMAGE_URL = "imageUrl";
+		String HOST_ID = "hostUserId";
+		String PARTICIPANT_COUNT = "participants";
+		String HAS_APPLIED = "isApplied";
+		String HAS_BOOKMARKED = "isBookmarked";
+	}
+
+	public static class CompareMostRecent implements Comparator<Event> {
+		@Override
+		public int compare(Event event, Event t1) {
+			if (event.getStartDateTime().isBefore(t1.getStartDateTime())) return -1;
+			if (event.getStartDateTime().isEqual(t1.getStartDateTime())) return 0;
+			return 1;
+		}
+	}
+
+	public static class CompareMostParticipants implements Comparator<Event> {
+		@Override
+		public int compare(Event event, Event t1) {
+			return Integer.parseInt(t1.getParticipantCount()) - Integer.parseInt(event.getParticipantCount());
+		}
 	}
 }

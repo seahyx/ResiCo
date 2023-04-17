@@ -1,6 +1,5 @@
 package com.example.resico.ui.forum;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,10 +7,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.resico.R;
 import com.example.resico.data.model.ForumPost;
@@ -36,81 +33,6 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 
 	private final ArrayList<ForumPost> forumPosts;
 	private final ListOnClickInterface delegate;
-
-	public static class ViewHolder extends RecyclerView.ViewHolder {
-		private final ForumCardBinding binding;
-
-		private final MaterialCardView cardView;
-		private final RecyclerView forumTagsView;
-		private final ShapeableImageView forumImage;
-		private final TextView titleView;
-		private final CircleImageView profileView;
-		private final TextView usernameView;
-		private final TextView postDateView;
-		private final TextView likeView;
-		private final TextView commentView;
-		private final ImageView likeIcView;
-
-		public ForumCardBinding getBinding() {
-			return binding;
-		}
-
-		public MaterialCardView getCardView() {
-			return cardView;
-		}
-
-		public ShapeableImageView getForumImage() {
-			return forumImage;
-		}
-
-		public TextView getTitleView() {
-			return titleView;
-		}
-
-		public CircleImageView getProfileView() {
-			return profileView;
-		}
-
-		public TextView getUsernameView() {
-			return usernameView;
-		}
-
-		public TextView getPostDateView() {
-			return postDateView;
-		}
-
-		public TextView getLikeView() {
-			return likeView;
-		}
-
-		public TextView getCommentView() {
-			return commentView;
-		}
-
-		public RecyclerView getForumTagsView() {
-			return forumTagsView;
-		}
-
-		public ImageView getLikeIcView() {
-			return likeIcView;
-		}
-
-		public ViewHolder(ForumCardBinding binding) {
-			super(binding.getRoot());
-			this.binding = binding;
-
-			cardView = binding.forumCard;
-			forumImage = binding.forumCardImage;
-			titleView = binding.forumCardTitle;
-			profileView = binding.forumCardProfile;
-			usernameView = binding.forumCardUsername;
-			postDateView = binding.forumCardPostTime;
-			likeView = binding.forumCardLikeAmount;
-			commentView = binding.forumCardCommentAmount;
-			forumTagsView = binding.forumCardTags;
-			likeIcView =binding.forumCardLikeIc;
-		}
-	}
 
 	public ForumPostAdapter(ArrayList<ForumPost> forumPosts, ListOnClickInterface onClickInterface) {
 		this.forumPosts = forumPosts;
@@ -175,7 +97,9 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 
 		// Handle onClick on like button
 		holder.getLikeIcView().setOnClickListener(v -> {
-			apiHandler.putForumLike(post.getPostId(),post.getLikeUserId(),data -> {if (data == null) return;});
+			apiHandler.putForumLike(post.getPostId(), post.getLikeUserId(), data -> {
+				if (data == null) return;
+			});
 //			holder.getLikeIcView().setImageDrawable();
 		});
 
@@ -184,5 +108,80 @@ public class ForumPostAdapter extends RecyclerView.Adapter<ForumPostAdapter.View
 	@Override
 	public int getItemCount() {
 		return forumPosts.size();
+	}
+
+	public static class ViewHolder extends RecyclerView.ViewHolder {
+		private final ForumCardBinding binding;
+
+		private final MaterialCardView cardView;
+		private final RecyclerView forumTagsView;
+		private final ShapeableImageView forumImage;
+		private final TextView titleView;
+		private final CircleImageView profileView;
+		private final TextView usernameView;
+		private final TextView postDateView;
+		private final TextView likeView;
+		private final TextView commentView;
+		private final ImageView likeIcView;
+
+		public ViewHolder(ForumCardBinding binding) {
+			super(binding.getRoot());
+			this.binding = binding;
+
+			cardView = binding.forumCard;
+			forumImage = binding.forumCardImage;
+			titleView = binding.forumCardTitle;
+			profileView = binding.forumCardProfile;
+			usernameView = binding.forumCardUsername;
+			postDateView = binding.forumCardPostTime;
+			likeView = binding.forumCardLikeAmount;
+			commentView = binding.forumCardCommentAmount;
+			forumTagsView = binding.forumCardTags;
+			likeIcView = binding.forumCardLikeIc;
+		}
+
+		public ForumCardBinding getBinding() {
+			return binding;
+		}
+
+		public MaterialCardView getCardView() {
+			return cardView;
+		}
+
+		public ShapeableImageView getForumImage() {
+			return forumImage;
+		}
+
+		public TextView getTitleView() {
+			return titleView;
+		}
+
+		public CircleImageView getProfileView() {
+			return profileView;
+		}
+
+		public TextView getUsernameView() {
+			return usernameView;
+		}
+
+		public TextView getPostDateView() {
+			return postDateView;
+		}
+
+		public TextView getLikeView() {
+			return likeView;
+		}
+
+		public TextView getCommentView() {
+			return commentView;
+		}
+
+		public RecyclerView getForumTagsView() {
+			return forumTagsView;
+		}
+
+		public ImageView getLikeIcView() {
+			return likeIcView;
+		}
 	}
 }

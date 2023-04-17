@@ -14,44 +14,44 @@ import java.util.ArrayList;
 
 public class ForumTagsAdapter extends RecyclerView.Adapter<ForumTagsAdapter.ViewHolder> {
 
-    private final ArrayList<String> forumTags;
+	private final ArrayList<String> forumTags;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final ForumTagBinding binding;
-        private final TextView forumTagView;
+	public ForumTagsAdapter(ArrayList<String> forumTags) {
+		this.forumTags = forumTags;
+	}
 
-        public ForumTagBinding getBinding() {
-            return binding;
-        }
+	@NonNull
+	@Override
+	public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+		return new ViewHolder(ForumTagBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+	}
 
-        public TextView getForumTagView() {
-            return forumTagView;
-        }
+	@Override
+	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+		holder.getForumTagView().setText(forumTags.get(position));
+	}
 
-        public ViewHolder(ForumTagBinding binding) {
-            super(binding.getRoot());
-            this.binding = binding;
-            this.forumTagView = binding.forumTag;
-        }
-    }
+	@Override
+	public int getItemCount() {
+		return forumTags.size();
+	}
 
-    public ForumTagsAdapter(ArrayList<String> forumTags) {
-        this.forumTags = forumTags;
-    }
+	public static class ViewHolder extends RecyclerView.ViewHolder {
+		private final ForumTagBinding binding;
+		private final TextView forumTagView;
 
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(ForumTagBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
-    }
+		public ViewHolder(ForumTagBinding binding) {
+			super(binding.getRoot());
+			this.binding = binding;
+			this.forumTagView = binding.forumTag;
+		}
 
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.getForumTagView().setText(forumTags.get(position));
-    }
+		public ForumTagBinding getBinding() {
+			return binding;
+		}
 
-    @Override
-    public int getItemCount() {
-        return forumTags.size();
-    }
+		public TextView getForumTagView() {
+			return forumTagView;
+		}
+	}
 }

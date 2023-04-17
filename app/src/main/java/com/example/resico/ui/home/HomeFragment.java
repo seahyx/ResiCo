@@ -11,7 +11,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,14 +34,12 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 	private final String TAG = this.getClass().getSimpleName();
-	private FragmentHomeBinding binding;
-
-	private ArrayList<Event> events = new ArrayList<>();
-	private ArrayList<ForumPost> forumPosts = new ArrayList<>();
-
 	private final ActivityResultLauncher<Intent> detailLauncher = registerForActivityResult(
 			new ActivityResultContracts.StartActivityForResult(),
 			result -> Log.d(TAG, "Returned from details page."));
+	private FragmentHomeBinding binding;
+	private ArrayList<Event> events = new ArrayList<>();
+	private ArrayList<ForumPost> forumPosts = new ArrayList<>();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

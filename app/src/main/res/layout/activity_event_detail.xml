@@ -161,10 +161,25 @@
                 app:layout_constraintTop_toBottomOf="@id/event_detail_contact_header" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/event_detail_rsvp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/component_large_margin"
                 android:text="@string/rsvp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/event_detail_contact" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/event_detail_cancel_rsvp"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/component_large_margin"
+                android:visibility="gone"
+                android:text="@string/cancel_rsvp"
+                android:textColor="?attr/colorError"
+                app:strokeColor="?attr/colorError"
+                app:rippleColor="?attr/colorError"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/event_detail_contact" />
 

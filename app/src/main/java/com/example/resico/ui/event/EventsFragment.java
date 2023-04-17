@@ -26,14 +26,12 @@ import java.util.ArrayList;
 
 public class EventsFragment extends Fragment {
 	private final String TAG = this.getClass().getSimpleName();
-	private FragmentEventsBinding binding;
-
-	private RecyclerView recyclerView;
-	private ArrayList<Event> events = new ArrayList<>();
-
 	private final ActivityResultLauncher<Intent> detailLauncher = registerForActivityResult(
 			new ActivityResultContracts.StartActivityForResult(),
 			result -> Log.d(TAG, "Returned from details page."));
+	private FragmentEventsBinding binding;
+	private RecyclerView recyclerView;
+	private ArrayList<Event> events = new ArrayList<>();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

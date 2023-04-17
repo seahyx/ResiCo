@@ -24,15 +24,6 @@ import java.util.Hashtable;
  * Singleton class that handles network calls to our API.
  */
 public class ResiCoAPIHandler {
-	private static final String TAG = "ResiCoAPIHandler";
-	private static ResiCoAPIHandler instance;
-
-	// Authentication API
-	private static final String BASE_AUTH_URL = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword";
-	private static final String LOGIN_AUTH_QUERY = "key";
-	private static final String LOGIN_AUTH_TOKEN = "AIzaSyCgYb1trzgtA0X54Escrne3S9PdtA_peXA";
-	private static final String AUTH_RESPONSE_ID_KEY = "localId";
-
 	// List of API endpoints, some of them require string formatting with IDs before they can be used.
 	public static final String BASE_URL = "https://resico-7e187-default-rtdb.asia-southeast1.firebasedatabase.app";
 	public static final String EVENT_LIST_ENDPOINT = "/events.json";
@@ -46,13 +37,16 @@ public class ResiCoAPIHandler {
 	public static final String UPDATE_COMMENT_COUNT_ENDPOINT = "/forums/%s/commentCount.json"; // Format with comment count
 	public static final String USER_QUERY_ENDPOINT = "/user/%s.json"; // Format with userId
 	public static final String APPLIED_BOOKMARKED_EVENTS_ENDPOINT = "/appliedLikedEvents/%s.json"; // Format with userId
-
+	private static final String TAG = "ResiCoAPIHandler";
+	// Authentication API
+	private static final String BASE_AUTH_URL = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword";
+	private static final String LOGIN_AUTH_QUERY = "key";
+	private static final String LOGIN_AUTH_TOKEN = "AIzaSyCgYb1trzgtA0X54Escrne3S9PdtA_peXA";
+	private static final String AUTH_RESPONSE_ID_KEY = "localId";
 	private static final String AUTH_QUERY = "auth";
 	private static final String AUTH_TOKEN = "DHijldnvaIJWKxfOHqfGgsz7A9tzNQRebXEkZvNN";
-
 	private static final String requestBody = "body";
-
-
+	private static ResiCoAPIHandler instance;
 	/**
 	 * Temporary storage of event list, with the eventId as key
 	 */
@@ -286,23 +280,23 @@ public class ResiCoAPIHandler {
 		NetworkRequest.get(NetworkRequest.addQueryParameter(BASE_URL + FORUM_LIST_ENDPOINT, AUTH_QUERY, AUTH_TOKEN), callback);
 	}
 
-	public void putForumLike(String postId,String[] likeUserId, OnFinishRequest<Boolean> onFinishRequest){
+	public void putForumLike(String postId, String[] likeUserId, OnFinishRequest<Boolean> onFinishRequest) {
 		// Prepare likeUserId body
 		JSONObject likeUserIdBody = new JSONObject();
 		String userId = LoginRepository.getUserId();
 		Integer count = 0;
 		try {
-			for (String i: likeUserId){
-				likeUserIdBody.put(count.toString(),i);
+			for (String i : likeUserId) {
+				likeUserIdBody.put(count.toString(), i);
 				count += 1;
 			}
-			likeUserIdBody.put(String.valueOf(count),userId);
+			likeUserIdBody.put(String.valueOf(count), userId);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 
 		UrlRequestCallback callback = new UrlRequestCallback(result -> {
-			Log.i(TAG, "putForumLike: "+result);
+			Log.i(TAG, "putForumLike: " + result);
 		});
 
 		NetworkRequest.put(NetworkRequest.addQueryParameter(BASE_URL + String.format(FORUM_LIKED_USERID_ENDPOINT, postId), AUTH_QUERY, AUTH_TOKEN), likeUserIdBody.toString(), callback);
@@ -350,10 +344,11 @@ public class ResiCoAPIHandler {
 
 	/**
 	 * Check the current comment length and put comment into corresponding path, callback return true if comment success, else false
+	 *
 	 * @param forumComment
 	 * @param onFinishRequest
 	 */
-	public void putForumComments(ForumComment forumComment,String postId, OnFinishRequest<Boolean> onFinishRequest) {
+	public void putForumComments(ForumComment forumComment, String postId, OnFinishRequest<Boolean> onFinishRequest) {
 		UrlRequestCallback callbackGetComment = new UrlRequestCallback(resultGetComment -> {
 			// get comment count
 			JSONArray data = getResponseBodyJSONArray(resultGetComment);
@@ -383,7 +378,7 @@ public class ResiCoAPIHandler {
 					onFinishRequest.onFinishRequest(null);
 					return;
 				}
-				onFinishRequest.onFinishRequest( forumComment.getComment().equals(putRespond.optString(ForumComment.API_FIELDS.COMMENT)));
+				onFinishRequest.onFinishRequest(forumComment.getComment().equals(putRespond.optString(ForumComment.API_FIELDS.COMMENT)));
 			});
 
 			UrlRequestCallback callbackPutCommentCount = new UrlRequestCallback(resultPutCommentCount -> {
@@ -393,14 +388,14 @@ public class ResiCoAPIHandler {
 			JSONObject commentCountBody = new JSONObject();
 			Integer commentCountInt = Integer.valueOf(commentCount);
 			try {
-				commentCountBody.put(ForumComment.API_FIELDS.COMMENT,commentCountInt+1);
+				commentCountBody.put(ForumComment.API_FIELDS.COMMENT, commentCountInt + 1);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
 
 			// call put command endpoint
 			NetworkRequest.put(NetworkRequest.addQueryParameter(BASE_URL + String.format(PUT_FORUM_COMMENTS_ENDPOINT, postId, commentCount), AUTH_QUERY, AUTH_TOKEN), postCommentBody.toString(), callbackPutComment);
-			NetworkRequest.put(NetworkRequest.addQueryParameter(BASE_URL + String.format(UPDATE_COMMENT_COUNT_ENDPOINT, postId), AUTH_QUERY, AUTH_TOKEN), String.valueOf(commentCountInt+1), callbackPutCommentCount);
+			NetworkRequest.put(NetworkRequest.addQueryParameter(BASE_URL + String.format(UPDATE_COMMENT_COUNT_ENDPOINT, postId), AUTH_QUERY, AUTH_TOKEN), String.valueOf(commentCountInt + 1), callbackPutCommentCount);
 		});
 
 		// call getForumComments first to check the current comment count, call post comment api in the callback

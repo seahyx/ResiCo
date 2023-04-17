@@ -13,19 +13,6 @@ import java.util.Comparator;
 import java.util.Objects;
 
 public class ForumPost {
-	public interface API_FIELDS {
-		String POST_ID = "postId";
-		String TITLE = "title";
-		String CONTENT = "content";
-		String IMAGE_URL = "imageUrl";
-		String POST_DATE = "postDate";
-		String POST_TIME = "postTime";
-		String POSTER_USER_ID = "posterUserId";
-		String LIKE_USER_ID = "likeUserId";
-		String COMMENT_COUNT = "commentCount";
-		String FORUM_TAGS = "forumTag";
-	}
-
 	private final String postId;
 	private final String title;
 	private final String content;
@@ -35,7 +22,6 @@ public class ForumPost {
 	private final String[] likeUserId;
 	private final Integer commentCount;
 	private final String[] forumTags;
-
 	public ForumPost(
 			String postId,
 			String title,
@@ -156,15 +142,6 @@ public class ForumPost {
 		return forumTags;
 	}
 
-	public static class CompareMostRecent implements Comparator<ForumPost> {
-		@Override
-		public int compare(ForumPost forumPost, ForumPost t1) {
-			if (forumPost.getPostDateTime().isAfter(t1.getPostDateTime())) return -1;
-			if (forumPost.getPostDateTime().isEqual(t1.getPostDateTime())) return 0;
-			return 1;
-		}
-	}
-
 	@NonNull
 	@Override
 	public String toString() {
@@ -181,5 +158,27 @@ public class ForumPost {
 				API_FIELDS.COMMENT_COUNT + den + sep +
 				API_FIELDS.FORUM_TAGS + den + String.join(", ", forumTags) + sep +
 				"}";
+	}
+
+	public interface API_FIELDS {
+		String POST_ID = "postId";
+		String TITLE = "title";
+		String CONTENT = "content";
+		String IMAGE_URL = "imageUrl";
+		String POST_DATE = "postDate";
+		String POST_TIME = "postTime";
+		String POSTER_USER_ID = "posterUserId";
+		String LIKE_USER_ID = "likeUserId";
+		String COMMENT_COUNT = "commentCount";
+		String FORUM_TAGS = "forumTag";
+	}
+
+	public static class CompareMostRecent implements Comparator<ForumPost> {
+		@Override
+		public int compare(ForumPost forumPost, ForumPost t1) {
+			if (forumPost.getPostDateTime().isAfter(t1.getPostDateTime())) return -1;
+			if (forumPost.getPostDateTime().isEqual(t1.getPostDateTime())) return 0;
+			return 1;
+		}
 	}
 }

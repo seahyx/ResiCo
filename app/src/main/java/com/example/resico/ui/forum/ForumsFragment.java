@@ -24,14 +24,12 @@ import java.util.ArrayList;
 
 public class ForumsFragment extends Fragment {
 	private final String TAG = this.getClass().getSimpleName();
-	private FragmentForumsBinding binding;
-
-	private RecyclerView recyclerView;
-	private ArrayList<ForumPost> forumPosts = new ArrayList<>();
-
 	private final ActivityResultLauncher<Intent> detailLauncher = registerForActivityResult(
 			new ActivityResultContracts.StartActivityForResult(),
 			result -> Log.d(TAG, "Returned from details page."));
+	private FragmentForumsBinding binding;
+	private RecyclerView recyclerView;
+	private ArrayList<ForumPost> forumPosts = new ArrayList<>();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

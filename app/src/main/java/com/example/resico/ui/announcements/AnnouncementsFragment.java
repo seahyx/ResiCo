@@ -24,12 +24,11 @@ import java.util.ArrayList;
 
 public class AnnouncementsFragment extends Fragment {
 	private final String TAG = this.getClass().getSimpleName();
-	private FragmentAnnouncementsBinding binding;
-	ArrayList<Announcement> announcements = new ArrayList<>();
-
 	private final ActivityResultLauncher<Intent> detailLauncher = registerForActivityResult(
 			new ActivityResultContracts.StartActivityForResult(),
 			result -> Log.d(TAG, "Returned from details page."));
+	ArrayList<Announcement> announcements = new ArrayList<>();
+	private FragmentAnnouncementsBinding binding;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

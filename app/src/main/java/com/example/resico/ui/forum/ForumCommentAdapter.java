@@ -22,39 +22,6 @@ public class ForumCommentAdapter extends RecyclerView.Adapter<ForumCommentAdapte
 
 	private ArrayList<ForumComment> forumComments;
 
-	public static class ForumDetailHolder extends RecyclerView.ViewHolder {
-		private final CommentBinding binding;
-		private final CircleImageView userImageView;
-		private final TextView usernameView;
-		private final TextView postDateTimeView;
-		private final TextView commentView;
-
-		public ForumDetailHolder(CommentBinding binding) {
-			super(binding.getRoot());
-			this.binding = binding;
-			usernameView = binding.username;
-			postDateTimeView = binding.postTime;
-			commentView = binding.commentBody;
-			userImageView = binding.commentProfileImage;
-		}
-
-		public TextView getUserNameView() {
-			return usernameView;
-		}
-
-		public CircleImageView getUserImageView() {
-			return userImageView;
-		}
-
-		public TextView getCommentView() {
-			return commentView;
-		}
-
-		public TextView getPostDateTimeView() {
-			return postDateTimeView;
-		}
-	}
-
 	/**
 	 * Initialize dataset of the Adapter.
 	 */
@@ -88,9 +55,41 @@ public class ForumCommentAdapter extends RecyclerView.Adapter<ForumCommentAdapte
 		});
 	}
 
-
 	@Override
 	public int getItemCount() {
 		return forumComments.size();
+	}
+
+	public static class ForumDetailHolder extends RecyclerView.ViewHolder {
+		private final CommentBinding binding;
+		private final CircleImageView userImageView;
+		private final TextView usernameView;
+		private final TextView postDateTimeView;
+		private final TextView commentView;
+
+		public ForumDetailHolder(CommentBinding binding) {
+			super(binding.getRoot());
+			this.binding = binding;
+			usernameView = binding.username;
+			postDateTimeView = binding.postTime;
+			commentView = binding.commentBody;
+			userImageView = binding.commentProfileImage;
+		}
+
+		public TextView getUserNameView() {
+			return usernameView;
+		}
+
+		public CircleImageView getUserImageView() {
+			return userImageView;
+		}
+
+		public TextView getCommentView() {
+			return commentView;
+		}
+
+		public TextView getPostDateTimeView() {
+			return postDateTimeView;
+		}
 	}
 }

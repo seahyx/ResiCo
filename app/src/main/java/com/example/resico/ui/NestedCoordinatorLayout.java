@@ -19,6 +19,28 @@ import kotlin.jvm.JvmOverloads;
 public final class NestedCoordinatorLayout extends CoordinatorLayout implements NestedScrollingChild3 {
 	private final NestedScrollingChildHelper helper;
 
+	@JvmOverloads
+	public NestedCoordinatorLayout(@NotNull Context context, @Nullable AttributeSet attrs, @AttrRes @SuppressLint({"PrivateResource"}) int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+		this.helper = new NestedScrollingChildHelper(this);
+		this.setNestedScrollingEnabled(true);
+	}
+
+	// $FF: synthetic method
+	public NestedCoordinatorLayout(Context var1, AttributeSet var2, int var3, int var4) {
+		this(var1, (var4 & 2) != 0 ? null : var2, (var4 & 4) != 0 ? attr.coordinatorLayoutStyle : var3);
+	}
+
+	@JvmOverloads
+	public NestedCoordinatorLayout(@NotNull Context context, @Nullable AttributeSet attrs) {
+		this(context, attrs, 0, 4);
+	}
+
+	@JvmOverloads
+	public NestedCoordinatorLayout(@NotNull Context context) {
+		this(context, null, 0, 6);
+	}
+
 	public boolean isNestedScrollingEnabled() {
 		return this.helper.isNestedScrollingEnabled();
 	}
@@ -140,27 +162,5 @@ public final class NestedCoordinatorLayout extends CoordinatorLayout implements 
 
 	public boolean dispatchNestedFling(float velocityX, float velocityY, boolean consumed) {
 		return this.helper.dispatchNestedFling(velocityX, velocityY, consumed);
-	}
-
-	@JvmOverloads
-	public NestedCoordinatorLayout(@NotNull Context context, @Nullable AttributeSet attrs, @AttrRes @SuppressLint({"PrivateResource"}) int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-		this.helper = new NestedScrollingChildHelper(this);
-		this.setNestedScrollingEnabled(true);
-	}
-
-	// $FF: synthetic method
-	public NestedCoordinatorLayout(Context var1, AttributeSet var2, int var3, int var4) {
-		this(var1, (var4 & 2) != 0 ? null : var2, (var4 & 4) != 0 ? attr.coordinatorLayoutStyle : var3);
-	}
-
-	@JvmOverloads
-	public NestedCoordinatorLayout(@NotNull Context context, @Nullable AttributeSet attrs) {
-		this(context, attrs, 0, 4);
-	}
-
-	@JvmOverloads
-	public NestedCoordinatorLayout(@NotNull Context context) {
-		this(context, null, 0, 6);
 	}
 }

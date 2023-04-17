@@ -15,48 +15,8 @@ import com.google.android.material.card.MaterialCardView;
 import java.util.ArrayList;
 
 public class AnnouncementsAdapter extends RecyclerView.Adapter<AnnouncementsAdapter.ViewHolder> {
-	ArrayList<Announcement> announcements;
 	private final ListOnClickInterface listOnClickInterface;
-
-	public static class ViewHolder extends RecyclerView.ViewHolder {
-		private final AnnouncementListItemBinding binding;
-		private final MaterialCardView cardView;
-		private final TextView titleView;
-		private final TextView dateView;
-		private final TextView previewView;
-
-		public AnnouncementListItemBinding getBinding() {
-			return binding;
-		}
-
-		public TextView getTitleView() {
-			return titleView;
-		}
-
-		public MaterialCardView getCardView() {
-			return cardView;
-		}
-
-		public TextView getDateView() {
-			return dateView;
-		}
-
-		public TextView getPreviewView() {
-			return previewView;
-		}
-
-		public ViewHolder(AnnouncementListItemBinding binding) {
-			super(binding.getRoot());
-			this.binding = binding;
-
-			titleView = binding.announcementTitle;
-			dateView = binding.announcementDate;
-			previewView = binding.announcementPreview;
-			cardView = binding.announcementCard;
-
-		}
-	}
-
+	ArrayList<Announcement> announcements;
 
 	public AnnouncementsAdapter(ArrayList<Announcement> announcements, ListOnClickInterface listOnClickInterface) {
 		this.announcements = announcements;
@@ -84,5 +44,44 @@ public class AnnouncementsAdapter extends RecyclerView.Adapter<AnnouncementsAdap
 	public int getItemCount() {
 		// the recycler view just wants to know the number of items you want displayed
 		return announcements.size();
+	}
+
+	public static class ViewHolder extends RecyclerView.ViewHolder {
+		private final AnnouncementListItemBinding binding;
+		private final MaterialCardView cardView;
+		private final TextView titleView;
+		private final TextView dateView;
+		private final TextView previewView;
+
+		public ViewHolder(AnnouncementListItemBinding binding) {
+			super(binding.getRoot());
+			this.binding = binding;
+
+			titleView = binding.announcementTitle;
+			dateView = binding.announcementDate;
+			previewView = binding.announcementPreview;
+			cardView = binding.announcementCard;
+
+		}
+
+		public AnnouncementListItemBinding getBinding() {
+			return binding;
+		}
+
+		public TextView getTitleView() {
+			return titleView;
+		}
+
+		public MaterialCardView getCardView() {
+			return cardView;
+		}
+
+		public TextView getDateView() {
+			return dateView;
+		}
+
+		public TextView getPreviewView() {
+			return previewView;
+		}
 	}
 }
